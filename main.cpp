@@ -3,5 +3,6 @@
 
 int main() {
     Manager manager;
+    manager.startApplication();
     return 0;
 }
