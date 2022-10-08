@@ -1,9 +1,5 @@
 /snap/clion/206/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/snap/clion/206/bin/ninja/linux/ninja -G Ninja -S /home/ntsayz/Documents/feup-aed -B /home/ntsayz/Documents/feup-aed/cmake-build-debug
-CMake Error: File /home/ntsayz/Documents/feup-aed/docs/Doxyfile does not exist.
-CMake Error at CMakeLists.txt:18 (configure_file):
-  configure_file Problem configuring file
-
-
 Doxygen build started
--- Configuring incomplete, errors occurred!
-See also "/home/ntsayz/Documents/feup-aed/cmake-build-debug/CMakeFiles/CMakeOutput.log".
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/ntsayz/Documents/feup-aed/cmake-build-debug

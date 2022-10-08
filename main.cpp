@@ -1,6 +1,7 @@
 #include <iostream>
+#include "src/Manager.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    Manager manager;
     return 0;
 }
