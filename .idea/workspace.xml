@@ -18,61 +18,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bef31b95-ce9a-4419-9941-f273d44b6653" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Doxyfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/Doxyfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/bc_s.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/bc_sd.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/bdwn.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/closed.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/doc.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/docd.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/doxygen.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/doxygen.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/dynsections.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/folderclosed.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/folderopen.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/graph_legend.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/graph_legend.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/jquery.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/menu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/menudata.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/nav_f.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/nav_fd.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/nav_g.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/nav_h.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/nav_hd.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/open.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/search/close.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/search/mag.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/search/mag_d.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/search/mag_sel.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/search/mag_seld.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/search/search.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/search/search.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/search/searchdata.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/splitbar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/splitbard.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/sync_off.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/sync_on.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/tab_a.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/tab_ad.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/tab_b.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/tab_bd.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/tab_h.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/tab_hd.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/tab_s.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/tab_sd.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/tabs.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/latex/Makefile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/latex/doxygen.sty" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/latex/longtable_doxygen.sty" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/latex/refman.tex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/latex/tabu_doxygen.sty" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2022-10-08T00-42-25-0213.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Doxyfile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Doxyfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Doxyfile" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Doxyfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/output/html/graph_legend.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/output/html/graph_legend.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/output/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/output/html/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/output/latex/refman.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/output/latex/refman.tex" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,6 +74,9 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/docs/output" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/docs" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
@@ -142,7 +99,7 @@
       <option name="presentableId" value="Default" />
       <updated>1665186309068</updated>
       <workItem from="1665186310949" duration="2120000" />
-      <workItem from="1665189674079" duration="1000" />
+      <workItem from="1665189674079" duration="1329000" />
     </task>
     <servers />
   </component>
