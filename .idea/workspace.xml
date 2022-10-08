@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="CMakePresetLoader">{
   &quot;useNewFormat&quot;: true
 }</component>
@@ -9,7 +12,6 @@
   <component name="CMakeRunConfigurationManager">
     <generated>
       <config projectName="feup_aed" targetName="feup_aed" />
-      <config projectName="feup_aed" targetName="Doxygen" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -19,41 +21,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bef31b95-ce9a-4419-9941-f273d44b6653" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/docs/Doxygen" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/_manager_8h_source.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/annotated.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/class_manager-members.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/class_manager.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/classes.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/dir_68267d1309a1af8e8297ef4c3efbcdba.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/files.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/functions.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/functions_func.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/search/all_0.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/search/all_1.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/search/all_2.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/search/classes_0.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/search/functions_0.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/search/functions_1.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/html/search/functions_2.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/latex/_manager_8h_source.tex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/latex/annotated.tex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/latex/class_manager.tex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output/latex/files.tex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Manager.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Manager.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/uc.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/uc.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-acd5ba9125b419065c84.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2022-10-08T01-03-36-0981.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-feup_aed-Debug-55653d858231ede61e71.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cache-v2-a7a8750260c3cc81cc05.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-0ca7ea652d9f79890f65.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-7b40e028b524899d7cd4.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2022-10-08T13-43-13-0231.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-Doxygen-Debug-a3982725436606609937.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-feup_aed-Debug-8c695d31ae068d250226.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-ee5ca47e57a615ee224c.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.23.2/CMakeCCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.23.2/CMakeCCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.23.2/CMakeCXXCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.23.2/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.23.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.23.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.23.2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.23.2/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.23.2/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.23.2/CMakeSystem.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.23.2/CompilerIdC/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.23.2/CompilerIdC/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.23.2/CompilerIdCXX/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.23.2/CompilerIdCXX/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feup_aed.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feup_aed.dir/main.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/output/html/menudata.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/output/html/menudata.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/output/html/search/searchdata.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/output/html/search/searchdata.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/output/latex/refman.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/output/latex/refman.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/feup_aed" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -95,8 +92,13 @@
     "WebServerToolWindowFactoryState": "false",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "last_opened_file_path": "/home/ntsayz/Documents/feup-aed/docs/output",
-    "nodejs_package_manager_path": "npm"
+    "last_opened_file_path": "/Users/EritonNaife/feup-aed",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "two.files.diff.last.used.file": "/Users/EritonNaife/feup-aed/main.cpp"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -107,26 +109,12 @@
       <recent name="$PROJECT_DIR$/docs" />
     </key>
   </component>
-  <component name="RunManager" selected="CMake Application.feup_aed">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Doxygen" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="feup_aed" TARGET_NAME="Doxygen" CONFIG_NAME="Debug">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager">
     <configuration name="feup_aed" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="feup_aed" TARGET_NAME="feup_aed" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="feup_aed" RUN_TARGET_NAME="feup_aed">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="CMake Application.Doxygen" />
-      <item itemvalue="CMake Application.feup_aed" />
-    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -139,6 +127,10 @@
       <workItem from="1665186310949" duration="2120000" />
       <workItem from="1665189674079" duration="1567000" />
       <workItem from="1665236178795" duration="1634000" />
+      <workItem from="1665244374726" duration="340000" />
+      <workItem from="1665244915007" duration="1146000" />
+      <workItem from="1665246550343" duration="16000" />
+      <workItem from="1665246594895" duration="2300000" />
     </task>
     <servers />
   </component>
@@ -150,7 +142,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="job" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
