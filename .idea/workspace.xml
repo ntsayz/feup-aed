@@ -20,7 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bef31b95-ce9a-4419-9941-f273d44b6653" name="Changes" comment="Trying this out" />
+    <list default="true" id="bef31b95-ce9a-4419-9941-f273d44b6653" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -94,11 +94,15 @@
       <updated>1665186309068</updated>
       <workItem from="1665186310949" duration="2120000" />
       <workItem from="1665189674079" duration="1567000" />
+<<<<<<< HEAD
       <workItem from="1665236178795" duration="1634000" />
       <workItem from="1665244374726" duration="340000" />
       <workItem from="1665244915007" duration="1146000" />
       <workItem from="1665246550343" duration="16000" />
       <workItem from="1665246594895" duration="2591000" />
+=======
+      <workItem from="1665236178795" duration="8279000" />
+>>>>>>> main
     </task>
     <task id="LOCAL-00001" summary="Trying this out">
       <created>1665249487580</created>
