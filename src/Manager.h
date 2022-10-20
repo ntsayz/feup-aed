@@ -10,11 +10,20 @@
 #include <iostream>
 #include <iomanip>
 #include <cstdlib>
+#include <set>
+#include <vector>
 #include "Utilities.h"
+#include "Student.h"
+#include "Class.h"
+
 
 class Manager {
 private:
     std::vector<std::string> files;
+    std::set<Student> students;
+    std::vector<Class> horario;
+
+
     bool session;
 private: Utilities utils;
     /*
