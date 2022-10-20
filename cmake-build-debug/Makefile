@@ -166,6 +166,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/Class.o: src/Class.cpp.o
+.PHONY : src/Class.o
+
+# target to build an object file
+src/Class.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Class.cpp.o
+.PHONY : src/Class.cpp.o
+
+src/Class.i: src/Class.cpp.i
+.PHONY : src/Class.i
+
+# target to preprocess a source file
+src/Class.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Class.cpp.i
+.PHONY : src/Class.cpp.i
+
+src/Class.s: src/Class.cpp.s
+.PHONY : src/Class.s
+
+# target to generate assembly for a file
+src/Class.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Class.cpp.s
+.PHONY : src/Class.cpp.s
+
 src/Manager.o: src/Manager.cpp.o
 .PHONY : src/Manager.o
 
@@ -238,30 +262,6 @@ src/Student.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Student.cpp.s
 .PHONY : src/Student.cpp.s
 
-src/Turma.o: src/Turma.cpp.o
-.PHONY : src/Turma.o
-
-# target to build an object file
-src/Turma.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Turma.cpp.o
-.PHONY : src/Turma.cpp.o
-
-src/Turma.i: src/Turma.cpp.i
-.PHONY : src/Turma.i
-
-# target to preprocess a source file
-src/Turma.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Turma.cpp.i
-.PHONY : src/Turma.cpp.i
-
-src/Turma.s: src/Turma.cpp.s
-.PHONY : src/Turma.s
-
-# target to generate assembly for a file
-src/Turma.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Turma.cpp.s
-.PHONY : src/Turma.cpp.s
-
 src/Utilities.o: src/Utilities.cpp.o
 .PHONY : src/Utilities.o
 
@@ -299,6 +299,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/Class.o"
+	@echo "... src/Class.i"
+	@echo "... src/Class.s"
 	@echo "... src/Manager.o"
 	@echo "... src/Manager.i"
 	@echo "... src/Manager.s"
@@ -308,9 +311,6 @@ help:
 	@echo "... src/Student.o"
 	@echo "... src/Student.i"
 	@echo "... src/Student.s"
-	@echo "... src/Turma.o"
-	@echo "... src/Turma.i"
-	@echo "... src/Turma.s"
 	@echo "... src/Utilities.o"
 	@echo "... src/Utilities.i"
 	@echo "... src/Utilities.s"
