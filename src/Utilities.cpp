@@ -3,6 +3,7 @@
 //
 
 
+#include <fstream>
 #include "Utilities.h"
 
 Utilities::Utilities() = default;
@@ -31,9 +32,12 @@ void Utilities::clear_screen() {
     std::system("clear");
 #endif
 }
-bool Utilities::checkFiles() const {
-    //files = [ "schedule/classes.csv" ,"schedule/classes_per_uc.csv", "schedule/students_classes.csv"];
-    return false;
+
+template<typename T>
+T Utilities::loadFiles(T file) {
+
+    return nullptr;
 }
+
 
 
