@@ -10,20 +10,15 @@ Utilities::Utilities() = default;
 short Utilities::getInput(short choice, short min, short max)  {
 
     while(true){
-
         if (std::cin.fail()) {
             std::cerr << "Sorry, I cannot read that. Please try again." << std::endl;
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             continue;
+        }else if (choice < min || choice > max) {
+            return -1;
         }
-
-        if (choice < min || choice > max) {
-            std::cerr << "Sorry, the number is out of range." << std::endl;
-            return (short)-1;
-        }
-
-        std::cout << "You have entered " << choice << ". Thank you!" << std::endl;
+        if(choice == 9) return choice;
         return choice;
     }
 }

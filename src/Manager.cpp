@@ -14,19 +14,17 @@ void Manager::startApplication(){
         Utilities::clear_screen();
         short choice = mainMenu();
         switch (choice) {
-            case 0:
+            case 9:
                 session = false;
                 break;
             case 1:
-                std::cout << "1";
                 break;
             case 2:
-                std::cout << "2";
                 break;
             case 3:
-                std::cout << "3";
                 break;
             default:
+                std::cerr << "That doesn't seem like a valid option..\n";
                 break;
         }
     }
@@ -44,7 +42,7 @@ short Manager::mainMenu() {
             << std::setw(33) << "2. Login\n" <<
             std::setw(33) << "3. Guest\n";
      std::cout << "-----------------------------------------------------------\n";
-    std::cout << "|                      "; std::cout << " 0. Exit   ";   std::cout << "                      |\n"
+    std::cout << "|                      "; std::cout << " 9. Exit   ";   std::cout << "                      |\n"
         << "-----------------------------------------------------------\n\n";
 
     short choice;
