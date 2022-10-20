@@ -1,6 +1,5 @@
 #include <iostream>
 #include "src/Manager.h"
-#include "src/Uc.h"
 
 int main() {
     Manager manager;
