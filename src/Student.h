@@ -8,7 +8,6 @@
 
 class Student {
 private:
-    
 
 public:
     Student();
