@@ -10,6 +10,7 @@
 #include <iostream>
 #include <iomanip>
 #include <cstdlib>
+#include "Utilities.h"
 
 class Manager {
 private:
@@ -20,23 +21,15 @@ private:
 */
     std::vector<std::string> files;
     bool session;
-
-
-
-
-
+    private: Utilities utils;
 public:
     Manager();
     /// Gets options and calls the rest of the program
     void startApplication();
     /// Main menu
     int mainMenu();
-    /// Gets and sanitizes user's input
-    int getInput(short choice, short min, short max);
-    /// Make sure that all files exist before starting program
-    bool checkFiles() const;
-    /// Clear screen (Cross-Platform)
-    void clear_screen() const;
+
+
 
 
 

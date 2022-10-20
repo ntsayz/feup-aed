@@ -1,1 +1,1 @@
-/usr/bin/c++ -g CMakeFiles/feup_aed.dir/main.cpp.o CMakeFiles/feup_aed.dir/src/Manager.cpp.o -o feup_aed 
+/usr/bin/c++ -g CMakeFiles/feup_aed.dir/main.cpp.o CMakeFiles/feup_aed.dir/src/Manager.cpp.o CMakeFiles/feup_aed.dir/src/Student.cpp.o CMakeFiles/feup_aed.dir/src/Turma.cpp.o CMakeFiles/feup_aed.dir/src/Utilities.cpp.o CMakeFiles/feup_aed.dir/src/Slot.cpp.o -o feup_aed 

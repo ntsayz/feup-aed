@@ -3,7 +3,7 @@ project(feup_aed)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(feup_aed main.cpp src/Manager.cpp src/Manager.h)
+add_executable(feup_aed main.cpp src/Manager.cpp src/Manager.h src/Student.cpp src/Student.h src/Turma.cpp src/Turma.h src/Utilities.cpp src/Utilities.h src/Slot.cpp src/Slot.h)
 
 # Doxygen Build
 find_package(Doxygen)

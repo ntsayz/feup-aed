@@ -190,6 +190,102 @@ src/Manager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Manager.cpp.s
 .PHONY : src/Manager.cpp.s
 
+src/Slot.o: src/Slot.cpp.o
+.PHONY : src/Slot.o
+
+# target to build an object file
+src/Slot.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Slot.cpp.o
+.PHONY : src/Slot.cpp.o
+
+src/Slot.i: src/Slot.cpp.i
+.PHONY : src/Slot.i
+
+# target to preprocess a source file
+src/Slot.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Slot.cpp.i
+.PHONY : src/Slot.cpp.i
+
+src/Slot.s: src/Slot.cpp.s
+.PHONY : src/Slot.s
+
+# target to generate assembly for a file
+src/Slot.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Slot.cpp.s
+.PHONY : src/Slot.cpp.s
+
+src/Student.o: src/Student.cpp.o
+.PHONY : src/Student.o
+
+# target to build an object file
+src/Student.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Student.cpp.o
+.PHONY : src/Student.cpp.o
+
+src/Student.i: src/Student.cpp.i
+.PHONY : src/Student.i
+
+# target to preprocess a source file
+src/Student.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Student.cpp.i
+.PHONY : src/Student.cpp.i
+
+src/Student.s: src/Student.cpp.s
+.PHONY : src/Student.s
+
+# target to generate assembly for a file
+src/Student.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Student.cpp.s
+.PHONY : src/Student.cpp.s
+
+src/Turma.o: src/Turma.cpp.o
+.PHONY : src/Turma.o
+
+# target to build an object file
+src/Turma.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Turma.cpp.o
+.PHONY : src/Turma.cpp.o
+
+src/Turma.i: src/Turma.cpp.i
+.PHONY : src/Turma.i
+
+# target to preprocess a source file
+src/Turma.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Turma.cpp.i
+.PHONY : src/Turma.cpp.i
+
+src/Turma.s: src/Turma.cpp.s
+.PHONY : src/Turma.s
+
+# target to generate assembly for a file
+src/Turma.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Turma.cpp.s
+.PHONY : src/Turma.cpp.s
+
+src/Utilities.o: src/Utilities.cpp.o
+.PHONY : src/Utilities.o
+
+# target to build an object file
+src/Utilities.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Utilities.cpp.o
+.PHONY : src/Utilities.cpp.o
+
+src/Utilities.i: src/Utilities.cpp.i
+.PHONY : src/Utilities.i
+
+# target to preprocess a source file
+src/Utilities.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Utilities.cpp.i
+.PHONY : src/Utilities.cpp.i
+
+src/Utilities.s: src/Utilities.cpp.s
+.PHONY : src/Utilities.s
+
+# target to generate assembly for a file
+src/Utilities.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Utilities.cpp.s
+.PHONY : src/Utilities.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -206,6 +302,18 @@ help:
 	@echo "... src/Manager.o"
 	@echo "... src/Manager.i"
 	@echo "... src/Manager.s"
+	@echo "... src/Slot.o"
+	@echo "... src/Slot.i"
+	@echo "... src/Slot.s"
+	@echo "... src/Student.o"
+	@echo "... src/Student.i"
+	@echo "... src/Student.s"
+	@echo "... src/Turma.o"
+	@echo "... src/Turma.i"
+	@echo "... src/Turma.s"
+	@echo "... src/Utilities.o"
+	@echo "... src/Utilities.i"
+	@echo "... src/Utilities.s"
 .PHONY : help
 
 
