@@ -24,32 +24,4 @@ public:
     std::string get_uc_Code() const;
 };
 
-class schedule:
-        public Uc
-        {
-        private:
-            std::string weekday,type;
-            int duration,startHour;
-        public:
-
-            schedule();
-
-
-            schedule(std::string class_Code,std::string uc_Code,std::string weekday,
-                     int startHour,int duration,std::string type);
-
-            void set_weekday(std::string weekday);
-            std::string get_weekday() const;
-
-            void set_type(std::string type);
-            std::string get_type() const;
-
-            void set_duration(int duration);
-            int get_duration() const;
-
-            void set_startHour(int startHour);
-            int get_startHour() const;
-};
-
-
 #endif //FEUP_AED_UC_H
