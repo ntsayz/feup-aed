@@ -1,10 +1,10 @@
 #include <iostream>
 #include "src/Manager.h"
-#include "src/Uc.h"
+#include "src/uc.h"
 
 int main() {
     Manager manager;
-    Uc uc;
+    //Uc uc;
     manager.startApplication();
     return 0;
 }
