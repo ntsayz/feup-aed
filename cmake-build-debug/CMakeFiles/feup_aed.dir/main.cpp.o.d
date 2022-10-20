@@ -158,5 +158,13 @@ CMakeFiles/feup_aed.dir/main.cpp.o: \
  /usr/include/c++/9/array /usr/include/c++/9/bits/uses_allocator.h \
  /usr/include/c++/9/bits/invoke.h /usr/include/c++/9/bits/quoted_string.h \
  /usr/include/c++/9/sstream /usr/include/c++/9/bits/sstream.tcc \
+ /usr/include/c++/9/set /usr/include/c++/9/bits/stl_tree.h \
+ /usr/include/c++/9/ext/aligned_buffer.h \
+ /usr/include/c++/9/bits/node_handle.h /usr/include/c++/9/optional \
+ /usr/include/c++/9/bits/enable_special_members.h \
+ /usr/include/c++/9/bits/stl_set.h /usr/include/c++/9/bits/stl_multiset.h \
+ /usr/include/c++/9/bits/erase_if.h \
  /home/ntsayz/Documents/feup-aed/src/Utilities.h \
- /home/ntsayz/Documents/feup-aed/src/uc.h
+ /home/ntsayz/Documents/feup-aed/src/Student.h \
+ /home/ntsayz/Documents/feup-aed/src/Class.h \
+ /home/ntsayz/Documents/feup-aed/src/Uc.h

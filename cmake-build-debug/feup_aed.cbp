@@ -119,6 +119,12 @@
 		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Student.h">
 			<Option target="feup_aed"/>
 		</Unit>
+		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Uc.cpp">
+			<Option target="feup_aed"/>
+		</Unit>
+		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Uc.h">
+			<Option target="feup_aed"/>
+		</Unit>
 		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Utilities.cpp">
 			<Option target="feup_aed"/>
 		</Unit>

@@ -10,6 +10,7 @@ Utilities::Utilities() = default;
 short Utilities::getInput(short choice, short min, short max)  {
 
     while(true){
+        if(choice == 9) return choice;
         if (std::cin.fail()) {
             std::cerr << "Sorry, I cannot read that. Please try again." << std::endl;
             std::cin.clear();
@@ -18,7 +19,7 @@ short Utilities::getInput(short choice, short min, short max)  {
         }else if (choice < min || choice > max) {
             return -1;
         }
-        if(choice == 9) return choice;
+
         return choice;
     }
 }
