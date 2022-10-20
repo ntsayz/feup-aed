@@ -95,6 +95,12 @@
 		<Unit filename="/home/ntsayz/Documents/feup-aed/main.cpp">
 			<Option target="feup_aed"/>
 		</Unit>
+		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Class.cpp">
+			<Option target="feup_aed"/>
+		</Unit>
+		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Class.h">
+			<Option target="feup_aed"/>
+		</Unit>
 		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Manager.cpp">
 			<Option target="feup_aed"/>
 		</Unit>
@@ -111,12 +117,6 @@
 			<Option target="feup_aed"/>
 		</Unit>
 		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Student.h">
-			<Option target="feup_aed"/>
-		</Unit>
-		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Turma.cpp">
-			<Option target="feup_aed"/>
-		</Unit>
-		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Turma.h">
 			<Option target="feup_aed"/>
 		</Unit>
 		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Utilities.cpp">

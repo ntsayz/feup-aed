@@ -111,19 +111,19 @@ CMakeFiles/feup_aed.dir/src/Student.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/feup_aed.dir/src/Student.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ntsayz/Documents/feup-aed/src/Student.cpp -o CMakeFiles/feup_aed.dir/src/Student.cpp.s
 
-CMakeFiles/feup_aed.dir/src/Turma.cpp.o: CMakeFiles/feup_aed.dir/flags.make
-CMakeFiles/feup_aed.dir/src/Turma.cpp.o: ../src/Turma.cpp
-CMakeFiles/feup_aed.dir/src/Turma.cpp.o: CMakeFiles/feup_aed.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ntsayz/Documents/feup-aed/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/feup_aed.dir/src/Turma.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/feup_aed.dir/src/Turma.cpp.o -MF CMakeFiles/feup_aed.dir/src/Turma.cpp.o.d -o CMakeFiles/feup_aed.dir/src/Turma.cpp.o -c /home/ntsayz/Documents/feup-aed/src/Turma.cpp
+CMakeFiles/feup_aed.dir/src/Class.cpp.o: CMakeFiles/feup_aed.dir/flags.make
+CMakeFiles/feup_aed.dir/src/Class.cpp.o: ../src/Class.cpp
+CMakeFiles/feup_aed.dir/src/Class.cpp.o: CMakeFiles/feup_aed.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ntsayz/Documents/feup-aed/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/feup_aed.dir/src/Class.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/feup_aed.dir/src/Class.cpp.o -MF CMakeFiles/feup_aed.dir/src/Class.cpp.o.d -o CMakeFiles/feup_aed.dir/src/Class.cpp.o -c /home/ntsayz/Documents/feup-aed/src/Class.cpp
 
-CMakeFiles/feup_aed.dir/src/Turma.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/feup_aed.dir/src/Turma.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ntsayz/Documents/feup-aed/src/Turma.cpp > CMakeFiles/feup_aed.dir/src/Turma.cpp.i
+CMakeFiles/feup_aed.dir/src/Class.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/feup_aed.dir/src/Class.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ntsayz/Documents/feup-aed/src/Class.cpp > CMakeFiles/feup_aed.dir/src/Class.cpp.i
 
-CMakeFiles/feup_aed.dir/src/Turma.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/feup_aed.dir/src/Turma.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ntsayz/Documents/feup-aed/src/Turma.cpp -o CMakeFiles/feup_aed.dir/src/Turma.cpp.s
+CMakeFiles/feup_aed.dir/src/Class.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/feup_aed.dir/src/Class.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ntsayz/Documents/feup-aed/src/Class.cpp -o CMakeFiles/feup_aed.dir/src/Class.cpp.s
 
 CMakeFiles/feup_aed.dir/src/Utilities.cpp.o: CMakeFiles/feup_aed.dir/flags.make
 CMakeFiles/feup_aed.dir/src/Utilities.cpp.o: ../src/Utilities.cpp
@@ -158,7 +158,7 @@ feup_aed_OBJECTS = \
 "CMakeFiles/feup_aed.dir/main.cpp.o" \
 "CMakeFiles/feup_aed.dir/src/Manager.cpp.o" \
 "CMakeFiles/feup_aed.dir/src/Student.cpp.o" \
-"CMakeFiles/feup_aed.dir/src/Turma.cpp.o" \
+"CMakeFiles/feup_aed.dir/src/Class.cpp.o" \
 "CMakeFiles/feup_aed.dir/src/Utilities.cpp.o" \
 "CMakeFiles/feup_aed.dir/src/Slot.cpp.o"
 
@@ -168,7 +168,7 @@ feup_aed_EXTERNAL_OBJECTS =
 feup_aed: CMakeFiles/feup_aed.dir/main.cpp.o
 feup_aed: CMakeFiles/feup_aed.dir/src/Manager.cpp.o
 feup_aed: CMakeFiles/feup_aed.dir/src/Student.cpp.o
-feup_aed: CMakeFiles/feup_aed.dir/src/Turma.cpp.o
+feup_aed: CMakeFiles/feup_aed.dir/src/Class.cpp.o
 feup_aed: CMakeFiles/feup_aed.dir/src/Utilities.cpp.o
 feup_aed: CMakeFiles/feup_aed.dir/src/Slot.cpp.o
 feup_aed: CMakeFiles/feup_aed.dir/build.make
