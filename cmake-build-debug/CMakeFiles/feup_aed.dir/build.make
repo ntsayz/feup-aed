@@ -97,19 +97,19 @@ CMakeFiles/feup_aed.dir/src/Manager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/feup_aed.dir/src/Manager.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ntsayz/Documents/feup-aed/src/Manager.cpp -o CMakeFiles/feup_aed.dir/src/Manager.cpp.s
 
-CMakeFiles/feup_aed.dir/src/Student.cpp.o: CMakeFiles/feup_aed.dir/flags.make
-CMakeFiles/feup_aed.dir/src/Student.cpp.o: ../src/Student.cpp
-CMakeFiles/feup_aed.dir/src/Student.cpp.o: CMakeFiles/feup_aed.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ntsayz/Documents/feup-aed/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/feup_aed.dir/src/Student.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/feup_aed.dir/src/Student.cpp.o -MF CMakeFiles/feup_aed.dir/src/Student.cpp.o.d -o CMakeFiles/feup_aed.dir/src/Student.cpp.o -c /home/ntsayz/Documents/feup-aed/src/Student.cpp
+CMakeFiles/feup_aed.dir/src/Uc.cpp.o: CMakeFiles/feup_aed.dir/flags.make
+CMakeFiles/feup_aed.dir/src/Uc.cpp.o: ../src/Uc.cpp
+CMakeFiles/feup_aed.dir/src/Uc.cpp.o: CMakeFiles/feup_aed.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ntsayz/Documents/feup-aed/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/feup_aed.dir/src/Uc.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/feup_aed.dir/src/Uc.cpp.o -MF CMakeFiles/feup_aed.dir/src/Uc.cpp.o.d -o CMakeFiles/feup_aed.dir/src/Uc.cpp.o -c /home/ntsayz/Documents/feup-aed/src/Uc.cpp
 
-CMakeFiles/feup_aed.dir/src/Student.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/feup_aed.dir/src/Student.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ntsayz/Documents/feup-aed/src/Student.cpp > CMakeFiles/feup_aed.dir/src/Student.cpp.i
+CMakeFiles/feup_aed.dir/src/Uc.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/feup_aed.dir/src/Uc.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ntsayz/Documents/feup-aed/src/Uc.cpp > CMakeFiles/feup_aed.dir/src/Uc.cpp.i
 
-CMakeFiles/feup_aed.dir/src/Student.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/feup_aed.dir/src/Student.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ntsayz/Documents/feup-aed/src/Student.cpp -o CMakeFiles/feup_aed.dir/src/Student.cpp.s
+CMakeFiles/feup_aed.dir/src/Uc.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/feup_aed.dir/src/Uc.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ntsayz/Documents/feup-aed/src/Uc.cpp -o CMakeFiles/feup_aed.dir/src/Uc.cpp.s
 
 CMakeFiles/feup_aed.dir/src/Class.cpp.o: CMakeFiles/feup_aed.dir/flags.make
 CMakeFiles/feup_aed.dir/src/Class.cpp.o: ../src/Class.cpp
@@ -125,24 +125,10 @@ CMakeFiles/feup_aed.dir/src/Class.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/feup_aed.dir/src/Class.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ntsayz/Documents/feup-aed/src/Class.cpp -o CMakeFiles/feup_aed.dir/src/Class.cpp.s
 
-CMakeFiles/feup_aed.dir/src/Utilities.cpp.o: CMakeFiles/feup_aed.dir/flags.make
-CMakeFiles/feup_aed.dir/src/Utilities.cpp.o: ../src/Utilities.cpp
-CMakeFiles/feup_aed.dir/src/Utilities.cpp.o: CMakeFiles/feup_aed.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ntsayz/Documents/feup-aed/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/feup_aed.dir/src/Utilities.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/feup_aed.dir/src/Utilities.cpp.o -MF CMakeFiles/feup_aed.dir/src/Utilities.cpp.o.d -o CMakeFiles/feup_aed.dir/src/Utilities.cpp.o -c /home/ntsayz/Documents/feup-aed/src/Utilities.cpp
-
-CMakeFiles/feup_aed.dir/src/Utilities.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/feup_aed.dir/src/Utilities.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ntsayz/Documents/feup-aed/src/Utilities.cpp > CMakeFiles/feup_aed.dir/src/Utilities.cpp.i
-
-CMakeFiles/feup_aed.dir/src/Utilities.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/feup_aed.dir/src/Utilities.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ntsayz/Documents/feup-aed/src/Utilities.cpp -o CMakeFiles/feup_aed.dir/src/Utilities.cpp.s
-
 CMakeFiles/feup_aed.dir/src/Slot.cpp.o: CMakeFiles/feup_aed.dir/flags.make
 CMakeFiles/feup_aed.dir/src/Slot.cpp.o: ../src/Slot.cpp
 CMakeFiles/feup_aed.dir/src/Slot.cpp.o: CMakeFiles/feup_aed.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ntsayz/Documents/feup-aed/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/feup_aed.dir/src/Slot.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ntsayz/Documents/feup-aed/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/feup_aed.dir/src/Slot.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/feup_aed.dir/src/Slot.cpp.o -MF CMakeFiles/feup_aed.dir/src/Slot.cpp.o.d -o CMakeFiles/feup_aed.dir/src/Slot.cpp.o -c /home/ntsayz/Documents/feup-aed/src/Slot.cpp
 
 CMakeFiles/feup_aed.dir/src/Slot.cpp.i: cmake_force
@@ -153,27 +139,57 @@ CMakeFiles/feup_aed.dir/src/Slot.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/feup_aed.dir/src/Slot.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ntsayz/Documents/feup-aed/src/Slot.cpp -o CMakeFiles/feup_aed.dir/src/Slot.cpp.s
 
+CMakeFiles/feup_aed.dir/src/Student.cpp.o: CMakeFiles/feup_aed.dir/flags.make
+CMakeFiles/feup_aed.dir/src/Student.cpp.o: ../src/Student.cpp
+CMakeFiles/feup_aed.dir/src/Student.cpp.o: CMakeFiles/feup_aed.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ntsayz/Documents/feup-aed/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/feup_aed.dir/src/Student.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/feup_aed.dir/src/Student.cpp.o -MF CMakeFiles/feup_aed.dir/src/Student.cpp.o.d -o CMakeFiles/feup_aed.dir/src/Student.cpp.o -c /home/ntsayz/Documents/feup-aed/src/Student.cpp
+
+CMakeFiles/feup_aed.dir/src/Student.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/feup_aed.dir/src/Student.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ntsayz/Documents/feup-aed/src/Student.cpp > CMakeFiles/feup_aed.dir/src/Student.cpp.i
+
+CMakeFiles/feup_aed.dir/src/Student.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/feup_aed.dir/src/Student.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ntsayz/Documents/feup-aed/src/Student.cpp -o CMakeFiles/feup_aed.dir/src/Student.cpp.s
+
+CMakeFiles/feup_aed.dir/src/Utilities.cpp.o: CMakeFiles/feup_aed.dir/flags.make
+CMakeFiles/feup_aed.dir/src/Utilities.cpp.o: ../src/Utilities.cpp
+CMakeFiles/feup_aed.dir/src/Utilities.cpp.o: CMakeFiles/feup_aed.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ntsayz/Documents/feup-aed/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/feup_aed.dir/src/Utilities.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/feup_aed.dir/src/Utilities.cpp.o -MF CMakeFiles/feup_aed.dir/src/Utilities.cpp.o.d -o CMakeFiles/feup_aed.dir/src/Utilities.cpp.o -c /home/ntsayz/Documents/feup-aed/src/Utilities.cpp
+
+CMakeFiles/feup_aed.dir/src/Utilities.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/feup_aed.dir/src/Utilities.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ntsayz/Documents/feup-aed/src/Utilities.cpp > CMakeFiles/feup_aed.dir/src/Utilities.cpp.i
+
+CMakeFiles/feup_aed.dir/src/Utilities.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/feup_aed.dir/src/Utilities.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ntsayz/Documents/feup-aed/src/Utilities.cpp -o CMakeFiles/feup_aed.dir/src/Utilities.cpp.s
+
 # Object files for target feup_aed
 feup_aed_OBJECTS = \
 "CMakeFiles/feup_aed.dir/main.cpp.o" \
 "CMakeFiles/feup_aed.dir/src/Manager.cpp.o" \
-"CMakeFiles/feup_aed.dir/src/Student.cpp.o" \
+"CMakeFiles/feup_aed.dir/src/Uc.cpp.o" \
 "CMakeFiles/feup_aed.dir/src/Class.cpp.o" \
-"CMakeFiles/feup_aed.dir/src/Utilities.cpp.o" \
-"CMakeFiles/feup_aed.dir/src/Slot.cpp.o"
+"CMakeFiles/feup_aed.dir/src/Slot.cpp.o" \
+"CMakeFiles/feup_aed.dir/src/Student.cpp.o" \
+"CMakeFiles/feup_aed.dir/src/Utilities.cpp.o"
 
 # External object files for target feup_aed
 feup_aed_EXTERNAL_OBJECTS =
 
 feup_aed: CMakeFiles/feup_aed.dir/main.cpp.o
 feup_aed: CMakeFiles/feup_aed.dir/src/Manager.cpp.o
-feup_aed: CMakeFiles/feup_aed.dir/src/Student.cpp.o
+feup_aed: CMakeFiles/feup_aed.dir/src/Uc.cpp.o
 feup_aed: CMakeFiles/feup_aed.dir/src/Class.cpp.o
-feup_aed: CMakeFiles/feup_aed.dir/src/Utilities.cpp.o
 feup_aed: CMakeFiles/feup_aed.dir/src/Slot.cpp.o
+feup_aed: CMakeFiles/feup_aed.dir/src/Student.cpp.o
+feup_aed: CMakeFiles/feup_aed.dir/src/Utilities.cpp.o
 feup_aed: CMakeFiles/feup_aed.dir/build.make
 feup_aed: CMakeFiles/feup_aed.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ntsayz/Documents/feup-aed/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable feup_aed"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ntsayz/Documents/feup-aed/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable feup_aed"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/feup_aed.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

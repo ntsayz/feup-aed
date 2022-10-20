@@ -3,3 +3,4 @@ Doxygen build started
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /home/ntsayz/Documents/feup-aed/cmake-build-debug
+CMake File API: /home/ntsayz/Documents/feup-aed/cmake-build-debug: failed to load from '/home/ntsayz/Documents/feup-aed/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-fcf8d90a95b733a2304e.json'

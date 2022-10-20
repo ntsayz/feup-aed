@@ -9,6 +9,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/feup_aed.dir/src/Slot.cpp.o.d"
   "CMakeFiles/feup_aed.dir/src/Student.cpp.o"
   "CMakeFiles/feup_aed.dir/src/Student.cpp.o.d"
+  "CMakeFiles/feup_aed.dir/src/Uc.cpp.o"
+  "CMakeFiles/feup_aed.dir/src/Uc.cpp.o.d"
   "CMakeFiles/feup_aed.dir/src/Utilities.cpp.o"
   "CMakeFiles/feup_aed.dir/src/Utilities.cpp.o.d"
   "feup_aed"

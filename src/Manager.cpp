@@ -24,6 +24,7 @@ void Manager::startApplication(){
             case 3:
                 break;
             default:
+                std::cout << choice;
                 std::cerr << "That doesn't seem like a valid option..\n";
                 break;
         }

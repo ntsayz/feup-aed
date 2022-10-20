@@ -262,6 +262,30 @@ src/Student.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Student.cpp.s
 .PHONY : src/Student.cpp.s
 
+src/Uc.o: src/Uc.cpp.o
+.PHONY : src/Uc.o
+
+# target to build an object file
+src/Uc.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Uc.cpp.o
+.PHONY : src/Uc.cpp.o
+
+src/Uc.i: src/Uc.cpp.i
+.PHONY : src/Uc.i
+
+# target to preprocess a source file
+src/Uc.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Uc.cpp.i
+.PHONY : src/Uc.cpp.i
+
+src/Uc.s: src/Uc.cpp.s
+.PHONY : src/Uc.s
+
+# target to generate assembly for a file
+src/Uc.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Uc.cpp.s
+.PHONY : src/Uc.cpp.s
+
 src/Utilities.o: src/Utilities.cpp.o
 .PHONY : src/Utilities.o
 
@@ -311,6 +335,9 @@ help:
 	@echo "... src/Student.o"
 	@echo "... src/Student.i"
 	@echo "... src/Student.s"
+	@echo "... src/Uc.o"
+	@echo "... src/Uc.i"
+	@echo "... src/Uc.s"
 	@echo "... src/Utilities.o"
 	@echo "... src/Utilities.i"
 	@echo "... src/Utilities.s"
