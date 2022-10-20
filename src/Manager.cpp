@@ -12,7 +12,7 @@ void Manager::startApplication(){
 
     while(session) {
         Utilities::clear_screen();
-        int choice = mainMenu();
+        short choice = mainMenu();
         switch (choice) {
             case 0:
                 session = false;
@@ -26,12 +26,14 @@ void Manager::startApplication(){
             case 3:
                 std::cout << "3";
                 break;
+            default:
+                break;
         }
     }
 
 }
 
-int Manager::mainMenu() {
+short Manager::mainMenu() {
     std::cout << "-----------------------------------------------------------\n"
          << "|             ";; std::cout << "LEIC'S SCHEDULE MANAGEMENT SYSTEM "; std::cout << "         | \n"
          << "-----------------------------------------------------------\n"
@@ -48,7 +50,7 @@ int Manager::mainMenu() {
     short choice;
     std::cout << "-->" << std::flush;
     std::cin >> choice;
-    choice = utils.getInput(choice, (short)0,(short )3);
+    choice = Utilities::getInput(choice, (short)0,(short )3);
     return choice;
 }
 

@@ -11,9 +11,8 @@ private:
 
 public:
     Utilities();
-
     /// Gets and sanitizes user's input
-    int getInput(short choice, short min, short max);
+    static short getInput(short choice, short min, short max);
     /// Clear screen (Cross-Platform)
     static void clear_screen() ;
     /// Make sure that all files exist before starting program

@@ -5,11 +5,9 @@
 
 #include "Utilities.h"
 
-Utilities::Utilities() {
+Utilities::Utilities() = default;
 
-}
-
-int Utilities::getInput(short choice, short min, short max)  {
+short Utilities::getInput(short choice, short min, short max)  {
 
     while(true){
 

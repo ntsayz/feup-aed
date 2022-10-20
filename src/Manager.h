@@ -14,20 +14,21 @@
 
 class Manager {
 private:
+    std::vector<std::string> files;
+    bool session;
+private: Utilities utils;
     /*
     std::string classes_PATH = "schedule/classes.csv";
     std::string classes_uc_PATH = "schedule/classes_per_uc.csv";
     std::string students_classes_PATH = "schedule/students_classes.csv";
 */
-    std::vector<std::string> files;
-    bool session;
-    private: Utilities utils;
+    /// Main menu
+    static short mainMenu();
 public:
     Manager();
     /// Gets options and calls the rest of the program
     void startApplication();
-    /// Main menu
-    int mainMenu();
+
 
 
 
