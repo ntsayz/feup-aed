@@ -20,8 +20,17 @@ public:
     //set UcCode
     void set_uc_Code(std::string uc_Code);
 
+    //set Class Code
+    void set_class_Code(std::string class_Code);
+
     //return UcCode
     std::string get_uc_Code() const;
+    
+    //return Class Code
+    std::string get_class_Code() const;
+
+
+
 };
 
 #endif //FEUP_AED_UC_H
