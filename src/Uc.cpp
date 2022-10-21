@@ -6,6 +6,10 @@
 Uc::Uc(){
 
 }
+Uc::Uc(std::string uc_Code) {
+    this->uc_Code = uc_Code;
+}
+
 
 Uc::Uc(std::string uc_Code,std::string class_Code){
 	this->uc_Code = uc_Code;
@@ -28,3 +32,5 @@ std::string Uc::get_class_Code()const{
 	return class_Code;
 
 }
+
+

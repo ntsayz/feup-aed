@@ -214,6 +214,54 @@ src/Manager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Manager.cpp.s
 .PHONY : src/Manager.cpp.s
 
+src/Menu.o: src/Menu.cpp.o
+.PHONY : src/Menu.o
+
+# target to build an object file
+src/Menu.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Menu.cpp.o
+.PHONY : src/Menu.cpp.o
+
+src/Menu.i: src/Menu.cpp.i
+.PHONY : src/Menu.i
+
+# target to preprocess a source file
+src/Menu.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Menu.cpp.i
+.PHONY : src/Menu.cpp.i
+
+src/Menu.s: src/Menu.cpp.s
+.PHONY : src/Menu.s
+
+# target to generate assembly for a file
+src/Menu.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Menu.cpp.s
+.PHONY : src/Menu.cpp.s
+
+src/Request.o: src/Request.cpp.o
+.PHONY : src/Request.o
+
+# target to build an object file
+src/Request.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Request.cpp.o
+.PHONY : src/Request.cpp.o
+
+src/Request.i: src/Request.cpp.i
+.PHONY : src/Request.i
+
+# target to preprocess a source file
+src/Request.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Request.cpp.i
+.PHONY : src/Request.cpp.i
+
+src/Request.s: src/Request.cpp.s
+.PHONY : src/Request.s
+
+# target to generate assembly for a file
+src/Request.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Request.cpp.s
+.PHONY : src/Request.cpp.s
+
 src/Slot.o: src/Slot.cpp.o
 .PHONY : src/Slot.o
 
@@ -286,29 +334,29 @@ src/Uc.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Uc.cpp.s
 .PHONY : src/Uc.cpp.s
 
-src/Utilities.o: src/Utilities.cpp.o
-.PHONY : src/Utilities.o
+src/Utility.o: src/Utility.cpp.o
+.PHONY : src/Utility.o
 
 # target to build an object file
-src/Utilities.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Utilities.cpp.o
-.PHONY : src/Utilities.cpp.o
+src/Utility.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Utility.cpp.o
+.PHONY : src/Utility.cpp.o
 
-src/Utilities.i: src/Utilities.cpp.i
-.PHONY : src/Utilities.i
+src/Utility.i: src/Utility.cpp.i
+.PHONY : src/Utility.i
 
 # target to preprocess a source file
-src/Utilities.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Utilities.cpp.i
-.PHONY : src/Utilities.cpp.i
+src/Utility.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Utility.cpp.i
+.PHONY : src/Utility.cpp.i
 
-src/Utilities.s: src/Utilities.cpp.s
-.PHONY : src/Utilities.s
+src/Utility.s: src/Utility.cpp.s
+.PHONY : src/Utility.s
 
 # target to generate assembly for a file
-src/Utilities.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Utilities.cpp.s
-.PHONY : src/Utilities.cpp.s
+src/Utility.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/src/Utility.cpp.s
+.PHONY : src/Utility.cpp.s
 
 # Help Target
 help:
@@ -329,6 +377,12 @@ help:
 	@echo "... src/Manager.o"
 	@echo "... src/Manager.i"
 	@echo "... src/Manager.s"
+	@echo "... src/Menu.o"
+	@echo "... src/Menu.i"
+	@echo "... src/Menu.s"
+	@echo "... src/Request.o"
+	@echo "... src/Request.i"
+	@echo "... src/Request.s"
 	@echo "... src/Slot.o"
 	@echo "... src/Slot.i"
 	@echo "... src/Slot.s"
@@ -338,9 +392,9 @@ help:
 	@echo "... src/Uc.o"
 	@echo "... src/Uc.i"
 	@echo "... src/Uc.s"
-	@echo "... src/Utilities.o"
-	@echo "... src/Utilities.i"
-	@echo "... src/Utilities.s"
+	@echo "... src/Utility.o"
+	@echo "... src/Utility.i"
+	@echo "... src/Utility.s"
 .PHONY : help
 
 

@@ -107,6 +107,18 @@
 		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Manager.h">
 			<Option target="feup_aed"/>
 		</Unit>
+		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Menu.cpp">
+			<Option target="feup_aed"/>
+		</Unit>
+		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Menu.h">
+			<Option target="feup_aed"/>
+		</Unit>
+		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Request.cpp">
+			<Option target="feup_aed"/>
+		</Unit>
+		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Request.h">
+			<Option target="feup_aed"/>
+		</Unit>
 		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Slot.cpp">
 			<Option target="feup_aed"/>
 		</Unit>
@@ -125,10 +137,10 @@
 		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Uc.h">
 			<Option target="feup_aed"/>
 		</Unit>
-		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Utilities.cpp">
+		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Utility.cpp">
 			<Option target="feup_aed"/>
 		</Unit>
-		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Utilities.h">
+		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Utility.h">
 			<Option target="feup_aed"/>
 		</Unit>
 		<Unit filename="/home/ntsayz/Documents/feup-aed/CMakeLists.txt">

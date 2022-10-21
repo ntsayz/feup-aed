@@ -14,6 +14,7 @@ public:
     //default constructor
     Uc();
 
+    Uc(std::string uc_Code);
     //Uc constructor
     Uc(std::string uc_Code,std::string class_Code);
 
@@ -28,6 +29,10 @@ public:
     
     //return Class Code
     std::string get_class_Code() const;
+
+    bool operator<(Uc uc) const{
+        return get_uc_Code()< get_uc_Code();
+    }
 
 
 

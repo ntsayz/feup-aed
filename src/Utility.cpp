@@ -4,11 +4,11 @@
 
 
 #include <fstream>
-#include "Utilities.h"
+#include "Utility.h"
 
-Utilities::Utilities() = default;
+Utility::Utility() = default;
 
-short Utilities::getInput(short choice, short min, short max)  {
+short Utility::getInput(short choice, short min, short max)  {
 
     while(true){
         if(choice == 9) return choice;
@@ -25,7 +25,7 @@ short Utilities::getInput(short choice, short min, short max)  {
     }
 }
 
-void Utilities::clear_screen() {
+void Utility::clear_screen() {
 #ifdef WINDOWS
     std::system("cls");
 #else
@@ -35,9 +35,21 @@ void Utilities::clear_screen() {
 }
 
 template<typename T>
-T Utilities::loadFiles(T file) {
+T Utility::loadFiles(T file) {
 
     return nullptr;
+}
+
+std::string Utility::getClassesPath() {
+    return "../src/schedule/classes.csv";
+}
+
+std::string Utility::getClassesUcPath() {
+    return "../src/schedule/classes_per_uc.csv";
+}
+
+std::string Utility::getStudentClassesPath() {
+    return "../src/schedule/students_classes.csv";
 }
 
 

@@ -12,28 +12,29 @@
 #include <cstdlib>
 #include <set>
 #include <vector>
-#include "Utilities.h"
+#include "Utility.h"
 #include "Student.h"
 #include "Class.h"
+#include "Menu.h"
+#include "Uc.h"
 
 
 class Manager {
 private:
     std::vector<std::string> files;
     std::set<Student> students;
-    std::vector<Class> classes;
-
-
+    std::set<Class> classes;
+    std::set<Uc> curricularUnits;
     bool session;
-private: Utilities utils;
 
-    /// Main menu
-    static short mainMenu();
+    void Listings();
+    void studentsListings();
+    void loadDataStructures();
+
 public:
     Manager();
-    /// Gets options and calls the rest of the program
+    /// Main startApplication
     void startApplication();
-
 
 };
 

@@ -48,11 +48,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "feup_aed::@6890427a1f51a3e7e1df",
-<<<<<<<< HEAD:cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-22ba23bba6c7746604a6.json
-					"jsonFile" : "target-feup_aed-Debug-78650d640e3326bb0fe2.json",
-========
-					"jsonFile" : "target-feup_aed-Debug-5e913c8f6c9e85ad6127.json",
->>>>>>>> main:cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-fcf8d90a95b733a2304e.json
+					"jsonFile" : "target-feup_aed-Debug-651a48d08763d83b42c3.json",
 					"name" : "feup_aed",
 					"projectIndex" : 0
 				}
