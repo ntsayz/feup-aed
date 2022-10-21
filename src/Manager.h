@@ -8,8 +8,12 @@
 #include <limits>
 #include <vector>
 #include <iostream>
+#include <sstream>
+#include <fstream>
 #include <iomanip>
 #include <cstdlib>
+#include <cstdio>
+#include <cstring>
 #include <set>
 #include <vector>
 #include "Utility.h"
@@ -29,7 +33,8 @@ private:
 
     void Listings();
     void studentsListings();
-    void loadDataStructures();
+    void loadClasses_UCs();
+    void loadStudents();
 
 public:
     Manager();

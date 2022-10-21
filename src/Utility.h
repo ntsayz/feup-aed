@@ -8,6 +8,7 @@
 #include <string>
 #include <vector>
 #include <set>
+#include <fstream>
 #include "Class.h"
 #include "Student.h"
 
@@ -23,9 +24,9 @@ public:
     static short getInput(short choice, short min, short max);
     /// Clear screen (Cross-Platform)
     static void clear_screen();
-    static std::string getClassesPath();
-    static std::string getClassesUcPath();
-    static std::string getStudentClassesPath();
+    static const char* getClassesPath();
+    static const char* getClassesUcPath();
+    static const char* getStudentClassesPath();
     /// Make sure that all files exist before starting program
     //static bool loadFiles(std::set<Student> students,std::vector<Class> horario);
     template <typename T>

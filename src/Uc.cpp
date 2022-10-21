@@ -21,7 +21,7 @@ void Uc::set_uc_Code(std::string uc_Code){
 }
 
 std::string Uc::get_uc_Code() const{
-	return uc_Code;
+	return this->uc_Code;
 }
 
 void Uc::set_class_Code(std::string class_Code){

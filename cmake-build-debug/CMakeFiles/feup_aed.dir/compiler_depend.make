@@ -190,6 +190,13 @@ CMakeFiles/feup_aed.dir/main.cpp.o: ../main.cpp \
   /usr/include/c++/9/bits/stl_vector.h \
   /usr/include/c++/9/bits/stl_bvector.h \
   /usr/include/c++/9/bits/vector.tcc \
+  /usr/include/c++/9/sstream \
+  /usr/include/c++/9/bits/sstream.tcc \
+  /usr/include/c++/9/fstream \
+  /usr/include/c++/9/bits/codecvt.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/basic_file.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/c++io.h \
+  /usr/include/c++/9/bits/fstream.tcc \
   /usr/include/c++/9/iomanip \
   /usr/include/c++/9/locale \
   /usr/include/c++/9/bits/locale_facets_nonio.h \
@@ -197,7 +204,6 @@ CMakeFiles/feup_aed.dir/main.cpp.o: ../main.cpp \
   /usr/include/x86_64-linux-gnu/c++/9/bits/time_members.h \
   /usr/include/x86_64-linux-gnu/c++/9/bits/messages_members.h \
   /usr/include/libintl.h \
-  /usr/include/c++/9/bits/codecvt.h \
   /usr/include/c++/9/bits/locale_facets_nonio.tcc \
   /usr/include/c++/9/bits/locale_conv.h \
   /usr/include/c++/9/bits/unique_ptr.h \
@@ -206,8 +212,9 @@ CMakeFiles/feup_aed.dir/main.cpp.o: ../main.cpp \
   /usr/include/c++/9/bits/uses_allocator.h \
   /usr/include/c++/9/bits/invoke.h \
   /usr/include/c++/9/bits/quoted_string.h \
-  /usr/include/c++/9/sstream \
-  /usr/include/c++/9/bits/sstream.tcc \
+  /usr/include/c++/9/cstring \
+  /usr/include/string.h \
+  /usr/include/strings.h \
   /usr/include/c++/9/set \
   /usr/include/c++/9/bits/stl_tree.h \
   /usr/include/c++/9/ext/aligned_buffer.h \
@@ -401,14 +408,72 @@ CMakeFiles/feup_aed.dir/src/Class.cpp.o: ../src/Class.cpp \
   /usr/include/c++/9/bits/allocated_ptr.h \
   /usr/include/c++/9/ext/aligned_buffer.h \
   /usr/include/c++/9/bits/list.tcc \
-  ../src/Slot.h
+  /usr/include/c++/9/set \
+  /usr/include/c++/9/bits/stl_tree.h \
+  /usr/include/c++/9/bits/node_handle.h \
+  /usr/include/c++/9/optional \
+  /usr/include/c++/9/utility \
+  /usr/include/c++/9/bits/stl_relops.h \
+  /usr/include/c++/9/stdexcept \
+  /usr/include/c++/9/bits/enable_special_members.h \
+  /usr/include/c++/9/bits/stl_set.h \
+  /usr/include/c++/9/bits/stl_multiset.h \
+  /usr/include/c++/9/bits/erase_if.h \
+  ../src/Slot.h \
+  ../src/Student.h \
+  ../src/Request.h \
+  ../src/Uc.h \
+  /usr/include/c++/9/vector \
+  /usr/include/c++/9/bits/stl_uninitialized.h \
+  /usr/include/c++/9/bits/stl_vector.h \
+  /usr/include/c++/9/bits/stl_bvector.h \
+  /usr/include/c++/9/bits/vector.tcc \
+  ../src/Utility.h \
+  /usr/include/c++/9/iostream \
+  /usr/include/c++/9/ostream \
+  /usr/include/c++/9/ios \
+  /usr/include/c++/9/bits/ios_base.h \
+  /usr/include/c++/9/bits/locale_classes.h \
+  /usr/include/c++/9/bits/locale_classes.tcc \
+  /usr/include/c++/9/system_error \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/error_constants.h \
+  /usr/include/c++/9/streambuf \
+  /usr/include/c++/9/bits/streambuf.tcc \
+  /usr/include/c++/9/bits/basic_ios.h \
+  /usr/include/c++/9/bits/locale_facets.h \
+  /usr/include/c++/9/cwctype \
+  /usr/include/wctype.h \
+  /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/ctype_base.h \
+  /usr/include/c++/9/bits/streambuf_iterator.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/ctype_inline.h \
+  /usr/include/c++/9/bits/locale_facets.tcc \
+  /usr/include/c++/9/bits/basic_ios.tcc \
+  /usr/include/c++/9/bits/ostream.tcc \
+  /usr/include/c++/9/istream \
+  /usr/include/c++/9/bits/istream.tcc \
+  /usr/include/c++/9/fstream \
+  /usr/include/c++/9/bits/codecvt.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/basic_file.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/c++io.h \
+  /usr/include/c++/9/bits/fstream.tcc \
+  /usr/include/c++/9/queue \
+  /usr/include/c++/9/deque \
+  /usr/include/c++/9/bits/stl_deque.h \
+  /usr/include/c++/9/bits/deque.tcc \
+  /usr/include/c++/9/bits/stl_queue.h \
+  /usr/include/c++/9/bits/uses_allocator.h \
+  /usr/include/c++/9/map \
+  /usr/include/c++/9/bits/stl_map.h \
+  /usr/include/c++/9/tuple \
+  /usr/include/c++/9/array \
+  /usr/include/c++/9/bits/invoke.h \
+  /usr/include/c++/9/bits/stl_multimap.h
 
 CMakeFiles/feup_aed.dir/src/Manager.cpp.o: ../src/Manager.cpp \
   /usr/include/stdc-predef.h \
-  /usr/include/c++/9/fstream \
-  /usr/include/c++/9/istream \
-  /usr/include/c++/9/ios \
-  /usr/include/c++/9/iosfwd \
+  ../src/Manager.h \
+  /usr/include/c++/9/string \
   /usr/include/x86_64-linux-gnu/c++/9/bits/c++config.h \
   /usr/include/x86_64-linux-gnu/c++/9/bits/os_defines.h \
   /usr/include/features.h \
@@ -421,6 +486,24 @@ CMakeFiles/feup_aed.dir/src/Manager.cpp.o: ../src/Manager.cpp \
   /usr/include/c++/9/pstl/pstl_config.h \
   /usr/include/c++/9/bits/stringfwd.h \
   /usr/include/c++/9/bits/memoryfwd.h \
+  /usr/include/c++/9/bits/char_traits.h \
+  /usr/include/c++/9/bits/stl_algobase.h \
+  /usr/include/c++/9/bits/functexcept.h \
+  /usr/include/c++/9/bits/exception_defines.h \
+  /usr/include/c++/9/bits/cpp_type_traits.h \
+  /usr/include/c++/9/ext/type_traits.h \
+  /usr/include/c++/9/ext/numeric_traits.h \
+  /usr/include/c++/9/bits/stl_pair.h \
+  /usr/include/c++/9/bits/move.h \
+  /usr/include/c++/9/bits/concept_check.h \
+  /usr/include/c++/9/type_traits \
+  /usr/include/c++/9/bits/stl_iterator_base_types.h \
+  /usr/include/c++/9/bits/stl_iterator_base_funcs.h \
+  /usr/include/c++/9/debug/assertions.h \
+  /usr/include/c++/9/bits/stl_iterator.h \
+  /usr/include/c++/9/bits/ptr_traits.h \
+  /usr/include/c++/9/debug/debug.h \
+  /usr/include/c++/9/bits/predefined_ops.h \
   /usr/include/c++/9/bits/postypes.h \
   /usr/include/c++/9/cwchar \
   /usr/include/wchar.h \
@@ -437,32 +520,6 @@ CMakeFiles/feup_aed.dir/src/Manager.cpp.o: ../src/Manager.cpp \
   /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
-  /usr/include/c++/9/exception \
-  /usr/include/c++/9/bits/exception.h \
-  /usr/include/c++/9/bits/exception_ptr.h \
-  /usr/include/c++/9/bits/exception_defines.h \
-  /usr/include/c++/9/bits/cxxabi_init_exception.h \
-  /usr/include/c++/9/typeinfo \
-  /usr/include/c++/9/bits/hash_bytes.h \
-  /usr/include/c++/9/new \
-  /usr/include/c++/9/bits/nested_exception.h \
-  /usr/include/c++/9/bits/move.h \
-  /usr/include/c++/9/bits/concept_check.h \
-  /usr/include/c++/9/type_traits \
-  /usr/include/c++/9/bits/char_traits.h \
-  /usr/include/c++/9/bits/stl_algobase.h \
-  /usr/include/c++/9/bits/functexcept.h \
-  /usr/include/c++/9/bits/cpp_type_traits.h \
-  /usr/include/c++/9/ext/type_traits.h \
-  /usr/include/c++/9/ext/numeric_traits.h \
-  /usr/include/c++/9/bits/stl_pair.h \
-  /usr/include/c++/9/bits/stl_iterator_base_types.h \
-  /usr/include/c++/9/bits/stl_iterator_base_funcs.h \
-  /usr/include/c++/9/debug/assertions.h \
-  /usr/include/c++/9/bits/stl_iterator.h \
-  /usr/include/c++/9/bits/ptr_traits.h \
-  /usr/include/c++/9/debug/debug.h \
-  /usr/include/c++/9/bits/predefined_ops.h \
   /usr/include/c++/9/cstdint \
   /usr/lib/gcc/x86_64-linux-gnu/9/include/stdint.h \
   /usr/include/stdint.h \
@@ -472,47 +529,27 @@ CMakeFiles/feup_aed.dir/src/Manager.cpp.o: ../src/Manager.cpp \
   /usr/include/x86_64-linux-gnu/bits/time64.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  /usr/include/c++/9/bits/allocator.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/c++allocator.h \
+  /usr/include/c++/9/ext/new_allocator.h \
+  /usr/include/c++/9/new \
+  /usr/include/c++/9/exception \
+  /usr/include/c++/9/bits/exception.h \
+  /usr/include/c++/9/bits/exception_ptr.h \
+  /usr/include/c++/9/bits/cxxabi_init_exception.h \
+  /usr/include/c++/9/typeinfo \
+  /usr/include/c++/9/bits/hash_bytes.h \
+  /usr/include/c++/9/bits/nested_exception.h \
   /usr/include/c++/9/bits/localefwd.h \
   /usr/include/x86_64-linux-gnu/c++/9/bits/c++locale.h \
   /usr/include/c++/9/clocale \
   /usr/include/locale.h \
   /usr/include/x86_64-linux-gnu/bits/locale.h \
+  /usr/include/c++/9/iosfwd \
   /usr/include/c++/9/cctype \
   /usr/include/ctype.h \
   /usr/include/x86_64-linux-gnu/bits/endian.h \
   /usr/include/x86_64-linux-gnu/bits/endianness.h \
-  /usr/include/c++/9/bits/ios_base.h \
-  /usr/include/c++/9/ext/atomicity.h \
-  /usr/include/x86_64-linux-gnu/c++/9/bits/gthr.h \
-  /usr/include/x86_64-linux-gnu/c++/9/bits/gthr-default.h \
-  /usr/include/pthread.h \
-  /usr/include/sched.h \
-  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
-  /usr/include/x86_64-linux-gnu/bits/sched.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
-  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
-  /usr/include/time.h \
-  /usr/include/x86_64-linux-gnu/bits/time.h \
-  /usr/include/x86_64-linux-gnu/bits/timex.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
-  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
-  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
-  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
-  /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
-  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
-  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
-  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
-  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
-  /usr/include/x86_64-linux-gnu/c++/9/bits/atomic_word.h \
-  /usr/include/c++/9/bits/locale_classes.h \
-  /usr/include/c++/9/string \
-  /usr/include/c++/9/bits/allocator.h \
-  /usr/include/x86_64-linux-gnu/c++/9/bits/c++allocator.h \
-  /usr/include/c++/9/ext/new_allocator.h \
   /usr/include/c++/9/bits/ostream_insert.h \
   /usr/include/c++/9/bits/cxxabi_forced.h \
   /usr/include/c++/9/bits/stl_function.h \
@@ -523,6 +560,10 @@ CMakeFiles/feup_aed.dir/src/Manager.cpp.o: ../src/Manager.cpp \
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
   /usr/include/x86_64-linux-gnu/sys/types.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
   /usr/include/endian.h \
   /usr/include/x86_64-linux-gnu/bits/byteswap.h \
   /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
@@ -530,6 +571,13 @@ CMakeFiles/feup_aed.dir/src/Manager.cpp.o: ../src/Manager.cpp \
   /usr/include/x86_64-linux-gnu/bits/select.h \
   /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+  /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/alloca.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
   /usr/include/c++/9/bits/std_abs.h \
@@ -544,6 +592,21 @@ CMakeFiles/feup_aed.dir/src/Manager.cpp.o: ../src/Manager.cpp \
   /usr/include/c++/9/limits \
   /usr/include/c++/9/bits/range_access.h \
   /usr/include/c++/9/bits/basic_string.h \
+  /usr/include/c++/9/ext/atomicity.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/gthr.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/gthr-default.h \
+  /usr/include/pthread.h \
+  /usr/include/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
+  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
+  /usr/include/time.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/timex.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/atomic_word.h \
   /usr/include/c++/9/string_view \
   /usr/include/c++/9/bits/functional_hash.h \
   /usr/include/c++/9/bits/string_view.tcc \
@@ -565,6 +628,18 @@ CMakeFiles/feup_aed.dir/src/Manager.cpp.o: ../src/Manager.cpp \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
   /usr/include/c++/9/bits/basic_string.tcc \
+  /usr/include/c++/9/vector \
+  /usr/include/c++/9/bits/stl_uninitialized.h \
+  /usr/include/c++/9/utility \
+  /usr/include/c++/9/bits/stl_relops.h \
+  /usr/include/c++/9/bits/stl_vector.h \
+  /usr/include/c++/9/bits/stl_bvector.h \
+  /usr/include/c++/9/bits/vector.tcc \
+  /usr/include/c++/9/iostream \
+  /usr/include/c++/9/ostream \
+  /usr/include/c++/9/ios \
+  /usr/include/c++/9/bits/ios_base.h \
+  /usr/include/c++/9/bits/locale_classes.h \
   /usr/include/c++/9/bits/locale_classes.tcc \
   /usr/include/c++/9/system_error \
   /usr/include/x86_64-linux-gnu/c++/9/bits/error_constants.h \
@@ -581,22 +656,16 @@ CMakeFiles/feup_aed.dir/src/Manager.cpp.o: ../src/Manager.cpp \
   /usr/include/x86_64-linux-gnu/c++/9/bits/ctype_inline.h \
   /usr/include/c++/9/bits/locale_facets.tcc \
   /usr/include/c++/9/bits/basic_ios.tcc \
-  /usr/include/c++/9/ostream \
   /usr/include/c++/9/bits/ostream.tcc \
+  /usr/include/c++/9/istream \
   /usr/include/c++/9/bits/istream.tcc \
+  /usr/include/c++/9/sstream \
+  /usr/include/c++/9/bits/sstream.tcc \
+  /usr/include/c++/9/fstream \
   /usr/include/c++/9/bits/codecvt.h \
   /usr/include/x86_64-linux-gnu/c++/9/bits/basic_file.h \
   /usr/include/x86_64-linux-gnu/c++/9/bits/c++io.h \
   /usr/include/c++/9/bits/fstream.tcc \
-  ../src/Manager.h \
-  /usr/include/c++/9/vector \
-  /usr/include/c++/9/bits/stl_uninitialized.h \
-  /usr/include/c++/9/utility \
-  /usr/include/c++/9/bits/stl_relops.h \
-  /usr/include/c++/9/bits/stl_vector.h \
-  /usr/include/c++/9/bits/stl_bvector.h \
-  /usr/include/c++/9/bits/vector.tcc \
-  /usr/include/c++/9/iostream \
   /usr/include/c++/9/iomanip \
   /usr/include/c++/9/locale \
   /usr/include/c++/9/bits/locale_facets_nonio.h \
@@ -612,8 +681,9 @@ CMakeFiles/feup_aed.dir/src/Manager.cpp.o: ../src/Manager.cpp \
   /usr/include/c++/9/bits/uses_allocator.h \
   /usr/include/c++/9/bits/invoke.h \
   /usr/include/c++/9/bits/quoted_string.h \
-  /usr/include/c++/9/sstream \
-  /usr/include/c++/9/bits/sstream.tcc \
+  /usr/include/c++/9/cstring \
+  /usr/include/string.h \
+  /usr/include/strings.h \
   /usr/include/c++/9/set \
   /usr/include/c++/9/bits/stl_tree.h \
   /usr/include/c++/9/ext/aligned_buffer.h \
@@ -860,6 +930,10 @@ CMakeFiles/feup_aed.dir/src/Menu.cpp.o: ../src/Menu.cpp \
   /usr/include/c++/9/bits/stl_multiset.h \
   /usr/include/c++/9/bits/erase_if.h \
   ../src/Utility.h \
+  /usr/include/c++/9/fstream \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/basic_file.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/c++io.h \
+  /usr/include/c++/9/bits/fstream.tcc \
   ../src/Class.h \
   /usr/include/c++/9/list \
   /usr/include/c++/9/bits/stl_list.h \
@@ -1214,6 +1288,15 @@ CMakeFiles/feup_aed.dir/src/Student.cpp.o: ../src/Student.cpp \
   /usr/include/c++/9/bits/allocated_ptr.h \
   /usr/include/c++/9/ext/aligned_buffer.h \
   /usr/include/c++/9/bits/list.tcc \
+  /usr/include/c++/9/set \
+  /usr/include/c++/9/bits/stl_tree.h \
+  /usr/include/c++/9/bits/node_handle.h \
+  /usr/include/c++/9/optional \
+  /usr/include/c++/9/stdexcept \
+  /usr/include/c++/9/bits/enable_special_members.h \
+  /usr/include/c++/9/bits/stl_set.h \
+  /usr/include/c++/9/bits/stl_multiset.h \
+  /usr/include/c++/9/bits/erase_if.h \
   ../src/Slot.h \
   ../src/Utility.h \
   /usr/include/c++/9/iostream \
@@ -1224,7 +1307,6 @@ CMakeFiles/feup_aed.dir/src/Student.cpp.o: ../src/Student.cpp \
   /usr/include/c++/9/bits/locale_classes.tcc \
   /usr/include/c++/9/system_error \
   /usr/include/x86_64-linux-gnu/c++/9/bits/error_constants.h \
-  /usr/include/c++/9/stdexcept \
   /usr/include/c++/9/streambuf \
   /usr/include/c++/9/bits/streambuf.tcc \
   /usr/include/c++/9/bits/basic_ios.h \
@@ -1240,14 +1322,11 @@ CMakeFiles/feup_aed.dir/src/Student.cpp.o: ../src/Student.cpp \
   /usr/include/c++/9/bits/ostream.tcc \
   /usr/include/c++/9/istream \
   /usr/include/c++/9/bits/istream.tcc \
-  /usr/include/c++/9/set \
-  /usr/include/c++/9/bits/stl_tree.h \
-  /usr/include/c++/9/bits/node_handle.h \
-  /usr/include/c++/9/optional \
-  /usr/include/c++/9/bits/enable_special_members.h \
-  /usr/include/c++/9/bits/stl_set.h \
-  /usr/include/c++/9/bits/stl_multiset.h \
-  /usr/include/c++/9/bits/erase_if.h \
+  /usr/include/c++/9/fstream \
+  /usr/include/c++/9/bits/codecvt.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/basic_file.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/c++io.h \
+  /usr/include/c++/9/bits/fstream.tcc \
   /usr/include/c++/9/queue \
   /usr/include/c++/9/deque \
   /usr/include/c++/9/bits/stl_deque.h \
@@ -1429,10 +1508,8 @@ CMakeFiles/feup_aed.dir/src/Uc.cpp.o: ../src/Uc.cpp \
 
 CMakeFiles/feup_aed.dir/src/Utility.cpp.o: ../src/Utility.cpp \
   /usr/include/stdc-predef.h \
-  /usr/include/c++/9/fstream \
-  /usr/include/c++/9/istream \
-  /usr/include/c++/9/ios \
-  /usr/include/c++/9/iosfwd \
+  ../src/Utility.h \
+  /usr/include/c++/9/iostream \
   /usr/include/x86_64-linux-gnu/c++/9/bits/c++config.h \
   /usr/include/x86_64-linux-gnu/c++/9/bits/os_defines.h \
   /usr/include/features.h \
@@ -1443,6 +1520,9 @@ CMakeFiles/feup_aed.dir/src/Utility.cpp.o: ../src/Utility.cpp \
   /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
   /usr/include/x86_64-linux-gnu/c++/9/bits/cpu_defines.h \
   /usr/include/c++/9/pstl/pstl_config.h \
+  /usr/include/c++/9/ostream \
+  /usr/include/c++/9/ios \
+  /usr/include/c++/9/iosfwd \
   /usr/include/c++/9/bits/stringfwd.h \
   /usr/include/c++/9/bits/memoryfwd.h \
   /usr/include/c++/9/bits/postypes.h \
@@ -1605,15 +1685,9 @@ CMakeFiles/feup_aed.dir/src/Utility.cpp.o: ../src/Utility.cpp \
   /usr/include/x86_64-linux-gnu/c++/9/bits/ctype_inline.h \
   /usr/include/c++/9/bits/locale_facets.tcc \
   /usr/include/c++/9/bits/basic_ios.tcc \
-  /usr/include/c++/9/ostream \
   /usr/include/c++/9/bits/ostream.tcc \
+  /usr/include/c++/9/istream \
   /usr/include/c++/9/bits/istream.tcc \
-  /usr/include/c++/9/bits/codecvt.h \
-  /usr/include/x86_64-linux-gnu/c++/9/bits/basic_file.h \
-  /usr/include/x86_64-linux-gnu/c++/9/bits/c++io.h \
-  /usr/include/c++/9/bits/fstream.tcc \
-  ../src/Utility.h \
-  /usr/include/c++/9/iostream \
   /usr/include/c++/9/vector \
   /usr/include/c++/9/bits/stl_uninitialized.h \
   /usr/include/c++/9/utility \
@@ -1630,6 +1704,11 @@ CMakeFiles/feup_aed.dir/src/Utility.cpp.o: ../src/Utility.cpp \
   /usr/include/c++/9/bits/stl_set.h \
   /usr/include/c++/9/bits/stl_multiset.h \
   /usr/include/c++/9/bits/erase_if.h \
+  /usr/include/c++/9/fstream \
+  /usr/include/c++/9/bits/codecvt.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/basic_file.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/c++io.h \
+  /usr/include/c++/9/bits/fstream.tcc \
   ../src/Class.h \
   /usr/include/c++/9/list \
   /usr/include/c++/9/bits/stl_list.h \
@@ -1661,8 +1740,6 @@ CMakeFiles/feup_aed.dir/src/Utility.cpp.o: ../src/Utility.cpp \
 
 ../src/Slot.cpp:
 
-/usr/include/c++/9/bits/fstream.tcc:
-
 ../src/Manager.cpp:
 
 ../src/Menu.h:
@@ -1672,10 +1749,6 @@ CMakeFiles/feup_aed.dir/src/Utility.cpp.o: ../src/Utility.cpp \
 /usr/include/c++/9/bits/stl_map.h:
 
 /usr/include/c++/9/map:
-
-/usr/include/x86_64-linux-gnu/c++/9/bits/c++io.h:
-
-/usr/include/c++/9/bits/stl_queue.h:
 
 /usr/include/c++/9/bits/stl_deque.h:
 
@@ -1699,11 +1772,21 @@ CMakeFiles/feup_aed.dir/src/Utility.cpp.o: ../src/Utility.cpp \
 
 /usr/include/c++/9/bits/stl_tree.h:
 
-/usr/include/c++/9/bits/sstream.tcc:
+/usr/include/string.h:
 
 /usr/include/c++/9/bits/unique_ptr.h:
 
 /usr/include/c++/9/bits/locale_conv.h:
+
+/usr/include/c++/9/bits/locale_facets_nonio.tcc:
+
+/usr/include/x86_64-linux-gnu/c++/9/bits/messages_members.h:
+
+/usr/include/x86_64-linux-gnu/c++/9/bits/time_members.h:
+
+/usr/include/c++/9/ctime:
+
+/usr/include/c++/9/bits/locale_facets_nonio.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
 
@@ -1779,8 +1862,6 @@ CMakeFiles/feup_aed.dir/src/Utility.cpp.o: ../src/Utility.cpp \
 
 /usr/include/c++/9/debug/debug.h:
 
-/usr/include/x86_64-linux-gnu/c++/9/bits/messages_members.h:
-
 /usr/include/x86_64-linux-gnu/bits/timex.h:
 
 /usr/include/c++/9/ext/atomicity.h:
@@ -1809,6 +1890,8 @@ CMakeFiles/feup_aed.dir/src/Utility.cpp.o: ../src/Utility.cpp \
 
 ../src/Manager.h:
 
+/usr/include/c++/9/bits/sstream.tcc:
+
 /usr/include/c++/9/bits/stl_algobase.h:
 
 /usr/include/c++/9/bits/move.h:
@@ -1816,8 +1899,6 @@ CMakeFiles/feup_aed.dir/src/Utility.cpp.o: ../src/Utility.cpp \
 /usr/include/x86_64-linux-gnu/bits/types/error_t.h:
 
 /usr/include/c++/9/bits/stl_construct.h:
-
-/usr/include/c++/9/bits/locale_facets_nonio.tcc:
 
 /usr/include/c++/9/deque:
 
@@ -1917,14 +1998,6 @@ CMakeFiles/feup_aed.dir/src/Utility.cpp.o: ../src/Utility.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
 
-/usr/include/x86_64-linux-gnu/c++/9/bits/basic_file.h:
-
-/usr/include/c++/9/sstream:
-
-/usr/include/c++/9/ext/type_traits.h:
-
-/usr/include/x86_64-linux-gnu/bits/wordsize.h:
-
 /usr/include/c++/9/bits/exception_ptr.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/9/include/stddef.h:
@@ -2009,6 +2082,8 @@ CMakeFiles/feup_aed.dir/src/Utility.cpp.o: ../src/Utility.cpp \
 
 /usr/include/errno.h:
 
+/usr/include/c++/9/cstring:
+
 /usr/include/c++/9/debug/assertions.h:
 
 /usr/include/c++/9/exception:
@@ -2027,11 +2102,9 @@ CMakeFiles/feup_aed.dir/src/Utility.cpp.o: ../src/Utility.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
 
-/usr/include/x86_64-linux-gnu/c++/9/bits/time_members.h:
+/usr/include/libintl.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
-
-/usr/include/libintl.h:
 
 /usr/include/alloca.h:
 
@@ -2077,12 +2150,6 @@ CMakeFiles/feup_aed.dir/src/Utility.cpp.o: ../src/Utility.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
 
-/usr/include/c++/9/fstream:
-
-/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
 
 /usr/include/c++/9/cerrno:
@@ -2100,6 +2167,8 @@ CMakeFiles/feup_aed.dir/src/Utility.cpp.o: ../src/Utility.cpp \
 /usr/include/c++/9/ext/numeric_traits.h:
 
 /usr/include/c++/9/cwctype:
+
+/usr/include/strings.h:
 
 /usr/include/c++/9/vector:
 
@@ -2141,8 +2210,24 @@ CMakeFiles/feup_aed.dir/src/Utility.cpp.o: ../src/Utility.cpp \
 
 /usr/include/c++/9/bits/stl_uninitialized.h:
 
-/usr/include/c++/9/ctime:
-
 /usr/include/c++/9/utility:
 
-/usr/include/c++/9/bits/locale_facets_nonio.h:
+/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
+
+/usr/include/c++/9/fstream:
+
+/usr/include/c++/9/ext/type_traits.h:
+
+/usr/include/c++/9/sstream:
+
+/usr/include/x86_64-linux-gnu/bits/wordsize.h:
+
+/usr/include/x86_64-linux-gnu/c++/9/bits/basic_file.h:
+
+/usr/include/c++/9/bits/stl_queue.h:
+
+/usr/include/x86_64-linux-gnu/c++/9/bits/c++io.h:
+
+/usr/include/c++/9/bits/fstream.tcc:

@@ -8,12 +8,14 @@
 #include "Uc.h"
 #include "Class.h"
 #include "Utility.h"
+#include "Slot.h"
 #include <string>
 #include <queue>
 #include <iostream>
 #include <vector>
 #include <list>
 #include <map>
+
 
 
 class Student {
@@ -29,13 +31,19 @@ public:
     Student();
     ///Enroll student
     Student(std::string code, std::string name);
+    Student(std::string code, std::string name, const Uc& curricularUnit,const Class& aClass);
 
-    void addClass(Class aClass);
+    void addClassUC(Uc curricularUnit,Class aClass);
+
     //change to int TODO
     std::string getCode() const;
     std::map<Uc,Class> getEnrolledClasses() const;
+    std::string getName() const;
     bool operator<(Student student) const{
         return getCode() < student.getCode();
+    }
+    bool operator>(Student student) const{
+        return getCode() > student.getCode();
     }
 
 };

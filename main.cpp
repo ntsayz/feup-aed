@@ -5,8 +5,7 @@
 
 int main() {
     Manager manager;
-
     manager.startApplication();
-    Uc uc;
+    //Uc uc;
     return 0;
 }

@@ -30,8 +30,12 @@ public:
     //return Class Code
     std::string get_class_Code() const;
 
+
     bool operator<(Uc uc) const{
-        return get_uc_Code()< get_uc_Code();
+        return this->get_uc_Code()< uc.get_uc_Code();
+    }
+    bool operator==(Uc uc) const{
+        return this->get_uc_Code() == uc.get_uc_Code();
     }
 
 

@@ -3,7 +3,7 @@
 //
 
 
-#include <fstream>
+
 #include "Utility.h"
 
 Utility::Utility() = default;
@@ -40,15 +40,15 @@ T Utility::loadFiles(T file) {
     return nullptr;
 }
 
-std::string Utility::getClassesPath() {
+const char* Utility::getClassesPath() {
     return "../src/schedule/classes.csv";
 }
 
-std::string Utility::getClassesUcPath() {
+const char* Utility::getClassesUcPath() {
     return "../src/schedule/classes_per_uc.csv";
 }
 
-std::string Utility::getStudentClassesPath() {
+const char* Utility::getStudentClassesPath() {
     return "../src/schedule/students_classes.csv";
 }
 
