@@ -6,13 +6,13 @@
 #include "Manager.h"
 
 Manager::Manager() {
-    session = true;
+    globalSession = true;
     loadFilesInfo();
     load();
 }
 
 void Manager::startApplication(){
-    while(session) {
+    while(globalSession) {
         Utility::clear_screen();
         short choice = Menu::Main();
         switch (choice) {
@@ -29,7 +29,7 @@ void Manager::startApplication(){
             case 3:
                 break;
             case 9:
-                session = false;
+                globalSession = false;
                 break;
             default:
                 std::cerr << "That doesn't seem like a valid option..\n";
@@ -40,8 +40,8 @@ void Manager::startApplication(){
 }
 
 void Manager::Listings() {
-    bool state = true;
-    while(state){
+    bool localSession = true;
+    while(localSession){
         Utility::clear_screen();
         short choice = Menu::Listings();
         switch (choice){
@@ -49,7 +49,7 @@ void Manager::Listings() {
                 studentsListings();
                 break;
             case 9:
-                state = false;
+                localSession = false;
                 break;
             default:
                 break;
@@ -60,11 +60,9 @@ void Manager::Listings() {
 }
 
 void Manager::studentsListings() {
-    bool state = true;
-    while(state){
-
+    bool localSession = true;
+    while(localSession){
         short choice = Menu::studentsListings();
-
         switch (choice) {
             case 1:{
                 bool st = true;
@@ -77,10 +75,23 @@ void Manager::studentsListings() {
                 break;
 
             case 5:
-                state = false;
+                localSession = false;
+                break;
+            default:
                 break;
         }
     }
+}
+void Manager::classesListings() {
+
+}
+
+void Manager::UCListings() {
+
+}
+
+void Manager::schedulesListings() {
+
 }
 
 void Manager::loadFilesInfo()
@@ -143,17 +154,7 @@ void Manager::load() {
     }
 }
 
-void Manager::classesListings() {
 
-}
-
-void Manager::UCListings() {
-
-}
-
-void Manager::schedulesListings() {
-
-}
 
 
 

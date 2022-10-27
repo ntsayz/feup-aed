@@ -15,7 +15,7 @@ short Menu::Main() {
               << std::setw(33) << "2. ---\n" <<
               std::setw(33) << "3. ---\n";
     std::cout << "|" << std::setfill('-') <<std::setw(59) << "|\n"; // --
-    std::cout << "|" << std::setfill(' ')<< std::setw(30); std::cout << " 9.Close" << std::setw(29) << "|\n";
+    std::cout << "|" << std::setfill(' ')<< std::setw(32); std::cout << "9.Close" << std::setw(27) << "|\n";
     std::cout << "|" << std::setfill('-') <<std::setw(59) << "|\n";
 
     short choice;
@@ -31,11 +31,18 @@ short Menu::Listings() {
     std::cout << "LISTINGS";
     std::cout << std::setfill(' ') <<std::setw(24)<<"|\n"  //  --> |
               << "|"<< std::setfill('-') <<std::setw(59) <<"|\n"; // ---
-    std::cout << std::setfill(' ') << std::setw(47) << " Choose one of the following options:\n\n";
-    std::cout << std::setfill(' ')<<  std::setw(36) << "1.By Students\n"
-              << std::setw(33) << "2.By Classes\n" <<
-              std::setw(33) << "3.By UCs\n"
-              << std::setw(33) << "4.By Schedules\n";
+    std::cout << std::setfill(' ') << std::setw(49) << " Choose one of the following options:\n\n";
+    std::cout <<  std::setw(36) << "1. Students\n"
+    <<  std::setw(36) << "- Classes\n"
+    <<  std::setw(33) << "- Year\n"
+     <<  std::setw(31) << "- UC\n"
+                << std::setw(35) << "2. Classes\n"
+    << std::setw(33) << "- Year\n"
+                << std::setw(31) << "3. UCs\n"
+    << std::setw(33) << "- Year\n"
+              << std::setw(37) << "4. Schedules\n"
+    << std::setw(36) << "- Classes\n"
+    << std::setw(31) << "- UC\n";
     std::cout << "|" << std::setfill('-') <<std::setw(59) << "|\n"; // --
     std::cout << "|" << std::setfill(' ')<< std::setw(30); std::cout << " 9.Back" << std::setw(29) << "|\n";
     std::cout << "|" << std::setfill('-') <<std::setw(59) << "|\n";
@@ -102,4 +109,16 @@ bool Menu::studentsListings_Class(std::set<Student> students,std::set<Class> cla
         }
     }else if(year == 0) session = false;
     return session;
+}
+
+void Menu::classesListings() {
+
+}
+
+void Menu::UCListings() {
+
+}
+
+void Menu::schedulesListings() {
+
 }

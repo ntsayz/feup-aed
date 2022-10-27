@@ -29,7 +29,7 @@ private:
     std::set<Student> students;
     std::set<Class> classes;
     std::set<Uc> curricularUnits;
-    bool session;
+    bool globalSession;
     /// Listings
     void Listings();
     /// Student listings
