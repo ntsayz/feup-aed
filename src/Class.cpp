@@ -2,6 +2,7 @@
 // Created by ntsayz on 10/20/22.
 //
 
+
 #include "Class.h"
 #include "Student.h"
 
@@ -15,21 +16,28 @@ std::string Class::getClassCode() const {
 }
 
 
-void Class::addStudent(Student student){
+void Class::addStudent(const Student& student){
     this->students.insert(student);
+    //std::cout << student.getName() << " is in " << this->getClassNr() << "\n";
 }
 
 int Class::getClassNr() const {
-    if(getClassCode()[5] == 0){
-        return (int)getClassCode()[6];
-    }
+    int i;
+    std::stringstream ss;
+    ss << getClassCode().substr(5,6);
+    ss >> i;
+    return i;
 }
 
 void Class::showStudents() const {
     std::cout << getClassCode();
-    for(Student elem: this->students){
+    for(const Student& elem: this->students){
         std::cout << elem.getName() << "\n";
     }
     std::cout << this->students.size() << " students";
+}
+
+int Class::getClassSize() const {
+    return this->students.size();
 }
 

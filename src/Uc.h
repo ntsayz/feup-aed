@@ -11,31 +11,31 @@ class Uc {
 protected:
     std::string uc_Code,class_Code;
 public:
-    //default constructor
+    /// Default constructor
     Uc();
 
     Uc(std::string uc_Code);
-    //Uc constructor
+    /// UC constructor
     Uc(std::string uc_Code,std::string class_Code);
 
-    //set UcCode
+    /// Sets UcCode
     void set_uc_Code(std::string uc_Code);
 
-    //set Class Code
+    /// Sets Class Code
     void set_class_Code(std::string class_Code);
 
-    //return UcCode
+    /// Gets UC code
     std::string get_uc_Code() const;
+    int getCode() const;
     
-    //return Class Code
+    /// Gets Class Code
     std::string get_class_Code() const;
 
-
     bool operator<(Uc uc) const{
-        return this->get_uc_Code()< uc.get_uc_Code();
+        return this->getCode()< uc.getCode();
     }
     bool operator==(Uc uc) const{
-        return this->get_uc_Code() == uc.get_uc_Code();
+        return this->getCode() == uc.getCode();
     }
 
 

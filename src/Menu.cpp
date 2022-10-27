@@ -47,3 +47,59 @@ short Menu::Listings() {
     return choice;
 
 }
+
+short Menu::studentsListings() {
+    Utility::clear_screen();
+    std::cout << "LISTINGS > *STUDENTS* \n";
+    std::cout << std::setfill('-')<<  std::setw(28) << "STUDENTS" << std::setw(31) << "\n";
+    std::cout << std::setfill(' ') <<std::setw(36) << "group them by:" << std::setw(23) << "\n";
+    std::cout << std::setfill(' ')<<  std::setw(36) << "1. Classes\n"
+              << std::setw(33) << "2. Year\n" <<
+              std::setw(33) << "3. UCs\n"
+              << std::setw(33) << "4. Schedules\n"
+              << std::setw(33) << "5.Go Back\n";
+    short choice;
+    std::cout << "-->" << std::flush;
+    std::cin >> choice;
+    choice = Utility::getInput(choice, (short)1, (short )5);
+    return choice;
+}
+
+
+
+bool Menu::studentsListings_Class(std::set<Student> students,std::set<Class> classes, bool session) {
+    Utility::clear_screen();
+    std::cout << "LISTINGS > STUDENTS > *CLASSES*\n";
+    std::cout << "From what year (1-3)?" << std::setfill(' ') << std::setw(30) << "0 to Exit\n";;
+    int year;
+    std::cout << "-->" << std::flush;
+    std::cin >> year;
+    year = Utility::getInput((short)year, (short)0, (short )3);
+    if(year >= 1 || year >= 3){
+        Utility::clear_screen();
+        std::cout << "LISTINGS > STUDENTS > *CLASSES*\n";
+        for(Class turma: classes){
+            if(turma.getClassCode()[0] == std::to_string(year)[0])
+                std::cout << turma.getClassCode() << "\n";
+        }
+        while(session){
+            //
+            std::cout << "LISTINGS > STUDENTS > *CLASSES*\n\n";
+            std::cout << "\nFrom what class  (1-"<< classes.size()/3 + 1  << ")?" << std::setfill(' ') << std::setw(30) << "0 to Exit\n";
+            int turma;
+            std::cout << "-->" << std::flush;
+            std::cin >> turma;
+            turma = Utility::getInput((short)turma, (short)0, (short )classes.size()/3+1);
+            if(turma > 0 && turma < 16){
+
+                for(Class aClass: classes){
+                    aClass.showStudents();
+                    std::cout << "\n\n--------\n\n";
+                }
+            }
+            if(turma == 0) session = false;
+            Utility::clear_screen();
+        }
+    }else if(year == 0) session = false;
+    return session;
+}

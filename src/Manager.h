@@ -30,16 +30,26 @@ private:
     std::set<Class> classes;
     std::set<Uc> curricularUnits;
     bool session;
-
+    /// Listings
     void Listings();
+    /// Student listings
     void studentsListings();
-    void loadClasses_UCs();
-    void loadStudents();
-
+    /// Classes Listings
+    void classesListings();
+    /// UC's listings
+    void UCListings();
+    /// Schedules listings
+    void schedulesListings();
+    /// Loads students,classes & curricular units data structures from file data
+    void loadFilesInfo();
+    /// Loads each object from each class with its particular data (eg:. Inserting students in a particular class)
+    void load();
 public:
+    /// Constructor
     Manager();
-    /// Main startApplication
+    /// Starts the Application
     void startApplication();
+
 
 };
 

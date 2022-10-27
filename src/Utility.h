@@ -20,14 +20,17 @@ private:
 
 public:
     Utility();
-    /// Gets and sanitizes user's input
+    /// Gets and sanitizes user's input (int)
     static short getInput(short choice, short min, short max);
     /// Clear screen (Cross-Platform)
     static void clear_screen();
+    /// Gets .csv file "classes"
     static const char* getClassesPath();
+    /// Gets .csv file "classes_per_uc"
     static const char* getClassesUcPath();
+    /// Gets .csv file "students_classes"
     static const char* getStudentClassesPath();
-    /// Make sure that all files exist before starting program
+    /// Makes sure that all files exist before starting program
     //static bool loadFiles(std::set<Student> students,std::vector<Class> horario);
     template <typename T>
     T loadFiles(T file);

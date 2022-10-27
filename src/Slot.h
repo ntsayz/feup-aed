@@ -11,6 +11,7 @@ private:
     unsigned short dia;
     float startHour, endHour;
     std::string type;
+    /// Constructor
     Slot();
 
 };

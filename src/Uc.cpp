@@ -2,6 +2,7 @@
 // Created by Eriton Naife on 08/10/2022.
 //
 
+#include <sstream>
 #include "Uc.h"
 Uc::Uc(){
 
@@ -31,6 +32,14 @@ void Uc::set_class_Code(std::string class_Code){
 std::string Uc::get_class_Code()const{
 	return class_Code;
 
+}
+
+int Uc::getCode() const {
+    int i;
+    std::stringstream ss;
+    ss << get_uc_Code().substr(5,7);
+    ss >> i;
+    return i;
 }
 
 

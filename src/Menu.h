@@ -20,8 +20,14 @@
 class Menu {
 private:
 public:
+    /// Main menu
     static short Main();
+    /// Listins menu, to show all available data
     static short Listings();
+    /// Listings subsection -Students
+    static short  studentsListings();
+    /// Students subsection -Classes
+    static bool studentsListings_Class(std::set<Student> students,std::set<Class> classes,bool session);
 };
 
 
