@@ -82,11 +82,11 @@ bool Menu::studentsListings_Class(std::set<Student> students,std::set<Class> cla
     std::cout << "-->" << std::flush;
     std::cin >> year;
     year = Utility::getInput((short)year, (short)0, (short )3);
-    if(year >= 1 || year >= 3){
+    if(year >= 1 && year <= 3){
         Utility::clear_screen();
         std::cout << "LISTINGS > STUDENTS > *CLASSES*\n";
         for(Class turma: classes){
-            if(turma.getClassCode()[0] == std::to_string(year)[0])
+            if(turma.getClassCode().substr(0,0) == std::to_string(year).substr(0,0))
                 std::cout << turma.getClassCode() << "\n";
         }
         while(session){
@@ -98,7 +98,6 @@ bool Menu::studentsListings_Class(std::set<Student> students,std::set<Class> cla
             std::cin >> turma;
             turma = Utility::getInput((short)turma, (short)0, (short )classes.size()/3+1);
             if(turma > 0 && turma < 16){
-
                 for(Class aClass: classes){
                     aClass.showStudents();
                     std::cout << "\n\n--------\n\n";
