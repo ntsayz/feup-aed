@@ -1598,7 +1598,7 @@ QHG_LOCATION           =
 
 # If the GENERATE_ECLIPSEHELP tag is set to YES, additional index files will be
 # generated, together with the HTML files, they form an Eclipse help plugin. To
-# install this plugin and make it available under the help contents menu in
+# install this plugin and make it available under the help contents startApplication in
 # Eclipse, the contents of the directory containing the HTML and XML files needs
 # to be copied into the plugins directory of eclipse. The name of the directory
 # within the plugins directory should be the same as the ECLIPSE_DOC_ID value.
@@ -2178,7 +2178,7 @@ GENERATE_XML           = NO
 XML_OUTPUT             = xml
 
 # If the XML_PROGRAMLISTING tag is set to YES, doxygen will dump the program
-# listings (including syntax highlighting and cross-referencing information) to
+# Listings (including syntax highlighting and cross-referencing information) to
 # the XML output. Note that enabling this will significantly increase the size
 # of the XML output.
 # The default value is: YES.
@@ -2415,7 +2415,7 @@ HAVE_DOT               = NO
 # The DOT_NUM_THREADS specifies the number of dot invocations doxygen is allowed
 # to run in parallel. When set to 0 doxygen will base this on the number of
 # processors available in the system. You can set it explicitly to a value
-# larger than 0 to get control over the balance between CPU load and processing
+# larger than 0 to get control over the balance between CPU loadClasses_UCs and processing
 # speed.
 # Minimum value: 0, maximum value: 32, default value: 0.
 # This tag requires that the tag HAVE_DOT is set to YES.

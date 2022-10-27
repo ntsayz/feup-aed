@@ -5,18 +5,52 @@
 #ifndef FEUP_AED_MANAGER_H
 #define FEUP_AED_MANAGER_H
 #include <string>
+#include <limits>
+#include <vector>
+#include <iostream>
+#include <sstream>
+#include <fstream>
+#include <iomanip>
+#include <cstdlib>
+#include <cstdio>
+#include <cstring>
+#include <set>
+#include <vector>
+#include "Utility.h"
+#include "Student.h"
+#include "Class.h"
+#include "Menu.h"
+#include "Uc.h"
+
 
 class Manager {
 private:
-
+    std::vector<std::string> files;
+    std::set<Student> students;
+    std::set<Class> classes;
+    std::set<Uc> curricularUnits;
+    bool globalSession;
+    /// Listings
+    void Listings();
+    /// Student listings
+    void studentsListings();
+    /// Classes Listings
+    void classesListings();
+    /// UC's listings
+    void UCListings();
+    /// Schedules listings
+    void schedulesListings();
+    /// Loads students,classes & curricular units data structures from file data
+    void loadFilesInfo();
+    /// Loads each object from each class with its particular data (eg:. Inserting students in a particular class)
+    void load();
 public:
+    /// Constructor
     Manager();
-    /// Get user's menu choice
-    int getChoice(short choice, short min, short max);
-    /// Make sure that all files are loadable before starting program
-    bool loadFiles(std::string fname);
-    /// Main menu
-    int mainMenu();
+    /// Starts the Application
+    void startApplication();
+
+
 };
 
 
