@@ -8,7 +8,7 @@
 
 Class::Class() {}
 Class::Class(std::string classCode) {
-    this->class_Code = classCode;
+    this->class_Code = classCode.substr(0,7);
 }
 
 std::string Class::getClassCode() const {

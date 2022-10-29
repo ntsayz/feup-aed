@@ -28,8 +28,13 @@ private:
     std::vector<std::string> files;
     std::set<Student> students;
     std::set<Class> classes;
-    std::multimap<Uc,Class> ucclasses;
+    std::multimap<Uc,Class> ucclasses; //delete
+    //TODO: change map key fom int to Student
+    ///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    /// IMPORTANT (Student(key): [[UC(key),TURMA(value)]](list of values) )
     std::map<int,std::list<std::map<Uc,Class>>> students_uc_classes;
+    std::map<int,std::map<Uc,std::list<Class>>> studentsclassesucs;//PROTOTYPE
+    ///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     std::set<Uc> curricularUnits;
     bool globalSession;
     /// Listings

@@ -78,6 +78,7 @@ void Manager::studentsListings() {
         }
     }
 }
+//TODO: MENUS HERE
 void Manager::classesListings() {
 
 }
@@ -173,6 +174,7 @@ void Manager::loadFilesInfo()
     fclose(file1);
 
 }
+// TODO: make these two classes more readable and fix them , a lot of repetition
 void Manager::load() {
 
     std::vector<std::string> vec;
@@ -212,18 +214,30 @@ void Manager::load() {
             std::map<Uc,Class> m;
             m[uc] = aClass;
             t.push_back(m);
+            /*
             if(students_uc_classes.find(code) == students_uc_classes.end()){
                 students_uc_classes[code] = t;
             }else{
                 students_uc_classes[code].push_back(m);
+            }*/
+            /////dwndwdninw
+
+            if(studentsclassesucs.find(code) == studentsclassesucs.end()){
+                std::map<Uc,std::list<Class>> ucClassMap;
+                std::list<Class> classList;
+                classList.push_back(aClass);
+                ucClassMap[uc] = classList;
+                studentsclassesucs[code] = ucClassMap ;
+            }else{
+                studentsclassesucs[code][uc].push_back(aClass);
             }
-            //ucclasses.insert(std::pair(uc,aClass));
-            //students_uc_classes[code][uc] = aClass;
+            ////dwndwidnwid
+
         }
         vec.clear();
     }
     fclose(file);
-    std::cout << students_uc_classes.size() << "\n";
+    //std::cout << studentsclassesucs.size() << "\n";
 }
 
 void Manager::testing(){
@@ -253,12 +267,12 @@ void Manager::testing(){
         std::cout << "\n";
         // (*it).second << "]";
     }*/
-
+   //todo: show here new ds
    for(auto it: students_uc_classes){
        std::cout  << "("<< it.first << ") ==> [";
        for(auto it2 : it.second){
            for(auto it3 : it2){
-               std::cout <<  "["<< it3.first.getCode() << ", " << it3.second.getClassNr() << "],";
+               std::cout <<  "["<< it3.first.get_uc_Code() << ", " << it3.second.getClassCode() << "],";
            }
        }
        std::cout << "]\n";

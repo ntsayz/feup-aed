@@ -3,3 +3,11 @@
 //
 
 #include "Slot.h"
+
+Slot::Slot() {
+
+}
+
+void Slot::load() {
+
+}

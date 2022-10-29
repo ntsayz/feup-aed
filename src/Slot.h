@@ -8,13 +8,15 @@
 
 class Slot {
 private:
-    unsigned short dia;
+    unsigned short weekday;
     float startHour, endHour;
     std::string type;
+public:
     /// Constructor
     Slot();
-
+    void load();
 };
+
 
 
 #endif //FEUP_AED_SLOT_H
