@@ -64,7 +64,6 @@ CMAKE_BINARY_DIR = /home/ntsayz/Documents/feup-aed/cmake-build-debug
 
 # The main recursive "all" target.
 all: CMakeFiles/feup_aed.dir/all
-all: CMakeFiles/Doxygen.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -73,7 +72,6 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/feup_aed.dir/clean
-clean: CMakeFiles/Doxygen.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -83,7 +81,7 @@ clean: CMakeFiles/Doxygen.dir/clean
 CMakeFiles/feup_aed.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ntsayz/Documents/feup-aed/cmake-build-debug/CMakeFiles --progress-num=2,3,4,5,6,7,8,9,10,11 "Built target feup_aed"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ntsayz/Documents/feup-aed/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10 "Built target feup_aed"
 .PHONY : CMakeFiles/feup_aed.dir/all
 
 # Build rule for subdir invocation for target.
@@ -101,32 +99,6 @@ feup_aed: CMakeFiles/feup_aed.dir/rule
 CMakeFiles/feup_aed.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/clean
 .PHONY : CMakeFiles/feup_aed.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/Doxygen.dir
-
-# All Build rule for target.
-CMakeFiles/Doxygen.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Doxygen.dir/build.make CMakeFiles/Doxygen.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Doxygen.dir/build.make CMakeFiles/Doxygen.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ntsayz/Documents/feup-aed/cmake-build-debug/CMakeFiles --progress-num=1 "Built target Doxygen"
-.PHONY : CMakeFiles/Doxygen.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/Doxygen.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ntsayz/Documents/feup-aed/cmake-build-debug/CMakeFiles 1
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Doxygen.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ntsayz/Documents/feup-aed/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/Doxygen.dir/rule
-
-# Convenience name for target.
-Doxygen: CMakeFiles/Doxygen.dir/rule
-.PHONY : Doxygen
-
-# clean rule for target.
-CMakeFiles/Doxygen.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Doxygen.dir/build.make CMakeFiles/Doxygen.dir/clean
-.PHONY : CMakeFiles/Doxygen.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

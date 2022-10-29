@@ -129,19 +129,6 @@ feup_aed/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/feup_aed.dir/build.make CMakeFiles/feup_aed.dir/build
 .PHONY : feup_aed/fast
 
-#=============================================================================
-# Target rules for targets named Doxygen
-
-# Build rule for target.
-Doxygen: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Doxygen
-.PHONY : Doxygen
-
-# fast build rule for target.
-Doxygen/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Doxygen.dir/build.make CMakeFiles/Doxygen.dir/build
-.PHONY : Doxygen/fast
-
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -366,7 +353,6 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... Doxygen"
 	@echo "... feup_aed"
 	@echo "... main.o"
 	@echo "... main.i"

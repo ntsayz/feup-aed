@@ -29,6 +29,7 @@ private:
     std::set<Student> students;
     std::set<Class> classes;
     std::multimap<Uc,Class> ucclasses;
+    std::map<int,std::list<std::map<Uc,Class>>> students_uc_classes;
     std::set<Uc> curricularUnits;
     bool globalSession;
     /// Listings

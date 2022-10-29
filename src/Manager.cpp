@@ -205,12 +205,25 @@ void Manager::load() {
         if(c>1){
             Uc uc(vec[2]);
             Class aClass(vec[3]);
-            ucclasses.insert(std::pair(uc,aClass));
+            std::stringstream sss;
+            sss << vec[0];
+            sss >> code;
+            std::list<std::map<Uc,Class>> t;
+            std::map<Uc,Class> m;
+            m[uc] = aClass;
+            t.push_back(m);
+            if(students_uc_classes.find(code) == students_uc_classes.end()){
+                students_uc_classes[code] = t;
+            }else{
+                students_uc_classes[code].push_back(m);
+            }
+            //ucclasses.insert(std::pair(uc,aClass));
+            //students_uc_classes[code][uc] = aClass;
         }
         vec.clear();
     }
-    std::cout << "\n" <<c1 << "|" << c2;
     fclose(file);
+    std::cout << students_uc_classes.size() << "\n";
 }
 
 void Manager::testing(){
@@ -230,8 +243,26 @@ void Manager::testing(){
         //student.showEnrolledClasses();
         //std::cout << "\n";
     }*/
-    for (auto it = ucclasses.begin();it != ucclasses.end();++it)
-        std::cout << "  [" << (*it).first.getCode() << ", " << (*it).second.getClassCode() << "]";
+    //for (auto it = ucclasses.begin();it != ucclasses.end();++it) std::cout << "  [" << (*it).first.getCode() << ", " << (*it).second.getClassCode() << "]";
+
+   /* for (auto & students_uc_classe : students_uc_classes) {
+        std::cout << "(" << students_uc_classe.first << ") --> [";
+        for(auto & itt : students_uc_classe.second){
+            std::cout << "["<< itt.first.getCode() << ", " << itt.second.getClassCode() << "],";
+        }
+        std::cout << "\n";
+        // (*it).second << "]";
+    }*/
+
+   for(auto it: students_uc_classes){
+       std::cout  << "("<< it.first << ") ==> [";
+       for(auto it2 : it.second){
+           for(auto it3 : it2){
+               std::cout <<  "["<< it3.first.getCode() << ", " << it3.second.getClassNr() << "],";
+           }
+       }
+       std::cout << "]\n";
+   }
 }
 
 

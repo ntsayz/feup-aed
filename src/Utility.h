@@ -7,6 +7,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <limits>
 #include <set>
 #include <fstream>
 #include "Class.h"

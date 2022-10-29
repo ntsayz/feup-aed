@@ -402,7 +402,7 @@ DOXYGEN_DOT_EXECUTABLE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: DOXYGEN_EXECUTABLE
 DOXYGEN_EXECUTABLE-ADVANCED:INTERNAL=1
 //Details about finding Doxygen
-FIND_PACKAGE_MESSAGE_DETAILS_Doxygen:INTERNAL=[/usr/local/bin/doxygen][cfound components: doxygen missing components: dot][v1.9.6 (2142bdb8b01b19728b86c55935c55aad0ad9b95c)()]
+FIND_PACKAGE_MESSAGE_DETAILS_Doxygen:INTERNAL=[/usr/local/bin/doxygen][cfound components: doxygen missing components: dot][v()]
 //ADVANCED property for variable: ProcessorCount_cmd_nproc
 ProcessorCount_cmd_nproc-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: ProcessorCount_cmd_sysctl
