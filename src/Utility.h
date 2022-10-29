@@ -14,10 +14,10 @@
 #include "Student.h"
 
 
+
 class Utility {
 private:
-
-
+    //auto static start,stop;
 
 public:
     Utility();
@@ -33,6 +33,7 @@ public:
     static const char* getStudentClassesPath();
     /// Makes sure that all files exist before starting program
     //static bool loadFiles(std::set<Student> students,std::vector<Class> horario);
+
     template <typename T>
     T loadFiles(T file);
 };
