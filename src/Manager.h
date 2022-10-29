@@ -28,6 +28,7 @@ private:
     std::vector<std::string> files;
     std::set<Student> students;
     std::set<Class> classes;
+    std::multimap<Uc,Class> ucclasses;
     std::set<Uc> curricularUnits;
     bool globalSession;
     /// Listings
@@ -51,6 +52,7 @@ public:
     void startApplication();
 
 
+    void testing();
 };
 
 

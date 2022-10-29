@@ -20,11 +20,7 @@ void Manager::startApplication(){
                 Listings();
                 break;
             case 2:
-                for(Student stud: students){
-                    stud.showEnrolledClasses();
-                    std::cout << "\n";
-                }
-                std::cout << "\n";
+                testing();
                 break;
             case 3:
                 break;
@@ -105,12 +101,13 @@ void Manager::loadFilesInfo()
     }
     char content[1024];
     int c = 0 ;
+    int c1 = 0;
     while(fgets(content, 1024, file))
     {
         c++;
-
+        Student prevStud;
         char *v = strtok(content, ",");
-        int c1 = 0;
+
         while(v)
         {
             c1++;
@@ -129,33 +126,113 @@ void Manager::loadFilesInfo()
             sss << vec[0];
             sss >> code;
             Student student(code,vec[1],uc,aClass);
-            //aClass.addStudent(student);
+            c1++;
+            //aClass.addStudent(uc,student);
             classes.insert(aClass);
             students.insert(student);
+            //student.addClassUC(uc,aClass);
+            curricularUnits.insert(uc);
+
+        }
+        vec.clear();
+    }
+    //std::cout << "\n" <<c1;
+    fclose(file);
+
+    vec.clear();
+
+    const char *fname1 = Utility::getClassesUcPath();
+    FILE *file1 = fopen(fname1, "r");
+    c = 0;
+    if(!file1)
+    {
+        std::cerr << ("Could not open the file\n");
+    }
+    char content1[1024];
+    while(fgets(content1, 1024, file1))
+    {
+        c++;
+        char *v = strtok(content1, ",");
+        while(v)
+        {
+            std::string s = v;
+            if(c>1 && s.size() >1){
+                vec.push_back((std::string)s);
+            }
+            v = strtok(NULL, ",");
+        }
+
+        if(c>1){
+            Uc uc(vec[0]);
+            Class aClass(vec[1]);
+            classes.insert(aClass);
             curricularUnits.insert(uc);
         }
         vec.clear();
     }
-
-    fclose(file);
+    fclose(file1);
 
 }
 void Manager::load() {
-    for(Student stud: students){
-        for(Class aClass1: classes){
-            std::map<Uc,Class> someMap = stud.getEnrolledClasses();
-            for (auto it = someMap.begin(); it != someMap.end(); ++it)
-                if (it->second == aClass1)
-                    aClass1.addStudent(stud);
-                    //std::cout << stud.getName();
-                    //std::cout << aClass1.getClassNr() << " has now " << aClass1.getClassSize() << " students" << "\n";
 
-        }
+    std::vector<std::string> vec;
+    const char *fname = Utility::getStudentClassesPath();
+    FILE *file = fopen(fname, "r");
+    if(!file)
+    {
+        std::cerr << ("Could not open the file\n");
     }
+    int prevStud, prevCode = 0;
+    char content[1024];
+    int c = 0 ;
+    int c1 =0 ,c2 = 0;
+    int code;
+    while(fgets(content, 1024, file))
+    {
+        c++;
+
+        char *v = strtok(content, ",");
+        while(v)
+        {
+
+            std::string s = v;
+            if(c>1 && s.size() >1){
+                vec.push_back((std::string)s);
+            }
+            v = strtok(NULL, ",");
+        }
+
+        if(c>1){
+            Uc uc(vec[2]);
+            Class aClass(vec[3]);
+            ucclasses.insert(std::pair(uc,aClass));
+        }
+        vec.clear();
+    }
+    std::cout << "\n" <<c1 << "|" << c2;
+    fclose(file);
 }
 
-
-
+void Manager::testing(){
+    /*int i;
+    std::cout << "\nClasses\n";
+    for(Class aClass : classes){
+        //std::cout << aClass.getClassSize() << "\n";
+        //aClass.showStudents();
+        //std::cout << "\n";
+    }
+    std::cout << "\nUC\n\n";
+    for(Uc uc: curricularUnits){
+        //std::cout << uc.get_uc_Code()<< "\n";
+    }
+    std::cout << "\nStudents\n\n";
+    for(Student student: students){
+        //student.showEnrolledClasses();
+        //std::cout << "\n";
+    }*/
+    for (auto it = ucclasses.begin();it != ucclasses.end();++it)
+        std::cout << "  [" << (*it).first.getCode() << ", " << (*it).second.getClassCode() << "]";
+}
 
 
 

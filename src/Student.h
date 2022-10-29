@@ -23,7 +23,8 @@ private:
     int code;
     std::string name;
     std::queue<Request> requests;
-    std::map<Uc,Class> classes;
+    std::map<Class,Uc> classes;
+    std::vector< std::map< Uc, Class>> classes1;
     std::set<Slot> schedule;
 public:
     Student();
@@ -32,17 +33,19 @@ public:
     /// Enroll students w/ class information
     Student(int code, std::string name, const Uc& curricularUnit,const Class& aClass);
     /// Adds a class to the student's list of classes
-    void addClassUC(Uc curricularUnit,Class aClass);
+    void addClassUC(Uc& curricularUnit,Class& aClass);
     /// Gets student's code
     int getCode() const;
     /// Displays what classes the student is enrolled to
     void showEnrolledClasses() const;
     /// Gets <UC,Class> map
-    std::map<Uc,Class> getEnrolledClasses() const;
+    std::map<Class,Uc> getEnrolledClasses() const;
+    /// Get number of enrolled classes
+    int getNumberEnrolledClasses() const;
     /// Gets student's name
     std::string getName() const;
     bool operator<(Student student) const{
-        return getCode() < student.getCode();
+        return this->getCode() < student.getCode();
     }
     bool operator>(Student student) const{
         return getCode() > student.getCode();

@@ -31,7 +31,6 @@ void Uc::set_class_Code(std::string class_Code){
 
 std::string Uc::get_class_Code()const{
 	return class_Code;
-
 }
 
 int Uc::getCode() const {
