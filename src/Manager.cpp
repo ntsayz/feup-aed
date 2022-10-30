@@ -99,7 +99,7 @@ void Manager::classesListings() {
             l3.push_back(aClass.getClassCode());
         }
     }
-    for(int i = 0; i <= classes.size()/3; i++){
+    for(int i = 0; i <  l3.size(); i++){
         std::cout << "|"<<std::setfill(' ')<<  std::setw(13) << l1[i] << std::setw(7) << "|"
                   << std::setw(13)<< l2[i];
         std::cout << std::setw(7) << "|" << std::setw(12) << l3[i] << std::setw(7) <<"|\n";
@@ -111,9 +111,23 @@ void Manager::classesListings() {
 
 void Manager::UCListings() {
     bool localSession = true;
+    std::vector<std::string> l1;
+    std::vector<std::string> l2;
+    std::vector<std::string> l3;
     while(localSession){
         Utility::header("Curricular Units");
-        Utility::body({"Choose", "1.Hello", "2.World!!!"});
+        std::cout << "|" << std::setfill('-') <<std::setw(176) << "|\n";
+
+        // all classes in each curricular unit
+        for(auto& [uc,v] : uc_classes){
+            std::cout  << "|"<< uc.get_uc_Code() << "| ==> ";
+            for( auto aclass : v){
+                std::cout <<  " | " << aclass.getClassCode() << "";
+            }
+            std::cout << " |\n";
+            std::cout << "|" << std::setfill('-') <<std::setw(176) << "|\n";
+        }
+
         Utility::footer();
         int i;
         std::cin >> i;
@@ -165,16 +179,26 @@ void Manager::loadDatafromFiles()
             classes.insert(aClass);
             curricularUnits.insert(uc);
             students.insert(student);
-            aClass.addStudent(uc,student);
+
             if(students_uc_classes.find(student) == students_uc_classes.end()){
                 std::map<Uc, std::vector<Class>> ucClassMap;
                 std::vector<Class> classList;
                 classList.push_back(aClass);
                 ucClassMap[uc] = classList;
                 students_uc_classes[student] = ucClassMap ;
-                //students.emplace_back(student);
+                std::vector<Uc> l;
+                l.push_back(uc);
+                classes_uc[aClass] = l;
             }else{
                 students_uc_classes[student][uc].push_back(aClass);
+                classes_uc[aClass].push_back(uc);
+            }
+            if(uc_classes.find(uc) == uc_classes.end()){
+                std::vector<Class> classList;
+                classList.push_back(aClass);
+                uc_classes[uc] = classList;
+            }else{
+                uc_classes[uc].push_back(aClass);
             }
 
         }
@@ -205,16 +229,27 @@ void Manager::loadDatafromFiles()
             v = strtok(NULL, ",");
         }
 
-        if(c>1){
+        if(c>1) {
             Uc uc(vec[0]);
             Class aClass(vec[1]);
             classes.insert(aClass);
             curricularUnits.insert(uc);
+            if(uc_classes.find(uc) == uc_classes.end()){
+                std::vector<Class> classList;
+                classList.push_back(aClass);
+                uc_classes[uc] = classList;
+            }else{
+                uc_classes[uc].push_back(aClass);
+            }
         }
         vec.clear();
     }
     fclose(file1);
-
+    //normalization
+    for(auto& [uc,v] : uc_classes){
+        std::set<Class> s( v.begin(), v.end() );
+        v.assign( s.begin(), s.end() );
+    }
 }
 
 
@@ -248,7 +283,7 @@ void Manager::testing(){
     }*/
     //for (auto it = ucclasses.begin();it != ucclasses.end();++it) std::cout << "  [" << (*it).first.getCode() << ", " << (*it).second.getClassCode() << "]";
 
-    std::cout << "here";
+    /*std::cout << "here";
     for(auto it: students_uc_classes){
         std::cout  << "("<< it.first.getCode() << ") ==> [";
         for(auto [uc,classList]: it.second){
@@ -257,7 +292,17 @@ void Manager::testing(){
             }
         }
         std::cout << "]\n";
+    }*/
+    // UC CLASSES
+    for(auto& [uc,v] : uc_classes){
+        std::cout  << "("<< uc.get_uc_Code() << ") ==> [";
+        for( auto aclass : v){
+            std::cout <<  "[" << aclass.getClassCode() << "],";
+        }
+        std::cout << "\n";
     }
+    std::cout << "]\n";
+
     int i;
     std::cin >> i;
 }

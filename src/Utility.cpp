@@ -66,12 +66,12 @@ void Utility::footer() {
     std::cout << "|" << std::setfill('-') <<std::setw(59) << "|\n";
 }
 
-void Utility::body(std::vector<std::string> l){
-    int n = (int)(l[0].size() + 59)/2;
-    std::cout << "|" << std::setfill(' ') << std::setw(n) << l[0];
+void Utility::body(std::string hel, std::vector<std::string> l){
+    int n = (int)(hel.size() + 59)/2;
+    std::cout << "|" << std::setfill(' ') << std::setw(n) << hel;
     std::cout << std::setfill(' ') <<std::setw(59- n)<<"|\n";
     std::cout << "|" << std::setfill(' ') <<std::setw(59) << "|\n";
-    for(int i =1; i < l.size(); i++){
+    for(int i =0; i < l.size(); i++){
         int k = (int)(l[i].size()+59)/2;
         std::cout << "|" << std::setfill(' ') <<  std::setw(k) << l[i] << std::setw(59 - k) << "|\n";
     }
