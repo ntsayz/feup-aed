@@ -29,11 +29,12 @@ public:
     /// Students subsection -Classes
     static bool studentsListings_Class(std::set<Student> students,std::set<Class> classes,bool session);
     /// Listings subsection -Classes
-    void classesListings();
+    static void classesListings();
     /// Listings subsection - UC's
     void UCListings();
     /// Listings subsection -Schedules
     void schedulesListings();
+
 };
 
 

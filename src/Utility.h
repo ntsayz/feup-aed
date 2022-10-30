@@ -12,6 +12,7 @@
 #include <fstream>
 #include "Class.h"
 #include "Student.h"
+#include <iomanip>
 
 
 
@@ -33,9 +34,16 @@ public:
     static const char* getStudentClassesPath();
     /// Makes sure that all files exist before starting program
     //static bool loadFiles(std::set<Student> students,std::vector<Class> horario);
-
+    /// Auxiliary, to print
+    static void footer();
     template <typename T>
     T loadFiles(T file);
+
+    static void header(const std::string& header);
+
+    static void body(std::vector<std::string> l);
+
+    static void path(std::string path);
 };
 
 

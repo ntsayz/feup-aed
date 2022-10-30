@@ -12,12 +12,10 @@ Student::Student(int code, std::string name){
     this->code = code;
     this->name = std::move(name);
 }
-Student::Student(int code, std::string name, const Uc& curricularUnit, const Class& aClass) {
+Student::Student(int code, std::string name, Uc& curricularUnit, Class& aClass) {
     this->code = code;
     this->name = std::move(name);
-    std::map<Uc,Class> map1;
-    map1[curricularUnit] = aClass;
-    this->classes1.push_back(map1);
+    this->classes12[curricularUnit] = aClass;
 }
 
 std::map<Class,Uc> Student::getEnrolledClasses() const {
@@ -33,23 +31,30 @@ std::string Student::getName() const {
 }
 
 void Student::showEnrolledClasses() const {
-    std::cout << getName() <<  " is enrolled in\n ";
-    /*for(auto const& [uc,aclass]: classes1){
-        std::cout <<  uc.get_uc_Code() << ", "<< aclass.getClassCode();
-        std::cout << "\n";
-    }*/
-    for(auto const& it : this->classes1){
-        for(auto const& [uc,aclass]: it){
-            std::cout <<  uc.get_uc_Code() << ", "<< aclass.getClassCode();
-            std::cout << "\n";
+    std::cout << getName() <<  " is enrolled in\n " << classes1.size() << " classes\n";
+    for(auto it: classes1){
+        std::cout  << "("<< it.first.get_uc_Code() << ") ==> [";
+        for(auto [uc,classList]: it.second){
+            for(auto aClass : classList){
+                std::cout <<  "["<< uc.get_uc_Code() << ", " << aClass.getClassCode() << "],";
+            }
         }
+        std::cout << "]\n";
     }
 }
 
-void Student::addClassUC(Uc& curricularUnit,Class& aClass) {
-    std::map<Uc,Class> map1;
-    map1[curricularUnit] = aClass;
-    this->classes1.push_back(map1);
+void Student::addClassUC(Uc& uc,Class& aClass){
+    if(classes1.find(uc) == classes1.end()){
+        std::map<Uc, std::vector<Class>> ucClassMap;
+        std::vector<Class> classList;
+        classList.push_back(aClass);
+        ucClassMap[uc] = classList;
+        this->classes1[uc] = ucClassMap ;
+        //std::cout << "added " << getName() << " to " << aClass.getClassCode() << " in " << uc.get_uc_Code() <<"\n";
+    }else{
+        this->classes1[uc][uc].push_back(aClass);
+        //std::cout << "added " << getName() << " to " << aClass.getClassCode() << " in " << uc.get_uc_Code() <<"\n";
+    }
 }
 
 int Student::getNumberEnrolledClasses() const {

@@ -3,12 +3,12 @@
 //
 
 
+#include <functional>
 #include "Manager.h"
 
 Manager::Manager() {
     globalSession = true;
-    loadFilesInfo();
-    load();
+    loadDatafromFiles();
 }
 
 void Manager::startApplication(){
@@ -44,7 +44,13 @@ void Manager::Listings() {
             case 1:
                 studentsListings();
                 break;
-            case 9:
+            case 2:
+                classesListings();
+                break;
+            case 3:
+                UCListings();
+                break;
+            case 0:
                 localSession = false;
                 break;
             default:
@@ -61,16 +67,16 @@ void Manager::studentsListings() {
         short choice = Menu::studentsListings();
         switch (choice) {
             case 1:{
-                bool st = true;
-                while(st){
-                    st = Menu::studentsListings_Class(students,classes,st);
+                bool s = true;
+                while(s){
+                    //s = Menu::studentsListings_Class(students, classes, s);
                 }
                 break;
             }
             case 2:
-                break;
 
-            case 5:
+                break;
+            case 0:
                 localSession = false;
                 break;
             default:
@@ -80,10 +86,39 @@ void Manager::studentsListings() {
 }
 //TODO: MENUS HERE
 void Manager::classesListings() {
-
+    Menu::classesListings();
+    std::vector<std::string> l1;
+    std::vector<std::string> l2;
+    std::vector<std::string> l3;
+    for(auto aClass: classes){
+        if(aClass.getClassYear() ==1){
+            l1.push_back(aClass.getClassCode());
+        }else if(aClass.getClassYear() ==2){
+            l2.push_back(aClass.getClassCode());
+        }else if(aClass.getClassYear() ==3){
+            l3.push_back(aClass.getClassCode());
+        }
+    }
+    for(int i = 0; i <= classes.size()/3; i++){
+        std::cout << "|"<<std::setfill(' ')<<  std::setw(13) << l1[i] << std::setw(7) << "|"
+                  << std::setw(13)<< l2[i];
+        std::cout << std::setw(7) << "|" << std::setw(12) << l3[i] << std::setw(7) <<"|\n";
+    }
+    Utility::footer();
+    int i;
+    std::cin  >> i;
 }
 
 void Manager::UCListings() {
+    bool localSession = true;
+    while(localSession){
+        Utility::header("Curricular Units");
+        Utility::body({"Choose", "1.Hello", "2.World!!!"});
+        Utility::footer();
+        int i;
+        std::cin >> i;
+        if(i == 0)localSession = false;
+    }
 
 }
 
@@ -91,8 +126,9 @@ void Manager::schedulesListings() {
 
 }
 
-void Manager::loadFilesInfo()
+void Manager::loadDatafromFiles()
 {
+    //Gets data from students_classes.csv
     std::vector<std::string> vec;
     const char *fname = Utility::getStudentClassesPath();
     FILE *file = fopen(fname, "r");
@@ -106,7 +142,6 @@ void Manager::loadFilesInfo()
     while(fgets(content, 1024, file))
     {
         c++;
-        Student prevStud;
         char *v = strtok(content, ",");
 
         while(v)
@@ -127,19 +162,17 @@ void Manager::loadFilesInfo()
             sss << vec[0];
             sss >> code;
             Student student(code,vec[1],uc,aClass);
-
-            //aClass.addStudent(uc,student);
             classes.insert(aClass);
-            students.insert(student);
-            //student.addClassUC(uc,aClass);
             curricularUnits.insert(uc);
-
+            students.insert(student);
+            aClass.addStudent(uc,student);
             if(students_uc_classes.find(student) == students_uc_classes.end()){
-                std::map<Uc,std::list<Class>> ucClassMap;
-                std::list<Class> classList;
+                std::map<Uc, std::vector<Class>> ucClassMap;
+                std::vector<Class> classList;
                 classList.push_back(aClass);
                 ucClassMap[uc] = classList;
                 students_uc_classes[student] = ucClassMap ;
+                //students.emplace_back(student);
             }else{
                 students_uc_classes[student][uc].push_back(aClass);
             }
@@ -150,7 +183,7 @@ void Manager::loadFilesInfo()
     fclose(file);
 
     vec.clear();
-
+    //Gets data from classes_per_uc.csv (The other file didn't have all the info needed)
     const char *fname1 = Utility::getClassesUcPath();
     FILE *file1 = fopen(fname1, "r");
     c = 0;
@@ -183,51 +216,20 @@ void Manager::loadFilesInfo()
     fclose(file1);
 
 }
-// TODO: make these two classes more readable and fix them , a lot of repetition
-void Manager::load() {
-    std::vector<std::string> vec;
-    const char *fname = Utility::getStudentClassesPath();
-    FILE *file = fopen(fname, "r");
-    if(!file)
-    {
-        std::cerr << ("Could not open the file\n");
-    }
-    int prevStud, prevCode = 0;
-    char content[1024];
-    int c = 0 ;
-    int c1 =0 ,c2 = 0;
-    int code;
-    while(fgets(content, 1024, file))
-    {
-        c++;
 
-        char *v = strtok(content, ",");
-        while(v)
-        {
-
-            std::string s = v;
-            if(c>1 && s.size() >1){
-                vec.push_back((std::string)s);
-            }
-            v = strtok(NULL, ",");
-        }
-
-        if(c>1){
-            Uc uc(vec[2]);
-            Class aClass(vec[3]);
-            std::stringstream sss;
-            sss << vec[0];
-            sss >> code;
-
-
-        }
-        vec.clear();
-    }
-    fclose(file);
-
-}
 
 void Manager::testing(){
+    for(auto stud: students){
+        for(auto& [k,v] : students_uc_classes[stud] ) {
+            for(auto& el: v){
+                stud.addClassUC(const_cast<Uc &>(k), el);
+                stud.showEnrolledClasses();
+            }
+        }
+    }
+    for(auto& i : students){
+        i.showEnrolledClasses();
+    }
     /*int i;
     std::cout << "\nClasses\n";
     for(Class aClass : classes){
@@ -246,17 +248,9 @@ void Manager::testing(){
     }*/
     //for (auto it = ucclasses.begin();it != ucclasses.end();++it) std::cout << "  [" << (*it).first.getCode() << ", " << (*it).second.getClassCode() << "]";
 
-   /* for (auto & students_uc_classe : students_uc_classes) {
-        std::cout << "(" << students_uc_classe.first << ") --> [";
-        for(auto & itt : students_uc_classe.second){
-            std::cout << "["<< itt.first.getCode() << ", " << itt.second.getClassCode() << "],";
-        }
-        std::cout << "\n";
-        // (*it).second << "]";
-    }*/
-
+    std::cout << "here";
     for(auto it: students_uc_classes){
-        std::cout  << "("<< it.first.getName() << ") ==> [";
+        std::cout  << "("<< it.first.getCode() << ") ==> [";
         for(auto [uc,classList]: it.second){
             for(auto aClass : classList){
                 std::cout <<  "["<< uc.get_uc_Code() << ", " << aClass.getClassCode() << "],";
@@ -264,7 +258,8 @@ void Manager::testing(){
         }
         std::cout << "]\n";
     }
-    ;
+    int i;
+    std::cin >> i;
 }
 
 

@@ -3,17 +3,11 @@
 //
 
 #include "Menu.h"
+using namespace std;
 
 short Menu::Main() {
-    std::cout << "|" << std::setfill('-') <<std::setw(59) << "|\n"; // ---
-    std::cout << "|" << std::setfill(' ') << std::setw(50); // | txt
-    std::cout << "LEIC'S SCHEDULE MANAGEMENT SYSTEM";
-    std::cout << std::setfill(' ') <<std::setw(9)<<"|\n"  //  --> |
-              << "|"<< std::setfill('-') <<std::setw(59) <<"|\n"; // ---
-    std::cout << std::setfill(' ') << std::setw(47) << " Choose one of the following options:\n\n";
-    std::cout << std::setfill(' ')<<  std::setw(36) << "1. Listings\n"
-              << std::setw(33) << "2. ---\n" <<
-              std::setw(33) << "3. ---\n";
+    Utility::header("LEIC'S MANAGEMENT SYSTEM");
+    Utility::body({"Choose one of the following options:", "1. Listings", "2. Requests", "3. TODO"});
     std::cout << "|" << std::setfill('-') <<std::setw(59) << "|\n"; // --
     std::cout << "|" << std::setfill(' ')<< std::setw(32); std::cout << "9.Close" << std::setw(27) << "|\n";
     std::cout << "|" << std::setfill('-') <<std::setw(59) << "|\n";
@@ -26,12 +20,8 @@ short Menu::Main() {
 }
 
 short Menu::Listings() {
-    std::cout << "|" << std::setfill('-') <<std::setw(59) << "|\n"; // ---
-    std::cout << "|" << std::setfill(' ') << std::setw(35); // | txt
-    std::cout << "LISTINGS";
-    std::cout << std::setfill(' ') <<std::setw(24)<<"|\n"  //  --> |
-              << "|"<< std::setfill('-') <<std::setw(59) <<"|\n"; // ---
-    std::cout << std::setfill(' ') << std::setw(49) << " Choose one of the following options:\n\n";
+    Utility::header("LISTINGS");
+    std::cout << std::setfill(' ') << std::setw(49) << "Choose one of the following options:\n\n";
     std::cout <<  std::setw(36) << "1. Students\n"
     <<  std::setw(36) << "- Classes\n"
     <<  std::setw(33) << "- Year\n"
@@ -43,32 +33,29 @@ short Menu::Listings() {
               << std::setw(37) << "4. Schedules\n"
     << std::setw(36) << "- Classes\n"
     << std::setw(31) << "- UC\n";
-    std::cout << "|" << std::setfill('-') <<std::setw(59) << "|\n"; // --
-    std::cout << "|" << std::setfill(' ')<< std::setw(30); std::cout << " 9.Back" << std::setw(29) << "|\n";
-    std::cout << "|" << std::setfill('-') <<std::setw(59) << "|\n";
+    Utility::footer();
 
     short choice;
     std::cout << "-->" << std::flush;
     std::cin >> choice;
-    choice = Utility::getInput(choice, (short)1, (short )4);
+    choice = Utility::getInput(choice, (short)0, (short )4);
     return choice;
 
 }
 
+//only to show
 short Menu::studentsListings() {
     Utility::clear_screen();
-    std::cout << "LISTINGS > *STUDENTS* \n";
-    std::cout << std::setfill('-')<<  std::setw(28) << "STUDENTS" << std::setw(31) << "\n";
-    std::cout << std::setfill(' ') <<std::setw(36) << "group them by:" << std::setw(23) << "\n";
-    std::cout << std::setfill(' ')<<  std::setw(36) << "1. Classes\n"
-              << std::setw(33) << "2. Year\n" <<
-              std::setw(33) << "3. UCs\n"
-              << std::setw(33) << "4. Schedules\n"
-              << std::setw(33) << "5.Go Back\n";
+    Utility::header("STUDENTS");
+    std::cout << std::setfill(' ') <<std::setw(41) << "show the students in a:" << std::setw(18) << "\n";
+    std::cout << std::setfill(' ')<<  std::setw(33) << "1. Class\n"
+              << std::setw(32) << "2. Year\n" <<
+              std::setw(43) << "3. Curricular Unit\n";
+    Utility::footer();
     short choice;
     std::cout << "-->" << std::flush;
     std::cin >> choice;
-    choice = Utility::getInput(choice, (short)1, (short )5);
+    choice = Utility::getInput(choice, (short)0, (short )3);
     return choice;
 }
 
@@ -76,41 +63,64 @@ short Menu::studentsListings() {
 
 bool Menu::studentsListings_Class(std::set<Student> students,std::set<Class> classes, bool session) {
     Utility::clear_screen();
-    std::cout << "LISTINGS > STUDENTS > *CLASSES*\n";
-    std::cout << "From what year (1-3)?" << std::setfill(' ') << std::setw(30) << "0 to Exit\n";;
+    Utility::path("listings/students/classes");
+    std::cout << std::setfill(' ') << std::setw(37) << "From what year?\n\n";
+    std::cout <<  std::setw(35) << "1. 1st Year\n"
+              << std::setw(35) << "2. 2nd Year\n"
+              << std::setw(35) << "3. 3rd Year\n";
+    Utility::footer();
     int year;
     std::cout << "-->" << std::flush;
     std::cin >> year;
-    year = Utility::getInput((short)year, (short)0, (short )3);
+    if(year == 0){session = false;}
+    year = Utility::getInput(year, (short)0, (short )3);
+
+
     if(year >= 1 && year <= 3){
-        Utility::clear_screen();
-        std::cout << "LISTINGS > STUDENTS > *CLASSES*\n";
-        for(Class turma: classes){
-            if(turma.getClassCode().substr(0,0) == std::to_string(year).substr(0,0))
-                std::cout << turma.getClassCode() << "\n";
-        }
         while(session){
-            //
-            std::cout << "LISTINGS > STUDENTS > *CLASSES*\n\n";
-            std::cout << "\nFrom what class  (1-"<< classes.size()/3 + 1  << ")?" << std::setfill(' ') << std::setw(30) << "0 to Exit\n";
-            int turma;
-            std::cout << "-->" << std::flush;
-            std::cin >> turma;
-            turma = Utility::getInput((short)turma, (short)0, (short )classes.size()/3+1);
-            if(turma > 0 && turma < 16){
-                for(Class aClass: classes){
-                    aClass.showStudents();
-                    std::cout << "\n\n--------\n\n";
+            Utility::clear_screen();
+            std::cout <<  std::setw(30) << "From what class?\n" << std::setfill(' ') << std::setw(60) << "0 to Exit\n";
+            int classNumber, i =1;
+            for(Class turma: classes){
+                if(turma.getClassYear() == year){
+                    std::cout << i << ". "<<turma.getClassCode() << "\n";
+                    i++;
                 }
             }
-            if(turma == 0) session = false;
+            Utility::footer();
+            i= 0;
+            std::cout << "-->" << std::flush;
+            std::cin >> classNumber;
+            classNumber = Utility::getInput((short)classNumber, (short)0, (short )classes.size() / 3 + 1);
+            if(classNumber > 0 && classNumber <= 16){
+                for(Class aClass: classes){
+                    if(aClass.getClassYear() == year && aClass.getClassNr() == classNumber){
+                    aClass.showStudents();
+                    std::cout << "\n\n--------\n\n";}
+                }
+                std::cin >> i;
+                session = false;
+            }
+            if(classNumber == 0) session = false;
             Utility::clear_screen();
         }
-    }else if(year == 0) session = false;
+    }
     return session;
 }
 
+
 void Menu::classesListings() {
+    //TODO: ORDENACOES PARCIAIS
+    bool localSession = true;
+    while(localSession){
+        Utility::clear_screen();
+        Utility::header("CLASSES");
+        std::cout <<"|" << std::setfill(' ')<<  std::setw(13) << "1st Year" << std::setw(7) << "|" << std::setw(13)<< "2nd Year"
+                  << setw(7) << "|" << setw(12) << "3rd Year" << setw(7) <<"|\n";
+        std::cout << "|" << std::setfill('-') <<std::setw(59) << "|\n";
+
+        localSession =false;
+    }
 
 }
 
