@@ -24,16 +24,17 @@ private:
     std::string name;
     std::queue<Request> requests;
     std::map<Class,Uc> classes;
-    std::vector< std::map< Uc, Class>> classes1;
+    std::map< Uc, Class> classes12;
+    std::map<Uc,std::map<Uc,std::vector<Class>>> classes1;
     std::set<Slot> schedule;
 public:
     Student();
     ///Enroll student to the faculty
     Student(int code, std::string name);
     /// Enroll students w/ class information
-    Student(int code, std::string name, const Uc& curricularUnit,const Class& aClass);
+    Student(int code, std::string name, Uc& curricularUnit, Class& aClass);
     /// Adds a class to the student's list of classes
-    void addClassUC(Uc& curricularUnit,Class& aClass);
+    void addClassUC(Uc& uc,Class& aClass);
     /// Gets student's code
     int getCode() const;
     /// Displays what classes the student is enrolled to

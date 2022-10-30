@@ -157,11 +157,11 @@ CMakeFiles/feup_aed.dir/src/Class.cpp.o: \
  /usr/include/c++/9/bits/basic_ios.tcc /usr/include/c++/9/ostream \
  /usr/include/c++/9/bits/ostream.tcc /usr/include/c++/9/bits/istream.tcc \
  /usr/include/c++/9/bits/sstream.tcc \
- /home/ntsayz/Documents/feup-aed/src/Slot.h \
- /home/ntsayz/Documents/feup-aed/src/Uc.h /usr/include/c++/9/vector \
+ /home/ntsayz/Documents/feup-aed/src/Slot.h /usr/include/c++/9/vector \
  /usr/include/c++/9/bits/stl_uninitialized.h \
  /usr/include/c++/9/bits/stl_vector.h \
  /usr/include/c++/9/bits/stl_bvector.h /usr/include/c++/9/bits/vector.tcc \
+ /home/ntsayz/Documents/feup-aed/src/Uc.h \
  /home/ntsayz/Documents/feup-aed/src/Student.h \
  /home/ntsayz/Documents/feup-aed/src/Request.h \
  /home/ntsayz/Documents/feup-aed/src/Utility.h \
@@ -169,6 +169,14 @@ CMakeFiles/feup_aed.dir/src/Class.cpp.o: \
  /usr/include/c++/9/bits/codecvt.h \
  /usr/include/x86_64-linux-gnu/c++/9/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/9/bits/c++io.h \
- /usr/include/c++/9/bits/fstream.tcc /usr/include/c++/9/queue \
+ /usr/include/c++/9/bits/fstream.tcc /usr/include/c++/9/iomanip \
+ /usr/include/c++/9/locale /usr/include/c++/9/bits/locale_facets_nonio.h \
+ /usr/include/c++/9/ctime \
+ /usr/include/x86_64-linux-gnu/c++/9/bits/time_members.h \
+ /usr/include/x86_64-linux-gnu/c++/9/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/9/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/9/bits/locale_conv.h \
+ /usr/include/c++/9/bits/unique_ptr.h \
+ /usr/include/c++/9/bits/quoted_string.h /usr/include/c++/9/queue \
  /usr/include/c++/9/deque /usr/include/c++/9/bits/stl_deque.h \
  /usr/include/c++/9/bits/deque.tcc /usr/include/c++/9/bits/stl_queue.h

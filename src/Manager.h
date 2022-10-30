@@ -27,8 +27,15 @@ class Manager {
 private:
     std::vector<std::string> files;
     std::set<Student> students;
+    //std::vector<std::reference_wrapper<Student>> students1 ;
     std::set<Class> classes;
-    std::multimap<Uc,Class> ucclasses;
+    ///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    /// (Student(key): (UC(key), vector<Class>(value))(value) )
+    std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes;
+    ///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    std::map<Uc,std::map<Class,std::vector<Slot>>> schedule;
+    std::map<Class,std::vector<Uc>> uc_classes;
+
     std::set<Uc> curricularUnits;
     bool globalSession;
     /// Listings
@@ -42,7 +49,7 @@ private:
     /// Schedules listings
     void schedulesListings();
     /// Loads students,classes & curricular units data structures from file data
-    void loadFilesInfo();
+    void loadDatafromFiles();
     /// Loads each object from each class with its particular data (eg:. Inserting students in a particular class)
     void load();
 public:
@@ -53,6 +60,8 @@ public:
 
 
     void testing();
+
+    void enrollStudents();
 };
 
 

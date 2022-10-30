@@ -17,7 +17,7 @@ struct Student;
 class Class {
 private:
 
-
+    int uid ;
     std::string class_Code;
     std::list<Slot> schedule;
     std::map<Uc,std::vector<Student>> UC_students;
@@ -30,19 +30,23 @@ public:
     /// Gets Number of class (to compare)
     [[nodiscard]] int getClassNr() const;
     /// Adds student to the class's list
-    void addStudent(const Uc& uc, const Student& student);
+    void addStudent(Uc& uc,const Student& student);
     /// Gets number of students in a class
     [[nodiscard]] int getClassSize() const;
     /// Gives a list of all students in a class
     void showStudents()const;
+    ///
+    int getClassYear() const;
     /// Class comparator
     bool operator<(const Class& aClass) const{
-        return getClassCode() < aClass.getClassCode();
+        return get_uid() < aClass.get_uid();
     }
     /// Class comparator
     bool operator==(const Class& aClass) const{
-        return getClassNr() == aClass.getClassNr();
+        return get_uid() == aClass.get_uid();
     }
+
+    int get_uid() const;
 };
 
 
