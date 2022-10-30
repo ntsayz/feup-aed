@@ -34,7 +34,8 @@ private:
     std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes;
     ///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     std::map<Uc,std::map<Class,std::vector<Slot>>> schedule;
-    std::map<Class,std::vector<Uc>> uc_classes;
+    std::map<Class,std::vector<Uc>> classes_uc;
+    std::map<Uc,std::vector<Class>> uc_classes;
 
     std::set<Uc> curricularUnits;
     bool globalSession;
