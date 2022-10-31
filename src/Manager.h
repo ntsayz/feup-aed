@@ -33,7 +33,7 @@ private:
     /// (Student(key): (UC(key), vector<Class>(value))(value) )
     std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes;
     ///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    std::map<Uc,std::map<Class,std::vector<Slot>>> schedule;
+    std::map<Uc,std::map<Class,std::vector<Slot>>> schedules;
     std::map<Class,std::vector<Uc>> classes_uc;
     std::map<Uc,std::vector<Class>> uc_classes;
 
@@ -48,7 +48,7 @@ private:
     /// UC's listings
     void UCListings();
     /// Schedules listings
-    void schedulesListings();
+    static void schedulesListings();
     /// Loads students,classes & curricular units data structures from file data
     void loadDatafromFiles();
     /// Loads each object from each class with its particular data (eg:. Inserting students in a particular class)
