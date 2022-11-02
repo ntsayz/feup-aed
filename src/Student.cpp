@@ -9,16 +9,16 @@
 Student::Student() = default;
 
 Student::Student(int code, std::string name){
-    this->code = std::move(code);
-    this->name = std::move(name);
-}
-Student::Student(int code, std::string name, const Uc& curricularUnit, const Class& aClass) {
     this->code = code;
     this->name = std::move(name);
-    this->classes.insert(std::pair(curricularUnit,aClass));
+}
+Student::Student(int code, std::string name, Uc& curricularUnit, Class& aClass) {
+    this->code = code;
+    this->name = std::move(name);
+    this->classes12[curricularUnit] = aClass;
 }
 
-std::map<Uc,Class> Student::getEnrolledClasses() const {
+std::map<Class,Uc> Student::getEnrolledClasses() const {
     return this->classes;
 }
 
@@ -31,14 +31,34 @@ std::string Student::getName() const {
 }
 
 void Student::showEnrolledClasses() const {
-    std::cout << getName() <<  " is enrolled in - ";
-    for(auto it = classes.begin(); it != classes.end(); it++){
-        std::cout << it->second.getClassNr() << ",";
+    std::cout << getName() <<  " is enrolled in\n " << classes1.size() << " classes\n";
+    for(auto it: classes1){
+        std::cout  << "("<< it.first.get_uc_Code() << ") ==> [";
+        for(auto [uc,classList]: it.second){
+            for(auto aClass : classList){
+                std::cout <<  "["<< uc.get_uc_Code() << ", " << aClass.getClassCode() << "],";
+            }
+        }
+        std::cout << "]\n";
     }
 }
 
-void Student::addClassUC(Uc curricularUnit, Class aClass) {
+void Student::addClassUC(Uc& uc,Class& aClass){
+    if(classes1.find(uc) == classes1.end()){
+        std::map<Uc, std::vector<Class>> ucClassMap;
+        std::vector<Class> classList;
+        classList.push_back(aClass);
+        ucClassMap[uc] = classList;
+        this->classes1[uc] = ucClassMap ;
+        //std::cout << "added " << getName() << " to " << aClass.getClassCode() << " in " << uc.get_uc_Code() <<"\n";
+    }else{
+        this->classes1[uc][uc].push_back(aClass);
+        //std::cout << "added " << getName() << " to " << aClass.getClassCode() << " in " << uc.get_uc_Code() <<"\n";
+    }
+}
 
+int Student::getNumberEnrolledClasses() const {
+    return this->classes.size();
 }
 
 /*

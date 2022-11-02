@@ -11,7 +11,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.23.2/CMakeCCompiler.cmake"
   "CMakeFiles/3.23.2/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.23.2/CMakeSystem.cmake"
-  "../docs/Doxyfile"
   "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/CMakeCInformation.cmake"
   "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/CMakeCXXInformation.cmake"
   "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake"
@@ -26,9 +25,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/Compiler/GNU-C.cmake"
   "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/Compiler/GNU-CXX.cmake"
   "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/Compiler/GNU.cmake"
-  "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/FindDoxygen.cmake"
-  "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/FindPackageHandleStandardArgs.cmake"
-  "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/FindPackageMessage.cmake"
   "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/Platform/Linux-GNU-C.cmake"
   "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/Platform/Linux-GNU-CXX.cmake"
   "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/Platform/Linux-GNU.cmake"
@@ -45,12 +41,10 @@ set(CMAKE_MAKEFILE_OUTPUTS
 
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
-  "Doxyfile"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/feup_aed.dir/DependInfo.cmake"
-  "CMakeFiles/Doxygen.dir/DependInfo.cmake"
   )
