@@ -77,8 +77,10 @@ void Manager::Requests() {
                 Request::add(schedules,students_uc_classes);
                 break;
             case 3:
+                Request::change(students_uc_classes);
                 break;
             case 4:
+                Request::changeMultiple(students_uc_classes);
                 break;
             case 0:
                 localSession = false;
