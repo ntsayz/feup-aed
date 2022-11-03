@@ -49,6 +49,9 @@ std::string Slot::getSlotType() {
 float Slot::getStartHour() {
     return this->startHour;
 }
+float Slot::getEndHour(){
+    return this->endHour;
+}
 
 
 
