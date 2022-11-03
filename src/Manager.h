@@ -21,6 +21,7 @@
 #include "Class.h"
 #include "Menu.h"
 #include "Uc.h"
+#include "BST.h"
 
 
 class Manager {
@@ -48,7 +49,7 @@ private:
     /// UC's listings
     void UCListings();
     /// Schedules listings
-    static void schedulesListings();
+    void schedulesListings();
     /// Loads students,classes & curricular units data structures from file data
     void loadDatafromFiles();
     /// Loads each object from each class with its particular data (eg:. Inserting students in a particular class)
@@ -59,10 +60,9 @@ public:
     /// Starts the Application
     void startApplication();
 
+    void thisFunctionIsForTestingPurposes();
 
-    void testing();
-
-    void enrollStudents();
+    void getYearClass(int &year, int &classnum);
 };
 
 

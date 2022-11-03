@@ -34,11 +34,6 @@ void Utility::clear_screen() {
 #endif
 }
 
-template<typename T>
-T Utility::loadFiles(T file) {
-
-    return nullptr;
-}
 
 const char* Utility::getClassesPath() {
     return "../src/schedule/classes.csv";
@@ -51,11 +46,11 @@ const char* Utility::getClassesUcPath() {
 const char* Utility::getStudentClassesPath() {
     return "../src/schedule/students_classes.csv";
 }
-void Utility::header(const std::string& header){
-    int n = (int)(header.size() + 59)/2;
+void Utility::header(const std::string& title){
+    int n = (int)(title.size() + 59) / 2;
     std::cout << "|" << std::setfill('-') <<std::setw(59) << "|\n"; // ---
     std::cout << "|" << std::setfill(' ') << std::setw(n); // | txt
-    std::cout << header;
+    std::cout << title;
     std::cout << std::setfill(' ') <<std::setw(59 -n)<<"|\n"  //  --> |
               << "|"<< std::setfill('-') <<std::setw(59) <<"|\n";
 }
@@ -64,16 +59,17 @@ void Utility::footer() {
     std::cout << "|" << std::setfill('-') <<std::setw(59) << "|\n"; // --
     std::cout << "|" << std::setfill(' ')<< std::setw(33) << "0.Back  " << std::setw(26) << "|\n";
     std::cout << "|" << std::setfill('-') <<std::setw(59) << "|\n";
+    //std::cout << "-->";
 }
 
-void Utility::body(std::string hel, std::vector<std::string> l){
-    int n = (int)(hel.size() + 59)/2;
-    std::cout << "|" << std::setfill(' ') << std::setw(n) << hel;
+void Utility::body(const std::string& description, std::vector<std::string> options){
+    int n = (int)(description.size() + 59) / 2;
+    std::cout << "|" << std::setfill(' ') << std::setw(n) << description;
     std::cout << std::setfill(' ') <<std::setw(59- n)<<"|\n";
     std::cout << "|" << std::setfill(' ') <<std::setw(59) << "|\n";
-    for(int i =0; i < l.size(); i++){
-        int k = (int)(l[i].size()+59)/2;
-        std::cout << "|" << std::setfill(' ') <<  std::setw(k) << l[i] << std::setw(59 - k) << "|\n";
+    for(int i =0; i < options.size(); i++){
+        int k = (int)(options[i].size() + 59) / 2;
+        std::cout << "|" << std::setfill(' ') << std::setw(k) << options[i] << std::setw(59 - k) << "|\n";
     }
 
 }
