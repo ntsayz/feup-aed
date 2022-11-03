@@ -21,6 +21,7 @@
 #include "Class.h"
 #include "Menu.h"
 #include "Uc.h"
+#include "BST.h"
 
 
 class Manager {
@@ -33,8 +34,9 @@ private:
     /// (Student(key): (UC(key), vector<Class>(value))(value) )
     std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes;
     ///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    std::map<Uc,std::map<Class,std::vector<Slot>>> schedule;
-    std::map<Class,std::vector<Uc>> uc_classes;
+    std::map<Uc,std::map<Class,std::vector<Slot>>> schedules;
+    std::map<Class,std::vector<Uc>> classes_uc;
+    std::map<Uc,std::vector<Class>> uc_classes;
 
     std::set<Uc> curricularUnits;
     bool globalSession;
@@ -58,10 +60,9 @@ public:
     /// Starts the Application
     void startApplication();
 
+    void thisFunctionIsForTestingPurposes();
 
-    void testing();
-
-    void enrollStudents();
+    void getYearClass(int &year, int &classnum);
 };
 
 

@@ -18,16 +18,22 @@ public:
     Slot(std::string weekdaystr,float startHour,float duration,std::string type);
     void loadClassesData();
     ///really?
+
     std::string getWeekday();
-    bool operator<(const Slot& slot){
+    float getDuration();
+    std::string getSlotType();
+    float getStartHour();
+    bool operator<(const Slot& slot) const{
         return this->weekday < slot.weekday;
     }
-    bool operator==(const Slot& slot){
+    bool operator==(const Slot& slot) const{
         return this->weekday == slot.weekday;
     }
-    bool operator>(const Slot& slot){
+    bool operator>(const Slot& slot) const{
         return this->weekday == slot.weekday;
     }
+
+    float getEndHour();
 };
 
 /*
@@ -37,7 +43,7 @@ public:
  *
  * // get horario de uma turma
  *
- * // lista de associadas a turma
+ * // lista de ucs associadas a turma
  * lista de ucs = ucclasses[class]
  * // por cada uc na tal lista get slot da uc to print
  * for (uc in lista de ucs)

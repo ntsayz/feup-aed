@@ -243,6 +243,10 @@ CMakeFiles/feup_aed.dir/main.cpp.o: ../main.cpp \
   /usr/include/c++/9/bits/deque.tcc \
   /usr/include/c++/9/bits/stl_queue.h \
   ../src/Menu.h \
+  ../src/BST.h \
+  /usr/include/c++/9/stack \
+  /usr/include/c++/9/bits/stl_stack.h \
+  ../src/Manager.h \
   ../src/Uc.h
 
 CMakeFiles/feup_aed.dir/src/Class.cpp.o: ../src/Class.cpp \
@@ -731,7 +735,10 @@ CMakeFiles/feup_aed.dir/src/Manager.cpp.o: ../src/Manager.cpp \
   /usr/include/c++/9/bits/stl_deque.h \
   /usr/include/c++/9/bits/deque.tcc \
   /usr/include/c++/9/bits/stl_queue.h \
-  ../src/Menu.h
+  ../src/Menu.h \
+  ../src/BST.h \
+  /usr/include/c++/9/stack \
+  /usr/include/c++/9/bits/stl_stack.h
 
 CMakeFiles/feup_aed.dir/src/Menu.cpp.o: ../src/Menu.cpp \
   /usr/include/stdc-predef.h \
@@ -970,7 +977,14 @@ CMakeFiles/feup_aed.dir/src/Menu.cpp.o: ../src/Menu.cpp \
   /usr/include/c++/9/deque \
   /usr/include/c++/9/bits/stl_deque.h \
   /usr/include/c++/9/bits/deque.tcc \
-  /usr/include/c++/9/bits/stl_queue.h
+  /usr/include/c++/9/bits/stl_queue.h \
+  ../src/BST.h \
+  /usr/include/c++/9/stack \
+  /usr/include/c++/9/bits/stl_stack.h \
+  ../src/Manager.h \
+  /usr/include/c++/9/cstring \
+  /usr/include/string.h \
+  /usr/include/strings.h
 
 CMakeFiles/feup_aed.dir/src/Request.cpp.o: ../src/Request.cpp \
   /usr/include/stdc-predef.h \
@@ -1140,7 +1154,31 @@ CMakeFiles/feup_aed.dir/src/Slot.cpp.o: ../src/Slot.cpp \
   /usr/include/c++/9/bits/stl_relops.h \
   /usr/include/c++/9/bits/stl_vector.h \
   /usr/include/c++/9/bits/stl_bvector.h \
-  /usr/include/c++/9/bits/vector.tcc
+  /usr/include/c++/9/bits/vector.tcc \
+  /usr/include/c++/9/iostream \
+  /usr/include/c++/9/ostream \
+  /usr/include/c++/9/ios \
+  /usr/include/c++/9/bits/ios_base.h \
+  /usr/include/c++/9/bits/locale_classes.h \
+  /usr/include/c++/9/bits/locale_classes.tcc \
+  /usr/include/c++/9/system_error \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/error_constants.h \
+  /usr/include/c++/9/stdexcept \
+  /usr/include/c++/9/streambuf \
+  /usr/include/c++/9/bits/streambuf.tcc \
+  /usr/include/c++/9/bits/basic_ios.h \
+  /usr/include/c++/9/bits/locale_facets.h \
+  /usr/include/c++/9/cwctype \
+  /usr/include/wctype.h \
+  /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/ctype_base.h \
+  /usr/include/c++/9/bits/streambuf_iterator.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/ctype_inline.h \
+  /usr/include/c++/9/bits/locale_facets.tcc \
+  /usr/include/c++/9/bits/basic_ios.tcc \
+  /usr/include/c++/9/bits/ostream.tcc \
+  /usr/include/c++/9/istream \
+  /usr/include/c++/9/bits/istream.tcc
 
 CMakeFiles/feup_aed.dir/src/Student.cpp.o: ../src/Student.cpp \
   /usr/include/stdc-predef.h \
@@ -1830,6 +1868,10 @@ CMakeFiles/feup_aed.dir/src/Utility.cpp.o: ../src/Utility.cpp \
 
 ../src/Manager.cpp:
 
+/usr/include/c++/9/bits/stl_stack.h:
+
+../src/BST.h:
+
 ../src/Menu.h:
 
 /usr/include/c++/9/bits/stl_deque.h:
@@ -1929,6 +1971,8 @@ CMakeFiles/feup_aed.dir/src/Utility.cpp.o: ../src/Utility.cpp \
 /usr/include/x86_64-linux-gnu/bits/timesize.h:
 
 /usr/include/c++/9/bits/char_traits.h:
+
+/usr/include/c++/9/stack:
 
 /usr/include/c++/9/cstdio:
 

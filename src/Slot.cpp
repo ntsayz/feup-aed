@@ -5,7 +5,7 @@
 #include "Slot.h"
 
 #include <utility>
-
+#include <iostream>
 
 
 void Slot::loadClassesData() {
@@ -20,7 +20,10 @@ Slot::Slot(std::string weekdaystr, float startHour, float duration, std::string 
     this->weekdaystr = std::move(weekdaystr);
     this->startHour = startHour;
     this->duration = duration;
-    this->type = std::move(type);
+    if(type[1] == 'P'){
+        this->type = type.substr(0,2);
+    }
+    this->type = type.substr(0,1);
     this->weekday = getNum();
     this->endHour = this->startHour + this->duration;
 }
@@ -34,6 +37,22 @@ unsigned short Slot::getNum() {
     }
     return -1;
 }
+
+float Slot::getDuration() {
+    return this->duration;
+}
+
+std::string Slot::getSlotType() {
+    return this->type;
+}
+
+float Slot::getStartHour() {
+    return this->startHour;
+}
+float Slot::getEndHour(){
+    return this->endHour;
+}
+
 
 
 

@@ -7,7 +7,7 @@ using namespace std;
 
 short Menu::Main() {
     Utility::header("LEIC'S MANAGEMENT SYSTEM");
-    Utility::body({"Choose one of the following options:", "1. Listings", "2. Requests", "3. TODO"});
+    Utility::body("Choose one of the following options:",{ "1. Listings", "2. Requests", "3. TODO"});
     std::cout << "|" << std::setfill('-') <<std::setw(59) << "|\n"; // --
     std::cout << "|" << std::setfill(' ')<< std::setw(32); std::cout << "9.Close" << std::setw(27) << "|\n";
     std::cout << "|" << std::setfill('-') <<std::setw(59) << "|\n";
@@ -29,7 +29,6 @@ short Menu::Listings() {
                 << std::setw(35) << "2. Classes\n"
     << std::setw(33) << "- Year\n"
                 << std::setw(31) << "3. UCs\n"
-    << std::setw(33) << "- Year\n"
               << std::setw(37) << "4. Schedules\n"
     << std::setw(36) << "- Classes\n"
     << std::setw(31) << "- UC\n";
@@ -63,7 +62,7 @@ short Menu::studentsListings() {
 
 bool Menu::studentsListings_Class(std::set<Student> students,std::set<Class> classes, bool session) {
     Utility::clear_screen();
-    Utility::path("listings/students/classes");
+    //Utility::path("listings/students/classes");
     std::cout << std::setfill(' ') << std::setw(37) << "From what year?\n\n";
     std::cout <<  std::setw(35) << "1. 1st Year\n"
               << std::setw(35) << "2. 2nd Year\n"
@@ -118,7 +117,7 @@ void Menu::classesListings() {
         std::cout <<"|" << std::setfill(' ')<<  std::setw(13) << "1st Year" << std::setw(7) << "|" << std::setw(13)<< "2nd Year"
                   << setw(7) << "|" << setw(12) << "3rd Year" << setw(7) <<"|\n";
         std::cout << "|" << std::setfill('-') <<std::setw(59) << "|\n";
-
+        // blueprint para schedule
         localSession =false;
     }
 
@@ -128,6 +127,70 @@ void Menu::UCListings() {
 
 }
 
-void Menu::schedulesListings() {
+void Menu::schedulesListings(std::map<Uc,std::map<Class,std::vector<Slot>>> schedules,std::set<Class> classes,std::map<Class,std::vector<Uc>> classes_uc, int choice) {
+    bool localSession = true;
+    while(localSession){
+        switch(choice){
+            case 1:
+                // Students
+                Utility::clear_screen();
+                Utility::header("STUDENTS SCHEDULES");
+                Utility::body("",{"1. Student's name ","2. Student's code"});
+                Utility::footer();
+                break;
+            case 2:{
+                // Class schedule
+                bool local = true;
+                while(local){
+                    Utility::clear_screen();
+                    Utility::header("CLASSES SCHEDULES");
+                    Manager m;
+                    int year = 0, classnum = 0;
+                    m.getYearClass(year,classnum);
+                    if(year!=0 && classnum != 0){
+                        vector<Uc> ucs;
+                        map<Uc,vector<Slot>> ucslots;
+                        std::cout << year << " " << classnum << "\n";
+                        std::cout << classes.size() << "\n\n";
+                        for(auto aclass: classes){
+                            if(aclass.getClassYear() == year && aclass.getClassNr() == classnum){
+                                std::cout << aclass.get_uid();
+                                ucs = classes_uc[aclass];
+                                for(auto uc : ucs){
+                                    for(auto slot: schedules[uc][aclass]){
+                                        ucslots[uc].push_back(slot);
+                                    }
+                                }
 
+                            }
+
+                        }
+                        for(auto [k,v] : ucslots){
+                            std::cout << "(" << k.get_uc_Code() << ") =";
+                            for( auto slot : v){
+                                std::cout << "[" << slot.getWeekday() << "," << slot.getStartHour()  << "-" << slot.getEndHour() <<  "," << slot.getSlotType() << "],";
+                            }
+                            std::cout << "\n";
+                        }
+
+                    }
+                    Utility::footer();
+                    int i;
+                    std::cin >> i;
+                    if(i ==0) local = false;
+                    break;
+                }
+            }
+
+
+            case 3:
+                //uc
+                break;
+            default:
+                localSession = false;
+        }
+
+
+    }
 }
+
