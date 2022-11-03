@@ -85,6 +85,9 @@
 		<Unit filename="/home/ntsayz/Documents/feup-aed/main.cpp">
 			<Option target="feup_aed"/>
 		</Unit>
+		<Unit filename="/home/ntsayz/Documents/feup-aed/src/BST.h">
+			<Option target="feup_aed"/>
+		</Unit>
 		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Class.cpp">
 			<Option target="feup_aed"/>
 		</Unit>

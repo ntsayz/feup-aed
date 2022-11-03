@@ -181,4 +181,7 @@ CMakeFiles/feup_aed.dir/main.cpp.o: \
  /usr/include/c++/9/deque /usr/include/c++/9/bits/stl_deque.h \
  /usr/include/c++/9/bits/deque.tcc /usr/include/c++/9/bits/stl_queue.h \
  /home/ntsayz/Documents/feup-aed/src/Menu.h \
+ /home/ntsayz/Documents/feup-aed/src/BST.h /usr/include/c++/9/stack \
+ /usr/include/c++/9/bits/stl_stack.h \
+ /home/ntsayz/Documents/feup-aed/src/Manager.h \
  /home/ntsayz/Documents/feup-aed/src/Uc.h

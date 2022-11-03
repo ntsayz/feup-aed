@@ -15,7 +15,11 @@
 #include "Utility.h"
 #include "Student.h"
 #include "Class.h"
+#include "Uc.h"
+#include "Slot.h"
 #include "Menu.h"
+#include "BST.h"
+#include "Manager.h"
 
 class Menu {
 private:
@@ -24,16 +28,16 @@ public:
     static short Main();
     /// Listings menu, to show all available data
     static short Listings();
-    /// Listings subsection -Students
+    /// Listings subsection -Students (listings/students)
     static short  studentsListings();
-    /// Students subsection -Classes
+    /// Students subsection -Classes (listings/students/classes)
     static bool studentsListings_Class(std::set<Student> students,std::set<Class> classes,bool session);
-    /// Listings subsection -Classes
+    /// Listings subsection -Classes (listings/classes)
     static void classesListings();
-    /// Listings subsection - UC's
+    /// Listings subsection - UC's (listings/ucs)
     void UCListings();
-    /// Listings subsection -Schedules
-    void schedulesListings();
+    /// Listings subsection -Schedules (listings/schedules)
+    static void schedulesListings(std::map<Uc,std::map<Class,std::vector<Slot>>> schedules,std::set<Class> classes,std::map<Class,std::vector<Uc>> classes_uc, int choice);
 
 };
 
