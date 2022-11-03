@@ -41,7 +41,7 @@ public:
 
     static void header(const std::string& header);
 
-    static void body(std::vector<std::string> l);
+    static void body(std::string hel, std::vector<std::string> l);
 
     static void path(std::string path);
 };

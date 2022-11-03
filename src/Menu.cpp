@@ -7,7 +7,7 @@ using namespace std;
 
 short Menu::Main() {
     Utility::header("LEIC'S MANAGEMENT SYSTEM");
-    Utility::body({"Choose one of the following options:", "1. Listings", "2. Requests", "3. TODO"});
+    Utility::body("Choose one of the following options:",{ "1. Listings", "2. Requests", "3. TODO"});
     std::cout << "|" << std::setfill('-') <<std::setw(59) << "|\n"; // --
     std::cout << "|" << std::setfill(' ')<< std::setw(32); std::cout << "9.Close" << std::setw(27) << "|\n";
     std::cout << "|" << std::setfill('-') <<std::setw(59) << "|\n";
@@ -29,7 +29,6 @@ short Menu::Listings() {
                 << std::setw(35) << "2. Classes\n"
     << std::setw(33) << "- Year\n"
                 << std::setw(31) << "3. UCs\n"
-    << std::setw(33) << "- Year\n"
               << std::setw(37) << "4. Schedules\n"
     << std::setw(36) << "- Classes\n"
     << std::setw(31) << "- UC\n";
@@ -118,7 +117,7 @@ void Menu::classesListings() {
         std::cout <<"|" << std::setfill(' ')<<  std::setw(13) << "1st Year" << std::setw(7) << "|" << std::setw(13)<< "2nd Year"
                   << setw(7) << "|" << setw(12) << "3rd Year" << setw(7) <<"|\n";
         std::cout << "|" << std::setfill('-') <<std::setw(59) << "|\n";
-
+        // blueprint para schedule
         localSession =false;
     }
 

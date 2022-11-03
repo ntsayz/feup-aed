@@ -18,14 +18,18 @@ public:
     Slot(std::string weekdaystr,float startHour,float duration,std::string type);
     void loadClassesData();
     ///really?
+
     std::string getWeekday();
-    bool operator<(const Slot& slot){
+    float getDuration();
+    std::string getSlotType();
+    float getStartHour();
+    bool operator<(const Slot& slot) const{
         return this->weekday < slot.weekday;
     }
-    bool operator==(const Slot& slot){
+    bool operator==(const Slot& slot) const{
         return this->weekday == slot.weekday;
     }
-    bool operator>(const Slot& slot){
+    bool operator>(const Slot& slot) const{
         return this->weekday == slot.weekday;
     }
 };
