@@ -42,6 +42,23 @@ short Menu::Listings() {
 
 }
 
+short Menu::Requests(){
+    Utility::header("Requests");
+    std::cout << std::setfill(' ') << std::setw(49) << "Choose one of the following options:\n\n";
+    std::cout <<  std::setw(36) << "1. Remove student from class\n"
+              << std::setw(35) << "2. Add student to class\n"
+              << std::setw(31) << "3. Change a students class\n"
+              << std::setw(37) << "4. Change a students multiple classes\n";
+
+    Utility::footer();
+    short choice;
+    std::cout << "-->" << std::flush;
+    std::cin >> choice;
+    choice = Utility::getInput(choice, (short)0, (short )4);
+    return choice;
+
+}
+
 //only to show
 short Menu::studentsListings() {
     Utility::clear_screen();
@@ -57,8 +74,6 @@ short Menu::studentsListings() {
     choice = Utility::getInput(choice, (short)0, (short )3);
     return choice;
 }
-
-
 
 bool Menu::studentsListings_Class(std::set<Student> students,std::set<Class> classes, bool session) {
     Utility::clear_screen();
@@ -107,7 +122,6 @@ bool Menu::studentsListings_Class(std::set<Student> students,std::set<Class> cla
     return session;
 }
 
-
 void Menu::classesListings() {
     //TODO: ORDENACOES PARCIAIS
     bool localSession = true;
@@ -122,6 +136,7 @@ void Menu::classesListings() {
     }
 
 }
+
 
 void Menu::UCListings() {
 

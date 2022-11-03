@@ -36,7 +36,7 @@ public:
     /// Adds a class to the student's list of classes
     void addClassUC(Uc& uc,Class& aClass);
     /// Gets student's code
-    int getCode() const;
+    const Student getCode() const;
     /// Displays what classes the student is enrolled to
     void showEnrolledClasses() const;
     /// Gets <UC,Class> map

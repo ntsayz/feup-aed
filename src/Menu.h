@@ -28,6 +28,8 @@ public:
     static short Main();
     /// Listings menu, to show all available data
     static short Listings();
+    /// Requets menu
+    static short Requests();
     /// Listings subsection -Students (listings/students)
     static short  studentsListings();
     /// Students subsection -Classes (listings/students/classes)

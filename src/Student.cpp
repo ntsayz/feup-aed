@@ -22,7 +22,7 @@ std::map<Class,Uc> Student::getEnrolledClasses() const {
     return this->classes;
 }
 
-int Student::getCode() const {
+const Student Student::getCode() const {
     return this->code;
 }
 
