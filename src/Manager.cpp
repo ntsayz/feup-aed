@@ -71,15 +71,19 @@ void Manager::Requests() {
         short choice = Menu::Listings();
         switch (choice){
             case 1:
+                requests.push(1);
                 Request::removeStudent(students_uc_classes);
                 break;
             case 2:
+                requests.push(2);
                 Request::add(schedules,students_uc_classes);
                 break;
             case 3:
+                requests.push(3);
                 Request::change(students_uc_classes);
                 break;
             case 4:
+                requests.push(4);
                 Request::changeMultiple(students_uc_classes);
                 break;
             case 0:

@@ -40,6 +40,7 @@ private:
     std::map<Class,std::vector<Uc>> classes_uc;
     std::map<Uc,std::vector<Class>> uc_classes;
     std::set<Uc> curricularUnits;
+    std::queue<int> requests;
     bool globalSession;
 
     /// Listings
