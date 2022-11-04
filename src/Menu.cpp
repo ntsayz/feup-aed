@@ -128,8 +128,8 @@ void Menu::studentsListings_UC(map<Student, map<Uc, std::vector<Class>>>& studen
 
         Utility::path("listings/students/UC");
         Utility::header("Curricular Units");
-        Utility::body("Show students in a/with a:",{"1. UC - Filter by Year",
-                                             "2. UC - Order by year","3. Nr of UCs - Order"});
+        Utility::body("Show students in a:",{"1. UC - Filter by Year",
+                                             "2. UC - Order by year","3. UC - Order by Nr of UCs "});
         Utility::footer();
         int i;
         std::cin >> i;
