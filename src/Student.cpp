@@ -61,6 +61,14 @@ int Student::getNumberEnrolledClasses() const {
     return this->classes.size();
 }
 
+void Student::setUC(std::string s) {
+    this->curr_uc = std::move(s);
+}
+
+std::string Student::getUC() {
+    return this->curr_uc;
+}
+
 /*
 void Student::addClassUC(Uc curricularUnit,Class aClass) {
     this->classes.emplace(curricularUnit,aClass);

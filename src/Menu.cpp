@@ -3,6 +3,7 @@
 //
 
 #include "Menu.h"
+#include <bits/stdc++.h>
 using namespace std;
 
 short Menu::Main() {
@@ -46,10 +47,10 @@ short Menu::Listings() {
 short Menu::studentsListings() {
     Utility::clear_screen();
     Utility::header("STUDENTS");
-    std::cout << std::setfill(' ') <<std::setw(41) << "show the students in a:" << std::setw(18) << "\n";
-    std::cout << std::setfill(' ')<<  std::setw(33) << "1. Class\n"
-              << std::setw(32) << "2. Year\n" <<
-              std::setw(43) << "3. Curricular Unit\n";
+    std::cout << std::setfill(' ') <<std::setw(41) << "Show the students in:" << std::setw(18) << "\n";
+    std::cout << std::setfill(' ')<<  std::setw(33) << "1. Classes\n"
+              << std::setw(32) << "2. Years\n" <<
+              std::setw(43) << "3. Curricular Units\n";
     Utility::footer();
     short choice;
     std::cout << "-->" << std::flush;
@@ -58,58 +59,148 @@ short Menu::studentsListings() {
     return choice;
 }
 
+void Menu::studentsListings_Year(const std::map<Student, std::map<Uc, std::vector<Class>>> &students) {
+    bool localSession = true;
+    while(localSession){
+        Utility::clear_screen();
+        Utility::path("listings/students/year");
+        Utility::header("Students");
+        Utility::body("Show students in:",{"1. 1st Year","2. 2nd Year", "3. 3rd Year" , "4. All years"});
+        Utility::footer();
+
+        int i;
+        std::cin >> i;
+        i = Utility::getInput(i,0,2);
+        switch(i){
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 0:
+                localSession = false;
+                continue;
+            default:
+                continue;
+        }
+
+    }
+}
+void Menu::studentsListings_UC(map<Student, map<Uc, std::vector<Class>>>& students) {
+    bool localSession = true;
+    while(localSession){
+        Utility::clear_screen();
+        Utility::path("listings/students/UC");
+        Utility::header("Curricular Units");
+        Utility::body("Show students in a:",{""});
+        Utility::footer();
+
+        int i;
+        std::cin >> i;
+        i = Utility::getInput(i,0,2);
+        switch(i){
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 0:
+                localSession = false;
+                continue;
+            default:
+                continue;
+        }
+    }
+}
 
 
-bool Menu::studentsListings_Class(std::set<Student> students,std::set<Class> classes, bool session) {
+bool Menu::studentsListings_Class(const std::map<Student,std::map<Uc,std::vector<Class>>>& students_uc_classes, bool session) {
     Utility::clear_screen();
     //Utility::path("listings/students/classes");
-    std::cout << std::setfill(' ') << std::setw(37) << "From what year?\n\n";
-    std::cout <<  std::setw(35) << "1. 1st Year\n"
-              << std::setw(35) << "2. 2nd Year\n"
-              << std::setw(35) << "3. 3rd Year\n";
-    Utility::footer();
-    int year;
-    std::cout << "-->" << std::flush;
-    std::cin >> year;
-    if(year == 0){session = false;}
-    year = Utility::getInput(year, (short)0, (short )3);
+    int year = 0, classnum = 0;
+    Manager manager;
+    manager.getYearClass(year,classnum);
+    if(year!=0 && classnum != 0){
 
-
-    if(year >= 1 && year <= 3){
-        while(session){
-            Utility::clear_screen();
-            std::cout <<  std::setw(30) << "From what class?\n" << std::setfill(' ') << std::setw(60) << "0 to Exit\n";
-            int classNumber, i =1;
-            for(Class turma: classes){
-                if(turma.getClassYear() == year){
-                    std::cout << i << ". "<<turma.getClassCode() << "\n";
-                    i++;
+        std::map<Student,Uc> students_uc;
+        vector<int> students_list;
+        std::string aclassstr = "";
+        for(auto [student,mapUCclass]: students_uc_classes){
+            for(auto [uc,vec] : mapUCclass){
+                for(const auto& aclass : vec){
+                    if(aclass.getClassYear() == year && aclass.getClassNr() == classnum){
+                        students_uc[student] = uc;
+                        aclassstr += aclass.getClassCode();
+                    }
                 }
             }
-            Utility::footer();
-            i= 0;
-            std::cout << "-->" << std::flush;
-            std::cin >> classNumber;
-            classNumber = Utility::getInput((short)classNumber, (short)0, (short )classes.size() / 3 + 1);
-            if(classNumber > 0 && classNumber <= 16){
-                for(Class aClass: classes){
-                    if(aClass.getClassYear() == year && aClass.getClassNr() == classNumber){
-                    aClass.showStudents();
-                    std::cout << "\n\n--------\n\n";}
-                }
-                std::cin >> i;
-                session = false;
-            }
-            if(classNumber == 0) session = false;
-            Utility::clear_screen();
         }
+        bool localSession = true;
+        while(localSession){
+            Utility::clear_screen();
+            Utility::header(aclassstr.substr(0,7));
+            std::cout <<"|" << std::setfill(' ') << std::setw(22)<< "Curricular Unit" << setw(7) << "|" <<  std::setw(17) << "Name" << std::setw(13) << "|\n";
+            for(auto [student,uc]: students_uc){
+                std::cout << "|" << setfill(' ') << setw(19) << uc.get_uc_Code() << setw(11) << "|" << setw(20)<< student.getName()  << setw(9)<< "|\n" ;
+            }
+            std::cout << "|\n|Number of students in this class : " << students_uc.size() << setw(22) <<  "|\n";
+
+            Utility::body("Order them by:",{"1.Curricular Unit", "2.Alphabetical Order (names)"});
+            Utility::footer();
+            int i;
+            std::cin >> i;
+            i = Utility::getInput(i,0,2);
+            switch(i){
+                case 1: {
+                    std::multimap<std::string,std::string> m;
+                    for(auto [k,v] : students_uc){
+                        m.insert(std::pair{v.get_uc_Code(),k.getName()});
+                    }
+                    Utility::clear_screen();
+                    Utility::header(aclassstr.substr(0,7));
+                    Utility::print_uc_students_table(m);
+                    Utility::footer();
+                    std::cin >> i;
+                    m.clear();
+                    if(i == 0) continue;
+                    break;
+                }
+                case 2:
+                {
+                    std::multimap<std::string,std::string> m;
+                    for(auto [k,v] : students_uc){
+                        m.insert(std::pair{k.getName(),v.get_uc_Code()});
+                    }
+                    Utility::clear_screen();
+                    Utility::header(aclassstr.substr(0,7));
+                    Utility::print_uc_students_table(m);
+                    Utility::footer();
+                    std::cin >> i;
+                    m.clear();
+                    if(i == 0) continue;
+                    break;
+                }
+                case 0:
+                    session = false;
+                    localSession = false;
+                    continue;
+                default:
+                    continue;
+            }
+        }
+
     }
     return session;
 }
 
 
 void Menu::classesListings() {
-    //TODO: ORDENACOES PARCIAIS
     bool localSession = true;
     while(localSession){
         Utility::clear_screen();
@@ -150,41 +241,33 @@ void Menu::schedulesListings(std::map<Uc,std::map<Class,std::vector<Slot>>> sche
                     if(year!=0 && classnum != 0){
                         vector<Uc> ucs;
                         map<Uc,vector<Slot>> ucslots;
-                        std::cout << year << " " << classnum << "\n";
-                        std::cout << classes.size() << "\n\n";
+                        std::string s = "";
                         for(auto aclass: classes){
                             if(aclass.getClassYear() == year && aclass.getClassNr() == classnum){
-                                std::cout << aclass.get_uid();
                                 ucs = classes_uc[aclass];
+                                s+= aclass.getClassCode();
                                 for(auto uc : ucs){
                                     for(auto slot: schedules[uc][aclass]){
                                         ucslots[uc].push_back(slot);
                                     }
                                 }
-
                             }
-
                         }
-                        for(auto [k,v] : ucslots){
-                            std::cout << "(" << k.get_uc_Code() << ") =";
-                            for( auto slot : v){
-                                std::cout << "[" << slot.getWeekday() << "," << slot.getStartHour()  << "-" << slot.getEndHour() <<  "," << slot.getSlotType() << "],";
-                            }
-                            std::cout << "\n";
-                        }
+                        s += " SCHEDULE";
+                        // show class schedules
+                        Utility::schedule(s,ucslots);
+                    }else{
+                        Utility::header("looks like something went wrong..");
+                        Utility::footer();
+                        int i;
+                        std::cin >> i;
+                        if(i == 0){local = false;localSession = false;}
+                        continue;
 
                     }
-                    Utility::footer();
-                    int i;
-                    std::cin >> i;
-                    if(i ==0) local = false;
                     break;
                 }
             }
-
-
-            case 3:
-                //uc
                 break;
             default:
                 localSession = false;
@@ -193,4 +276,6 @@ void Menu::schedulesListings(std::map<Uc,std::map<Class,std::vector<Slot>>> sche
 
     }
 }
+
+
 

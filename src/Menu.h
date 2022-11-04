@@ -31,7 +31,7 @@ public:
     /// Listings subsection -Students (listings/students)
     static short  studentsListings();
     /// Students subsection -Classes (listings/students/classes)
-    static bool studentsListings_Class(std::set<Student> students,std::set<Class> classes,bool session);
+    static bool studentsListings_Class(const std::map<Student,std::map<Uc,std::vector<Class>>>& students_uc_classes, bool session);
     /// Listings subsection -Classes (listings/classes)
     static void classesListings();
     /// Listings subsection - UC's (listings/ucs)
@@ -39,6 +39,9 @@ public:
     /// Listings subsection -Schedules (listings/schedules)
     static void schedulesListings(std::map<Uc,std::map<Class,std::vector<Slot>>> schedules,std::set<Class> classes,std::map<Class,std::vector<Uc>> classes_uc, int choice);
 
+    static void studentsListings_Year(const map<Student, std::map<Uc, std::vector<Class>>> &students);
+
+    static void studentsListings_UC(map<Student, map<Uc, std::vector<Class>>>& students);
 };
 
 

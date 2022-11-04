@@ -72,12 +72,15 @@ void Manager::studentsListings() {
             case 1:{
                 bool s = true;
                 while(s){
-                    s = Menu::studentsListings_Class(students, classes, s);
+                    s = Menu::studentsListings_Class(students_uc_classes, s);
                 }
                 break;
             }
             case 2:
-
+                Menu::studentsListings_Year(students_uc_classes);
+                break;
+            case 3:
+                Menu::studentsListings_UC(students_uc_classes);
                 break;
             case 0:
                 localSession = false;
@@ -165,15 +168,13 @@ void Manager::getYearClass(int& year, int& classnum){
     bool localsession = true;
     while(localsession){
         Utility::clear_screen();
-        std::cout << std::setfill(' ') << std::setw(37) << "From what year?\n\n";
+        std::cout << std::setfill(' ') << std::setw(36) << "From what year?\n\n";
         std::cout <<  std::setw(35) << "1. 1st Year\n"
                   << std::setw(35) << "2. 2nd Year\n"
                   << std::setw(35) << "3. 3rd Year\n";
         Utility::footer();
         std::cout << "-->" << std::flush;
         std::cin >> year;
-        if(year == 0){std::cerr << "Try again";
-            continue;}
         year = Utility::getInput(year, (short)0, (short )3);
 
         if(year >= 1 && year <= 3){
@@ -192,10 +193,8 @@ void Manager::getYearClass(int& year, int& classnum){
                 //i= 0;
                 std::cout << "-->" << std::flush;
                 std::cin >> classnum;
-                if(classnum == 0){std::cerr << "Try again";
-                    continue;}
                 classnum = Utility::getInput((short)classnum, (short)0, i);
-
+                if(classnum ==0) localsession = false;
                 if(classnum >=1 && classnum <= i && year != 0) localsession = false;
                 Utility::clear_screen();
             }
