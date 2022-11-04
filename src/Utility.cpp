@@ -46,6 +46,7 @@ const char* Utility::getClassesUcPath() {
 const char* Utility::getStudentClassesPath() {
     return "../src/schedule/students_classes.csv";
 }
+
 void Utility::header(const std::string& title){
     int n = (int)(title.size() + 59) / 2;
     std::cout << "|" << std::setfill('-') <<std::setw(59) << "|\n"; // ---
@@ -81,6 +82,28 @@ void Utility::path(std::string path){
               << "|"<< std::setfill('-') <<std::setw(59) <<"|\n";
 }
 
+int Utility::numberInput(int input) {
+    while(true)
+    {
+        if(std::cin.fail())
+        {
+            std::cin.clear();
+            std::cerr << "Sorry, I cannot read that. Please try again." << std::endl;
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+        return input;
+    }
+
+}
+
+std::string Utility::stringInput(std::string s) {
+    if(s.length()>8 || s.length() < 0){
+        std::cout << "Please try again. " << std::endl;
+    }
+    else
+        return s;
+}
 
 
 

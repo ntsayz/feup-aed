@@ -19,16 +19,22 @@
 #include "Utility.h"
 #include "Student.h"
 #include "Class.h"
+#include <deque>
 #include "Request.h"
 #include "Menu.h"
 #include "Uc.h"
 
 class Request {
+private:
+    static std::deque<int>r;
 public:
+
     static void removeStudent(std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes);
-    static void add(std::map<Uc,std::map<Class,std::vector<Slot>>> schedules,std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes);
+    static void add(std::map<Uc,std::map<Class,std::vector<Slot>>> schedules, std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes);
     static void change(std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes);
     static void changeMultiple(std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes);
+    static bool vagas(std::map<Uc, std::vector<Class>> vec);
+    std::deque<int> getUnsuccessufull();
 };
 
 

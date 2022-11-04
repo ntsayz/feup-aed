@@ -381,7 +381,6 @@ void Manager::loadDatafromFiles()
 
 }
 
-
 void Manager::testing(){
     for(auto stud: students){
         for(auto& [k,v] : students_uc_classes[stud] ) {

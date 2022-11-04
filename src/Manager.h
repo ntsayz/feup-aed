@@ -68,6 +68,8 @@ public:
     void thisFunctionIsForTestingPurposes();
 
     void getYearClass(int &year, int &classnum);
+
+    void testing();
 };
 
 

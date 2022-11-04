@@ -20,7 +20,7 @@ private:
     int uid ;
     std::string class_Code;
     std::list<Slot> schedule;
-    std::map<Uc,std::vector<Student>> UC_students;
+    static std::map<Uc,std::vector<Student>> UC_students;
     std::set<Student> students;
 public:
     Class();
