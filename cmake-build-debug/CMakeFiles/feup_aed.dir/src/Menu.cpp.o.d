@@ -180,4 +180,131 @@ CMakeFiles/feup_aed.dir/src/Menu.cpp.o: \
  /home/ntsayz/Documents/feup-aed/src/Student.h \
  /home/ntsayz/Documents/feup-aed/src/Request.h /usr/include/c++/9/queue \
  /usr/include/c++/9/deque /usr/include/c++/9/bits/stl_deque.h \
- /usr/include/c++/9/bits/deque.tcc /usr/include/c++/9/bits/stl_queue.h
+ /usr/include/c++/9/bits/deque.tcc /usr/include/c++/9/bits/stl_queue.h \
+ /home/ntsayz/Documents/feup-aed/src/BST.h /usr/include/c++/9/stack \
+ /usr/include/c++/9/bits/stl_stack.h \
+ /home/ntsayz/Documents/feup-aed/src/Manager.h /usr/include/c++/9/cstring \
+ /usr/include/string.h /usr/include/strings.h \
+ /usr/include/x86_64-linux-gnu/c++/9/bits/stdc++.h \
+ /usr/include/c++/9/cassert /usr/include/assert.h \
+ /usr/include/c++/9/cfloat \
+ /usr/lib/gcc/x86_64-linux-gnu/9/include/float.h \
+ /usr/include/c++/9/ciso646 /usr/include/c++/9/climits \
+ /usr/lib/gcc/x86_64-linux-gnu/9/include/limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/9/include/syslimits.h \
+ /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+ /usr/include/linux/limits.h \
+ /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/uio_lim.h /usr/include/c++/9/cmath \
+ /usr/include/math.h /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+ /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
+ /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
+ /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
+ /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
+ /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
+ /usr/include/c++/9/bits/specfun.h /usr/include/c++/9/tr1/gamma.tcc \
+ /usr/include/c++/9/tr1/special_function_util.h \
+ /usr/include/c++/9/tr1/bessel_function.tcc \
+ /usr/include/c++/9/tr1/beta_function.tcc \
+ /usr/include/c++/9/tr1/ell_integral.tcc \
+ /usr/include/c++/9/tr1/exp_integral.tcc \
+ /usr/include/c++/9/tr1/hypergeometric.tcc \
+ /usr/include/c++/9/tr1/legendre_function.tcc \
+ /usr/include/c++/9/tr1/modified_bessel_func.tcc \
+ /usr/include/c++/9/tr1/poly_hermite.tcc \
+ /usr/include/c++/9/tr1/poly_laguerre.tcc \
+ /usr/include/c++/9/tr1/riemann_zeta.tcc /usr/include/c++/9/csetjmp \
+ /usr/include/setjmp.h /usr/include/c++/9/csignal /usr/include/signal.h \
+ /usr/include/x86_64-linux-gnu/bits/signum.h \
+ /usr/include/x86_64-linux-gnu/bits/signum-generic.h \
+ /usr/include/x86_64-linux-gnu/bits/types/sig_atomic_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h \
+ /usr/include/x86_64-linux-gnu/bits/siginfo-arch.h \
+ /usr/include/x86_64-linux-gnu/bits/siginfo-consts.h \
+ /usr/include/x86_64-linux-gnu/bits/siginfo-consts-arch.h \
+ /usr/include/x86_64-linux-gnu/bits/types/sigval_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h \
+ /usr/include/x86_64-linux-gnu/bits/sigevent-consts.h \
+ /usr/include/x86_64-linux-gnu/bits/sigaction.h \
+ /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
+ /usr/include/x86_64-linux-gnu/bits/types/stack_t.h \
+ /usr/include/x86_64-linux-gnu/sys/ucontext.h \
+ /usr/include/x86_64-linux-gnu/bits/sigstack.h \
+ /usr/include/x86_64-linux-gnu/bits/ss_flags.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h \
+ /usr/include/x86_64-linux-gnu/bits/sigthread.h \
+ /usr/include/x86_64-linux-gnu/bits/signal_ext.h \
+ /usr/include/c++/9/cstdarg /usr/include/c++/9/cstddef \
+ /usr/include/c++/9/ccomplex /usr/include/c++/9/complex \
+ /usr/include/c++/9/cfenv /usr/include/c++/9/fenv.h /usr/include/fenv.h \
+ /usr/include/x86_64-linux-gnu/bits/fenv.h /usr/include/c++/9/cinttypes \
+ /usr/include/inttypes.h /usr/include/c++/9/cstdalign \
+ /usr/lib/gcc/x86_64-linux-gnu/9/include/stdalign.h \
+ /usr/include/c++/9/cstdbool \
+ /usr/lib/gcc/x86_64-linux-gnu/9/include/stdbool.h \
+ /usr/include/c++/9/ctgmath /usr/include/c++/9/cuchar \
+ /usr/include/uchar.h /usr/include/c++/9/algorithm \
+ /usr/include/c++/9/pstl/glue_algorithm_defs.h \
+ /usr/include/c++/9/functional /usr/include/c++/9/bits/refwrap.h \
+ /usr/include/c++/9/bits/std_function.h /usr/include/c++/9/unordered_map \
+ /usr/include/c++/9/bits/hashtable.h \
+ /usr/include/c++/9/bits/hashtable_policy.h \
+ /usr/include/c++/9/bits/unordered_map.h \
+ /usr/include/c++/9/pstl/execution_defs.h /usr/include/c++/9/bitset \
+ /usr/include/c++/9/iterator /usr/include/c++/9/bits/stream_iterator.h \
+ /usr/include/c++/9/memory /usr/include/c++/9/bits/stl_raw_storage_iter.h \
+ /usr/include/c++/9/ext/concurrence.h \
+ /usr/include/c++/9/bits/shared_ptr.h \
+ /usr/include/c++/9/bits/shared_ptr_base.h \
+ /usr/include/c++/9/bits/shared_ptr_atomic.h \
+ /usr/include/c++/9/bits/atomic_base.h \
+ /usr/include/c++/9/bits/atomic_lockfree_defines.h \
+ /usr/include/c++/9/backward/auto_ptr.h /usr/include/c++/9/bit \
+ /usr/include/c++/9/pstl/glue_memory_defs.h /usr/include/c++/9/numeric \
+ /usr/include/c++/9/bits/stl_numeric.h \
+ /usr/include/c++/9/pstl/glue_numeric_defs.h /usr/include/c++/9/valarray \
+ /usr/include/c++/9/bits/valarray_array.h \
+ /usr/include/c++/9/bits/valarray_array.tcc \
+ /usr/include/c++/9/bits/valarray_before.h \
+ /usr/include/c++/9/bits/slice_array.h \
+ /usr/include/c++/9/bits/valarray_after.h \
+ /usr/include/c++/9/bits/gslice.h /usr/include/c++/9/bits/gslice_array.h \
+ /usr/include/c++/9/bits/mask_array.h \
+ /usr/include/c++/9/bits/indirect_array.h /usr/include/c++/9/atomic \
+ /usr/include/c++/9/chrono /usr/include/c++/9/ratio \
+ /usr/include/c++/9/bits/parse_numbers.h /usr/include/c++/9/codecvt \
+ /usr/include/c++/9/condition_variable \
+ /usr/include/c++/9/bits/std_mutex.h \
+ /usr/include/c++/9/bits/unique_lock.h /usr/include/c++/9/forward_list \
+ /usr/include/c++/9/bits/forward_list.h \
+ /usr/include/c++/9/bits/forward_list.tcc /usr/include/c++/9/future \
+ /usr/include/c++/9/mutex /usr/include/c++/9/thread \
+ /usr/include/c++/9/bits/atomic_futex.h /usr/include/c++/9/random \
+ /usr/include/c++/9/bits/random.h \
+ /usr/include/x86_64-linux-gnu/c++/9/bits/opt_random.h \
+ /usr/include/c++/9/bits/random.tcc /usr/include/c++/9/regex \
+ /usr/include/c++/9/bits/regex_constants.h \
+ /usr/include/c++/9/bits/regex_error.h \
+ /usr/include/c++/9/bits/regex_automaton.h \
+ /usr/include/c++/9/bits/regex_automaton.tcc \
+ /usr/include/c++/9/bits/regex_scanner.h \
+ /usr/include/c++/9/bits/regex_scanner.tcc \
+ /usr/include/c++/9/bits/regex_compiler.h \
+ /usr/include/c++/9/bits/regex_compiler.tcc \
+ /usr/include/c++/9/bits/regex.h /usr/include/c++/9/bits/regex.tcc \
+ /usr/include/c++/9/bits/regex_executor.h \
+ /usr/include/c++/9/bits/regex_executor.tcc \
+ /usr/include/c++/9/memory_resource /usr/include/c++/9/shared_mutex \
+ /usr/include/c++/9/scoped_allocator /usr/include/c++/9/typeindex \
+ /usr/include/c++/9/unordered_set /usr/include/c++/9/bits/unordered_set.h \
+ /usr/include/c++/9/any /usr/include/c++/9/charconv \
+ /usr/include/c++/9/filesystem /usr/include/c++/9/bits/fs_fwd.h \
+ /usr/include/c++/9/bits/fs_path.h /usr/include/c++/9/bits/fs_dir.h \
+ /usr/include/c++/9/bits/fs_ops.h /usr/include/c++/9/variant \
+ /usr/include/c++/9/version

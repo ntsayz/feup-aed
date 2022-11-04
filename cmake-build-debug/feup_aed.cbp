@@ -5,7 +5,7 @@
 		<Option title="feup_aed"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\docs\;"/>
+		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/home/ntsayz/Documents/feup-aed/cmake-build-debug"/>
@@ -61,16 +61,6 @@
 					<DistClean command="/usr/bin/make -j16 -f &quot;/home/ntsayz/Documents/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="Doxygen">
-				<Option working_dir="/home/ntsayz/Documents/feup-aed/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j16 -f &quot;/home/ntsayz/Documents/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 Doxygen"/>
-					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/ntsayz/Documents/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j16 -f &quot;/home/ntsayz/Documents/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j16 -f &quot;/home/ntsayz/Documents/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
 			<Target title="edit_cache">
 				<Option working_dir="/home/ntsayz/Documents/feup-aed/cmake-build-debug"/>
 				<Option type="4"/>
@@ -93,6 +83,9 @@
 			</Target>
 		</Build>
 		<Unit filename="/home/ntsayz/Documents/feup-aed/main.cpp">
+			<Option target="feup_aed"/>
+		</Unit>
+		<Unit filename="/home/ntsayz/Documents/feup-aed/src/BST.h">
 			<Option target="feup_aed"/>
 		</Unit>
 		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Class.cpp">
@@ -145,9 +138,6 @@
 		</Unit>
 		<Unit filename="/home/ntsayz/Documents/feup-aed/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
-		</Unit>
-		<Unit filename="/home/ntsayz/Documents/feup-aed/docs/Doxyfile">
-			<Option virtualFolder="CMake Files\docs\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>
