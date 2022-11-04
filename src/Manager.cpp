@@ -80,7 +80,7 @@ void Manager::studentsListings() {
                 Menu::studentsListings_Year(students_uc_classes);
                 break;
             case 3:
-                Menu::studentsListings_UC(students_uc_classes);
+                Menu::studentsListings_UC(students_uc_classes,uc_classes);
                 break;
             case 0:
                 localSession = false;
@@ -160,7 +160,7 @@ void Manager::schedulesListings() {
         std::cin >> choice;
         choice = Utility::getInput(choice,0,3);
         if(choice==0){localSession = false; continue;}
-        Menu::schedulesListings(schedules,classes,classes_uc,choice);
+        Menu::schedulesListings(schedules,classes,classes_uc,students_uc_classes,choice);
     }
 }
 
@@ -433,9 +433,9 @@ void Manager::thisFunctionIsForTestingPurposes(){
     }
     //std::cout << "]\n";
 
-
+    std::cout << students_uc_classes.size();
     // schedules
-    for(auto [uc, classMap] : schedules){
+    /*for(auto [uc, classMap] : schedules){
         std::cout << std::setfill(' ') << std::setw(20)  << "<== ("<< uc.get_uc_Code() << ") ==>\n\n[";
         for(auto [aclass,vec]: classMap){
             for(auto slot: vec){
@@ -444,7 +444,7 @@ void Manager::thisFunctionIsForTestingPurposes(){
             std::cout << "\n";
         }
         std::cout << "]\n";
-    }
+    }*/
 
     int i;
     std::cin >> i;

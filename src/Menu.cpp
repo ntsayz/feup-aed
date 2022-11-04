@@ -120,27 +120,99 @@ void Menu::studentsListings_Year(const std::map<Student, std::map<Uc, std::vecto
 
     }
 }
-void Menu::studentsListings_UC(map<Student, map<Uc, std::vector<Class>>>& students) {
+void Menu::studentsListings_UC(map<Student, map<Uc, std::vector<Class>>>& students, std::map<Uc,std::vector<Class>>& uc_classes) {
     bool localSession = true;
     while(localSession){
         Utility::clear_screen();
+        std::map<Uc,std::set<Student>> mm;
+
         Utility::path("listings/students/UC");
         Utility::header("Curricular Units");
-        Utility::body("Show students in a:",{""});
+        Utility::body("Show students in a/with a:",{"1. UC - Filter by Year",
+                                             "2. UC - Order by year","3. Nr of UCs - Order"});
         Utility::footer();
-
         int i;
         std::cin >> i;
-        i = Utility::getInput(i,0,2);
+        i = Utility::getInput((short)i,0,3);
         switch(i){
             case 1:
+                Utility::clear_screen();
+                Utility::header("UCs");
+                Utility::body("Filter by year:",{"1. 1st","2. 2nd","3. 3rd"});
+                Utility::footer();
+                std::cin >> i;
+                i = Utility::getInput((short)i,0,3);
+                if(i >=1 && i <=3){
+                    for(auto [student,v]: students){
+                        for(auto [uc,vec]: v){
+                            for(const auto& aclass: vec){
+                                if(aclass.getClassYear() == i){
+                                    mm[uc].insert(student);
+                                }
+                            }
+                        }
+                    }
+                    std::string s = "UCs filtered by Year " + to_string(i);
+                    Utility::header(s);
+                    int nrStudents = 0;
+                    for(auto [uc,studset]: mm){
+                        std::cout << "\n|" << setfill('=') << setw(33) << uc.get_uc_Code() << setw(26) << "|\n";
+                        std::cout << "|" << setfill(' ') << setw(38) << "No of Students: " << studset.size() << setw(20) << "|\n\n";
+                        for(const auto& student : studset){
+                            std::cout << "|" << setfill(' ') << setw(25) << student.getName() << " (" << student.getCode() << ")" << setw(22) << "|\n";
+                        }
+
+                    }
+
+                    Utility::footer();
+                    std::cin >> i;
+                    mm.clear();
+                    if(i == 0){continue;};
+                }if(i == 0) continue;
                 break;
-            case 2:
+            case 2:{
+                std::set<int> years;
+                for(auto [student,v]: students){
+                    for(auto [uc,vec]: v){
+                                mm[uc].insert(student);
+                    }
+                }
+                Utility::header("UCs order by Year");
+                for(auto [uc,studset]: mm){
+                    std::cout << "\n|" << setfill('=') << setw(33) << uc.get_uc_Code() << setw(26) << "|\n";
+                    std::cout << "|" << setfill(' ') << setw(38) << "No of Students: " << studset.size() << setw(20) << "|\n\n";
+                    for(const auto& student : studset){
+                        std::cout << "|" << setfill(' ') << setw(25) << student.getName() << " (" << student.getCode() << ")" << setw(22) << "|\n";
+                    }
+
+                }
+                Utility::footer();
+                std::cin >> i;
+                mm.clear();
+                if(i == 0){continue;};}
                 break;
-            case 3:
-                break;
-            case 4:
-                break;
+            case 3:{
+                std::map<Student,int> sizeofUCs;
+                for(auto [student,v]: students){
+                    for(auto vr: v){
+                        sizeofUCs[student] +=1;
+                    }
+                }
+                Utility::header("Students (Number of UCs) -Ordered");
+                std::multimap<int,Student> sizeofUcs1;
+                for(auto [k,v] : sizeofUCs){
+                    sizeofUcs1.insert(std::pair{v,k});
+                }
+                for(auto [nr, stud]: sizeofUcs1){
+                    std::cout << "|" << setfill(' ') << setw(25) << stud.getName() << " (" << stud.getCode() << ") - " << nr << setw(18) << "|\n";
+                }
+                std::string k = std::to_string(sizeofUCs.size());
+                Utility::body(k,{""});
+                Utility::footer();
+                std::cin >> i;
+                mm.clear();
+                if(i == 0){continue;};
+            }
             case 0:
                 localSession = false;
                 continue;
@@ -249,7 +321,7 @@ void Menu::UCListings() {
 
 }
 
-void Menu::schedulesListings(std::map<Uc,std::map<Class,std::vector<Slot>>> schedules,std::set<Class> classes,std::map<Class,std::vector<Uc>> classes_uc, int choice) {
+void Menu::schedulesListings(std::map<Uc,std::map<Class,std::vector<Slot>>> schedules,std::set<Class> classes,std::map<Class,std::vector<Uc>> classes_uc,std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes, int choice) {
     bool localSession = true;
     while(localSession){
         switch(choice){
@@ -257,8 +329,61 @@ void Menu::schedulesListings(std::map<Uc,std::map<Class,std::vector<Slot>>> sche
                 // Students
                 Utility::clear_screen();
                 Utility::header("STUDENTS SCHEDULES");
-                Utility::body("",{"1. Student's name ","2. Student's code"});
+                Utility::body("",{"1. Student's code","2. Students name (Not finished)"});
                 Utility::footer();
+                int j;
+                std::cin >> j;
+
+                if(j == 1){
+                    bool local = true;
+                    while(local){
+                        Utility::clear_screen();
+                        Utility::header("STUDENTS SCHEDULES");
+                        Utility::body("Enter the student's code",{"200000000 - 299999999"," working 2example:.202041722"});
+                        Utility::footer();
+                        std::cin >> j;
+                        if(j >= 200000000 &&  j <= 299999999){
+                            bool found = false;
+                            map<Uc,vector<Slot>> ucslots;
+                            std::string studentsid = "";
+                            for( auto [stud, ucmap]: students_uc_classes){
+                                if(stud.getCode() == j){
+                                    found = true;
+                                    studentsid += "(" + std::to_string(stud.getCode()) +") " + stud.getName() + "'s";
+                                    for(auto [uc,classList] : ucmap){
+                                        for(auto aclass:classList){
+                                            for(auto slot: schedules[uc][aclass]){
+                                                ucslots[uc].push_back(slot);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            studentsid += " SCHEDULE";
+                            Utility::clear_screen();
+                            Utility::schedule(studentsid,ucslots);
+                            int i;
+                            std::cin >> i;
+                            if(i == 0) local = false;
+                            ucslots.clear();
+                            if(!found){
+                                std::cerr << "Sorry, I haven't found that student code, try again";
+                                Utility::footer();
+                                std::cin >> j;
+                                continue;
+                            }
+                        }else if(j ==0){local = false;}
+                        else{
+                            std::cerr << "Sorry that number isn't valid";
+                            Utility::footer();
+                            std::cin >> j;
+                            continue;
+                        }
+                    }
+
+                }
+                if(j == 0){localSession = false;}
                 break;
             case 2:{
                 // Class schedule
@@ -287,8 +412,12 @@ void Menu::schedulesListings(std::map<Uc,std::map<Class,std::vector<Slot>>> sche
                         s += " SCHEDULE";
                         // show class schedules
                         Utility::schedule(s,ucslots);
+                        int i;
+                        std::cin >> i;
+                        if(i == 0){local = false;localSession = false;
+                            continue;}
                     }else{
-                        Utility::header("looks like something went wrong..");
+                        //Utility::header("looks like something went wrong..");
                         Utility::footer();
                         int i;
                         std::cin >> i;

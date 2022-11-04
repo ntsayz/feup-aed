@@ -37,11 +37,11 @@ public:
     /// Listings subsection - UC's (listings/ucs)
     void UCListings();
     /// Listings subsection -Schedules (listings/schedules)
-    static void schedulesListings(std::map<Uc,std::map<Class,std::vector<Slot>>> schedules,std::set<Class> classes,std::map<Class,std::vector<Uc>> classes_uc, int choice);
+    static void schedulesListings(std::map<Uc,std::map<Class,std::vector<Slot>>> schedules,std::set<Class> classes,std::map<Class,std::vector<Uc>> classes_uc,std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes, int choice);
 
     static void studentsListings_Year(const map<Student, std::map<Uc, std::vector<Class>>> &students);
 
-    static void studentsListings_UC(map<Student, map<Uc, std::vector<Class>>>& students);
+    static void studentsListings_UC(map<Student, map<Uc, std::vector<Class>>>& students, std::map<Uc,std::vector<Class>>& uc_classes);
 };
 
 
