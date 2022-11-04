@@ -50,6 +50,8 @@ public:
     static void scheduleFooter();
 
     static void print_uc_students_table(std::multimap<std::string, std::string> m);
+
+    static void print_students(const std::set<Student>& sets);
 };
 
 

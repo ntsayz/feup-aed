@@ -158,6 +158,11 @@ void Utility::print_uc_students_table(std::multimap<std::string,std::string> m){
 
     }
 }
+void Utility::print_students(const std::set<Student>& sets){
+    for(auto students: sets){
+        std::cout << "|" << setfill(' ') << setw(25) << students.getName() << " (" << students.getCode() << ")" << setw(22) << "|\n";
+    }
+}
 
 
 

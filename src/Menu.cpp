@@ -61,6 +61,7 @@ short Menu::studentsListings() {
 
 void Menu::studentsListings_Year(const std::map<Student, std::map<Uc, std::vector<Class>>> &students) {
     bool localSession = true;
+
     while(localSession){
         Utility::clear_screen();
         Utility::path("listings/students/year");
@@ -70,22 +71,52 @@ void Menu::studentsListings_Year(const std::map<Student, std::map<Uc, std::vecto
 
         int i;
         std::cin >> i;
-        i = Utility::getInput(i,0,2);
-        switch(i){
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 0:
-                localSession = false;
-                continue;
-            default:
-                continue;
+        i = Utility::getInput(i,0,4);
+        if(i >=1 && i <= 4){
+            set<Student> student_set;
+            for(auto [student,v]: students){
+                for(auto [uc,vec]: v){
+                    for(auto aclass: vec){
+                        if(aclass.getClassYear() == i){
+                            student_set.insert(student);
+                        }else if( i == 4){
+                            student_set.insert(student);
+                        }
+                    }
+                }
+            }
+            Utility::clear_screen();
+
+            std::string s = "Year " + to_string(i) ;
+            if(i== 4){
+                s = "All course";
+            }
+
+            Utility::header(s);
+            Utility::print_students(student_set);
+            Utility::body("Order them in:",{"1. Alphabetical order"});
+            Utility::footer();
+            std::cin >> i;
+            if(i == 0){localSession = false;
+                continue;};
+            if(i ==1){
+                std::set<std::string> studset;
+                std::multimap<std::string,std::string> m;
+                for(auto students : student_set){
+                    m.insert(std::pair{students.getName(), to_string(students.getCode())});
+                }
+                Utility::clear_screen();
+                Utility::header(s);
+                for(auto [students,code]: m){
+                    std::cout << "|" << setfill(' ') << setw(25) << students << " (" << code << ")" << setw(22) << "|\n";
+                }
+                Utility::footer();
+                std::cin >> i;
+                if(i == 0){continue;};
+
+            }
         }
+        if(i == 0) localSession = false;
 
     }
 }
