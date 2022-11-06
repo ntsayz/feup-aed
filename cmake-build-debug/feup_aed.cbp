@@ -8,135 +8,133 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/ntsayz/Documents/feup-aed/cmake-build-debug"/>
+				<Option working_dir="/Users/EritonNaife/feup-aed/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j16 -f &quot;/home/ntsayz/Documents/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/ntsayz/Documents/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j16 -f &quot;/home/ntsayz/Documents/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j16 -f &quot;/home/ntsayz/Documents/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/EritonNaife/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/EritonNaife/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/EritonNaife/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/EritonNaife/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="feup_aed">
-				<Option output="/home/ntsayz/Documents/feup-aed/cmake-build-debug/feup_aed" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/ntsayz/Documents/feup-aed/cmake-build-debug"/>
+				<Option output="/Users/EritonNaife/feup-aed/cmake-build-debug/feup_aed" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/EritonNaife/feup-aed/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/include/c++/9"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
-					<Add directory="/usr/include/c++/9/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j16 -f &quot;/home/ntsayz/Documents/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 feup_aed"/>
-					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/ntsayz/Documents/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j16 -f &quot;/home/ntsayz/Documents/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j16 -f &quot;/home/ntsayz/Documents/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/EritonNaife/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 feup_aed"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/EritonNaife/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/EritonNaife/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/EritonNaife/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="feup_aed/fast">
-				<Option output="/home/ntsayz/Documents/feup-aed/cmake-build-debug/feup_aed" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/ntsayz/Documents/feup-aed/cmake-build-debug"/>
+				<Option output="/Users/EritonNaife/feup-aed/cmake-build-debug/feup_aed" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/EritonNaife/feup-aed/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/include/c++/9"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
-					<Add directory="/usr/include/c++/9/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j16 -f &quot;/home/ntsayz/Documents/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 feup_aed/fast"/>
-					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/ntsayz/Documents/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j16 -f &quot;/home/ntsayz/Documents/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j16 -f &quot;/home/ntsayz/Documents/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/EritonNaife/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 feup_aed/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/EritonNaife/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/EritonNaife/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/EritonNaife/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/ntsayz/Documents/feup-aed/cmake-build-debug"/>
+				<Option working_dir="/Users/EritonNaife/feup-aed/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j16 -f &quot;/home/ntsayz/Documents/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/ntsayz/Documents/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j16 -f &quot;/home/ntsayz/Documents/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j16 -f &quot;/home/ntsayz/Documents/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/EritonNaife/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/EritonNaife/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/EritonNaife/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/EritonNaife/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/ntsayz/Documents/feup-aed/cmake-build-debug"/>
+				<Option working_dir="/Users/EritonNaife/feup-aed/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j16 -f &quot;/home/ntsayz/Documents/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/ntsayz/Documents/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j16 -f &quot;/home/ntsayz/Documents/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j16 -f &quot;/home/ntsayz/Documents/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/EritonNaife/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/EritonNaife/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/EritonNaife/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/EritonNaife/feup-aed/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/ntsayz/Documents/feup-aed/main.cpp">
+		<Unit filename="/Users/EritonNaife/feup-aed/main.cpp">
 			<Option target="feup_aed"/>
 		</Unit>
-		<Unit filename="/home/ntsayz/Documents/feup-aed/src/BST.h">
+		<Unit filename="/Users/EritonNaife/feup-aed/src/BST.h">
 			<Option target="feup_aed"/>
 		</Unit>
-		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Class.cpp">
+		<Unit filename="/Users/EritonNaife/feup-aed/src/Class.cpp">
 			<Option target="feup_aed"/>
 		</Unit>
-		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Class.h">
+		<Unit filename="/Users/EritonNaife/feup-aed/src/Class.h">
 			<Option target="feup_aed"/>
 		</Unit>
-		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Manager.cpp">
+		<Unit filename="/Users/EritonNaife/feup-aed/src/Manager.cpp">
 			<Option target="feup_aed"/>
 		</Unit>
-		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Manager.h">
+		<Unit filename="/Users/EritonNaife/feup-aed/src/Manager.h">
 			<Option target="feup_aed"/>
 		</Unit>
-		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Menu.cpp">
+		<Unit filename="/Users/EritonNaife/feup-aed/src/Menu.cpp">
 			<Option target="feup_aed"/>
 		</Unit>
-		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Menu.h">
+		<Unit filename="/Users/EritonNaife/feup-aed/src/Menu.h">
 			<Option target="feup_aed"/>
 		</Unit>
-		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Request.cpp">
+		<Unit filename="/Users/EritonNaife/feup-aed/src/Request.cpp">
 			<Option target="feup_aed"/>
 		</Unit>
-		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Request.h">
+		<Unit filename="/Users/EritonNaife/feup-aed/src/Request.h">
 			<Option target="feup_aed"/>
 		</Unit>
-		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Slot.cpp">
+		<Unit filename="/Users/EritonNaife/feup-aed/src/Slot.cpp">
 			<Option target="feup_aed"/>
 		</Unit>
-		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Slot.h">
+		<Unit filename="/Users/EritonNaife/feup-aed/src/Slot.h">
 			<Option target="feup_aed"/>
 		</Unit>
-		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Student.cpp">
+		<Unit filename="/Users/EritonNaife/feup-aed/src/Student.cpp">
 			<Option target="feup_aed"/>
 		</Unit>
-		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Student.h">
+		<Unit filename="/Users/EritonNaife/feup-aed/src/Student.h">
 			<Option target="feup_aed"/>
 		</Unit>
-		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Uc.cpp">
+		<Unit filename="/Users/EritonNaife/feup-aed/src/Uc.cpp">
 			<Option target="feup_aed"/>
 		</Unit>
-		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Uc.h">
+		<Unit filename="/Users/EritonNaife/feup-aed/src/Uc.h">
 			<Option target="feup_aed"/>
 		</Unit>
-		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Utility.cpp">
+		<Unit filename="/Users/EritonNaife/feup-aed/src/Utility.cpp">
 			<Option target="feup_aed"/>
 		</Unit>
-		<Unit filename="/home/ntsayz/Documents/feup-aed/src/Utility.h">
+		<Unit filename="/Users/EritonNaife/feup-aed/src/Utility.h">
 			<Option target="feup_aed"/>
 		</Unit>
-		<Unit filename="/home/ntsayz/Documents/feup-aed/CMakeLists.txt">
+		<Unit filename="/Users/EritonNaife/feup-aed/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

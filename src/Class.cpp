@@ -31,6 +31,8 @@ void Class::addStudent(Uc& uc,const Student& student){
     }
 }
 
+
+
 int Class::getClassNr() const {
     int i;
     std::stringstream ss;
