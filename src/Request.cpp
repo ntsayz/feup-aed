@@ -4,6 +4,10 @@
 
 #include "Request.h"
 
+Request::Request(int n) {
+    this->n = n;
+
+}
 
 void Request::removeStudent(std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes) {
     int student_code;
@@ -259,6 +263,12 @@ void Request::changeMultiple(std::map<Student, std::map<Uc, std::vector<Class>>>
 
 }
 
-std::deque<int> Request::getUnsuccessufull() {
+std::vector<int> Request::getUnsuccessufull() {
     return this->r;
 }
+
+int Request::get_n() {
+    return this->n;
+}
+
+

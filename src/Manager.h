@@ -40,7 +40,7 @@ private:
     std::map<Class,std::vector<Uc>> classes_uc;
     std::map<Uc,std::vector<Class>> uc_classes;
     std::set<Uc> curricularUnits;
-    std::queue<int> requests;
+    std::queue<Request> requests;
     bool globalSession;
 
     /// Listings
@@ -59,6 +59,8 @@ private:
     void loadDatafromFiles();
     /// Loads each object from each class with its particular data (eg:. Inserting students in a particular class)
     void load();
+    /// Funtion to execute the request
+    Request excute_Requests();
 public:
     /// Constructor
     Manager();

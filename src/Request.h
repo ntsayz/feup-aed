@@ -26,15 +26,16 @@
 
 class Request {
 private:
-    static std::deque<int>r;
+    int n;
+    static std::vector<int>r;
 public:
-
+    Request(int n);
     static void removeStudent(std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes);
     static void add(std::map<Uc,std::map<Class,std::vector<Slot>>> schedules, std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes);
     static void change(std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes);
     static void changeMultiple(std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes);
-    static bool vagas(std::map<Uc, std::vector<Class>> vec);
-    std::deque<int> getUnsuccessufull();
+    int get_n();
+    std::vector<int> getUnsuccessufull();
 };
 
 

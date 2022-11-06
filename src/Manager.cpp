@@ -20,7 +20,7 @@ void Manager::startApplication(){
                 Listings();
                 break;
             case 2:
-                thisFunctionIsForTestingPurposes();
+                Requests();
                 break;
             case 3:
                 break;
@@ -62,6 +62,38 @@ void Manager::Listings() {
 
     }
 
+}
+
+void Manager::Requests() {
+    bool localSession = true;
+    Request r1(1),r2(2),r3(3),r4(4);
+    while(localSession){
+        Utility::clear_screen();
+        short choice = Menu::Requests();
+        switch (choice){
+            case 1:
+                requests.push(r1);
+                break;
+            case 2:
+                requests.push(r2);
+                break;
+            case 3:
+                requests.push(r3);
+                break;
+            case 4:
+                requests.push(r4);
+                break;
+            case 0:
+                localSession = false;
+                break;
+            default:
+                break;
+        }
+
+    }
+    while(requests.size()!=0){
+        excute_Requests();
+    }
 }
 
 void Manager::studentsListings() {
@@ -375,7 +407,6 @@ void Manager::loadDatafromFiles()
     }
 }
 
-
 void Manager::thisFunctionIsForTestingPurposes(){
     for(auto stud: students){
         for(auto& [k,v] : students_uc_classes[stud] ) {
@@ -448,6 +479,27 @@ void Manager::thisFunctionIsForTestingPurposes(){
 
     int i;
     std::cin >> i;
+}
+
+Request Manager::excute_Requests() {
+    Request r = requests.front();
+    if(r.get_n() == 1){
+        r.removeStudent(students_uc_classes);
+        requests.pop();
+    }
+    else if(r.get_n() == 2){
+        r.add(schedules,students_uc_classes);
+        requests.pop();
+    }
+    else if(r.get_n() == 3){
+        r.change(students_uc_classes);
+        requests.pop();
+    }
+    else if(r.get_n() == 4){
+        r.changeMultiple(students_uc_classes);
+        requests.pop();
+    }
+    return r;
 }
 
 
