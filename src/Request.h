@@ -24,7 +24,13 @@
 #include "Menu.h"
 #include "Uc.h"
 
+<<<<<<< HEAD
 class Student;
+=======
+
+
+//#include "Request.h"
+>>>>>>> main
 class Request {
 private:
     int n;

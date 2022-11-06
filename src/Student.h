@@ -4,7 +4,7 @@
 
 #ifndef FEUP_AED_STUDENT_H
 #define FEUP_AED_STUDENT_H
-#include "Request.h"
+
 #include "Uc.h"
 #include "Class.h"
 #include "Utility.h"
@@ -15,7 +15,7 @@
 #include <vector>
 #include <list>
 #include <map>
-
+#include "Request.h"
 
 
 class Student {
