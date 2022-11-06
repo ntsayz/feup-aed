@@ -321,6 +321,14 @@ void Menu::classesListings() {
 void Menu::UCListings() {
 
 }
+int isSubstring(string s1, string s2)
+{
+    // using find method to check if s1 is
+    // a substring of s2
+    if (s2.find(s1) != string::npos)
+        return s2.find(s1);
+    return -1;
+}
 
 void Menu::schedulesListings(std::map<Uc,std::map<Class,std::vector<Slot>>> schedules,std::set<Class> classes,std::map<Class,std::vector<Uc>> classes_uc,std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes, int choice) {
     bool localSession = true;
@@ -375,6 +383,81 @@ void Menu::schedulesListings(std::map<Uc,std::map<Class,std::vector<Slot>>> sche
                                 continue;
                             }
                         }else if(j ==0){local = false;}
+                        else{
+                            std::cerr << "Sorry that number isn't valid";
+                            Utility::footer();
+                            std::cin >> j;
+                            continue;
+                        }
+                    }
+
+                }
+                if(j==2){
+                    bool local = true;
+                    while(local){
+                        Utility::clear_screen();
+                        Utility::header("STUDENTS SCHEDULES");
+                        Utility::body("Enter the student's name",{"Write as long as possible","it's not very efficient :)"});
+                        Utility::footer();
+                        std::string name;
+                        std::cin >> name;
+                        int l =1;
+                        for(auto [stud,ucmap]: students_uc_classes){
+                            if(isSubstring(name,stud.getName()) != -1){
+                                std::cout  << l << ". " << stud.getName() << "\n";
+                                l++;
+                            }
+                        }
+                        std::cout << "-->";
+                        int option;
+                        std::cin >> option;
+                        l =1;
+                        for(auto [stud,ucmap]: students_uc_classes){
+                            if(isSubstring(name,stud.getName()) != -1){
+                                if(option == l){
+                                    option = stud.getCode();
+                                    break;
+                                }
+                                l++;
+                            }
+
+                        }
+
+
+                        if(name.size() > 1){
+                            bool found = false;
+                            map<Uc,vector<Slot>> ucslots;
+                            std::string studentsid = "";
+
+
+                            for( auto [stud, ucmap]: students_uc_classes){
+                                if(stud.getCode() == option){
+                                    found = true;
+                                    studentsid += "(" + std::to_string(stud.getCode()) +") " + stud.getName() + "'s";
+                                    for(auto [uc,classList] : ucmap){
+                                        for(auto aclass:classList){
+                                            for(auto slot: schedules[uc][aclass]){
+                                                ucslots[uc].push_back(slot);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            studentsid += " SCHEDULE";
+                            Utility::clear_screen();
+                            Utility::schedule(studentsid,ucslots);
+                            int i;
+                            std::cin >> i;
+                            if(i == 0) local = false;
+                            ucslots.clear();
+                            if(!found){
+                                std::cerr << "Sorry, I haven't found that student code, try again";
+                                Utility::footer();
+                                std::cin >> j;
+                                continue;
+                            }
+                        }else if(option ==0){local = false;}
                         else{
                             std::cerr << "Sorry that number isn't valid";
                             Utility::footer();
