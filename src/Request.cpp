@@ -176,17 +176,16 @@ void Request::change(std::map<Student, std::map<Uc, std::vector<Class>>> student
         auto it = itr->second.find(old);
         if(it!=itr->second.end()){
             auto i = std::find(it->second.begin(), it->second.end(),class_student);
-            it->second.erase(i);
+            itr->second.erase(old);
         }
     }
 
     if(itr != students_uc_classes.end()){
         auto it = itr->second.find(old);
-        if(it!=itr->second.end()){
-            auto i = std::find(it->second.begin(), it->second.end(),class_student);
-            if(!(i!=it->second.end()))
-                cout << "Change done successfully ";
-        }
+        if(it!=itr->second.end())
+            std::cout << "Failed to remove Student"<< "\n";
+        else
+            std::cout << "Student removed successfully "<< "\n";
     }
 }
 
@@ -252,17 +251,16 @@ void Request::changeMultiple(std::map<Student, std::map<Uc, std::vector<Class>>>
             auto it = itr->second.find(old);
             if(it!=itr->second.end()){
                 auto i = std::find(it->second.begin(), it->second.end(),class_student);
-                it->second.erase(i);
+                itr->second.erase(old);
             }
         }
 
         if(itr != students_uc_classes.end()){
             auto it = itr->second.find(old);
-            if(it!=itr->second.end()){
-                auto i = std::find(it->second.begin(), it->second.end(),class_student);
-                if(!(i!=it->second.end()))
-                    cout << "Change done successfully ";
-            }
+            if(it!=itr->second.end())
+                std::cout << "Failed to remove Student"<< "\n";
+            else
+                std::cout << "Student removed successfully "<< "\n";
         }
 
     }
