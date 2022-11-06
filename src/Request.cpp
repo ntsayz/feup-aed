@@ -36,17 +36,16 @@ void Request::removeStudent(std::map<Student,std::map<Uc,std::vector<Class>>> st
         auto i = it->second.find(uc);
         if(i != it->second.end()){
             auto x = std::find(i->second.begin(), i->second.end(),c);
-            i->second.erase(x);
+            it->second.erase(uc);
         }
     }
 
     if(it!=students_uc_classes.end()){
         auto i = it->second.find(uc);
-        if(i != it->second.end()){
-            auto x = std::find(i->second.begin(), i->second.end(),c);
-            if(!(x!=i->second.end()))
-                cout << "Student removed successfully "<< "\n";
-        }
+        if((i!=it->second.end()))
+            std::cout << "Failed"<< "\n";
+        else
+            std::cout << "Student removed successfully "<< "\n";
     }
 
 
