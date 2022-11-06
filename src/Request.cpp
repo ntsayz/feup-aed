@@ -52,7 +52,8 @@ void Request::removeStudent(std::map<Student,std::map<Uc,std::vector<Class>>> st
 }
 
 void Request::add(std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes) {
-    unsigned int student_code,difference,c1,c2;
+    int student_code,c1,c2;
+    unsigned int difference;
     std::string class_code,name,uc_code,turma;
     std::map<Uc,std::vector<Class>> map_classes;
 
@@ -114,7 +115,8 @@ void Request::add(std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_
 }
 
 void Request::change(std::map<Student, std::map<Uc, std::vector<Class>>> students_uc_classes) {
-    unsigned int student_code,difference,c1,c2;
+    int student_code,c1,c2;
+    unsigned int difference;
     std::string class_code,name,uc_code,antiga_turma;
 
 
@@ -190,7 +192,9 @@ void Request::change(std::map<Student, std::map<Uc, std::vector<Class>>> student
 }
 
 void Request::changeMultiple(std::map<Student, std::map<Uc, std::vector<Class>>> students_uc_classes) {
-    unsigned int student_code,difference,c1,c2,n;
+    int student_code,c1,c2;
+    short n;
+    unsigned int difference;
     std::string class_code,name,uc_code,antiga_turma;
 
 
