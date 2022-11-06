@@ -50,12 +50,15 @@ public:
     void setUC(std::string s);
     /// Gets students current uc
     std::string getUC();
+    ///Auxiliary
     bool operator<(Student student) const{
         return this->getCode() < student.getCode();
     }
+    ///Auxiliary
     bool operator>(Student student) const{
         return getCode() > student.getCode();
     }
+    ///Auxiliary
     bool operator==(Student student) const{
         return getCode() == student.getCode();
     }

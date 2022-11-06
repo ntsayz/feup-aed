@@ -31,9 +31,13 @@ private:
     static std::vector<int> r;
 public:
     Request(int n);
+    ///Remove student
     static void removeStudent(std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes);
+    ///Add student
     static void add(std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes);
+    /// Change student from one UC to another
     static void change(std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes);
+    /// Change multipule students
     static void changeMultiple(std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes);
     int get_n();
     std::vector<int> getUnsuccessufull();

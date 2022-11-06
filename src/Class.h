@@ -35,13 +35,13 @@ public:
     [[nodiscard]] int getClassSize() const;
     /// Gives a list of all students in a class
     void showStudents()const;
-    ///
+    /// Gets year of class
     int getClassYear() const;
-    /// Class comparator
+    /// Auxiliary
     bool operator<(const Class& aClass) const{
         return get_uid() < aClass.get_uid();
     }
-    /// Class comparator
+    /// Auxiliary
     bool operator==(const Class& aClass) const{
         return get_uid() == aClass.get_uid();
     }

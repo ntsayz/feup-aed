@@ -7,8 +7,8 @@
 using namespace std;
 
 short Menu::Main() {
-    Utility::header("LEIC'S MANAGEMENT SYSTEM");
-    Utility::body("Choose one of the following options:",{ "1. Listings", "2. Requests", "3. TODO"});
+    Utility::header("LEIC'S SCHEDULE MANAGEMENT SYSTEM");
+    Utility::body("Choose one of the following options:",{ "1. Listings", "2. Requests"});
     std::cout << "|" << std::setfill('-') <<std::setw(59) << "|\n"; // --
     std::cout << "|" << std::setfill(' ')<< std::setw(32); std::cout << "9.Close" << std::setw(27) << "|\n";
     std::cout << "|" << std::setfill('-') <<std::setw(59) << "|\n";
@@ -16,7 +16,7 @@ short Menu::Main() {
     short choice;
     std::cout << "-->" << std::flush;
     std::cin >> choice;
-    choice = Utility::getInput(choice, (short)1, (short )3);
+    choice = Utility::getInput(choice, (short)1, (short )2);
     return choice;
 }
 
@@ -31,6 +31,7 @@ short Menu::Listings() {
     << std::setw(33) << "- Year\n"
                 << std::setw(31) << "3. UCs\n"
               << std::setw(37) << "4. Schedules\n"
+            << std::setw(37) << "- Students\n"
     << std::setw(36) << "- Classes\n"
     << std::setw(31) << "- UC\n";
     Utility::footer();
@@ -429,6 +430,53 @@ void Menu::schedulesListings(std::map<Uc,std::map<Class,std::vector<Slot>>> sche
                 }
             }
                 break;
+            case 3:{
+
+                bool local = true;
+                while(local){
+                    Utility::clear_screen();
+                    Utility::header("UC SCHEDULES");
+                    Manager m;
+                    std::string uccode;
+                    //m.getYearClass(year,classnum);
+                    m.getUC(uccode);
+                    if(uccode.size() > 1){
+                        vector<Uc> ucs;
+                        map<Uc,vector<Slot>> ucslots;
+                        std::string s = "";
+                        for(auto aclass: classes){
+                            ucs = classes_uc[aclass];
+                            for(auto uc : ucs){
+                                if(uc.get_uc_Code() == uccode){
+                                    for(auto slot: schedules[uc][aclass]){
+                                        ucslots[uc].push_back(slot);
+                                    }
+                                }
+
+                            }
+
+                        }
+                        s+= uccode;
+                        s += " SCHEDULE";
+                        // show class schedules
+                        Utility::schedule(s,ucslots);
+                        int i;
+                        std::cin >> i;
+                        if(i == 0){local = false;localSession = false;
+                            continue;}
+                    }else{
+                        //Utility::header("looks like something went wrong..");
+                        Utility::footer();
+                        int i;
+                        std::cin >> i;
+                        if(i == 0){local = false;localSession = false;}
+                        continue;
+
+                    }
+                    break;
+                }
+
+            }
             default:
                 localSession = false;
         }

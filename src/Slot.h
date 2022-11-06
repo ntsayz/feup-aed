@@ -17,29 +17,33 @@ public:
     /// Constructor
     Slot(std::string weekdaystr,float startHour,float duration,std::string type);
     void loadClassesData();
-    ///really?
-
+    /// Gets weekday
     std::string getWeekday();
+    /// Gets duration of class
     float getDuration();
+    /// Gets type of class
     std::string getSlotType();
+    /// Gets start hour of class
     float getStartHour();
+    ///Auxiliary
     bool operator<(const Slot& slot) const{
         return this->startHour < slot.startHour;
     }
+    ///Auxiliary
     bool operator>(const Slot& slot) const{
         return this->startHour > slot.startHour;
     }
+    ///Auxiliary
     bool operator==(const Slot& slot) const{
         return this->weekday == slot.weekday && this->startHour == slot.startHour ;
     }
-
-
+    /// Gets end hour of class
     float getEndHour();
-
+    /// Gets weekday as number
     unsigned short getNum();
-
+    /// Auxiliary
     void setUC(const std::string& basicString);
-
+    /// Auxiliary
     std::string getUC();
 };
 

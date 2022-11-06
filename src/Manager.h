@@ -31,12 +31,8 @@ private:
 
     std::vector<std::string> files;
     std::set<Student> students;
-    //std::vector<std::reference_wrapper<Student>> students1 ;
     std::set<Class> classes;
-    ///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    /// (Student(key): (UC(key), vector<Class>(value))(value) )
     std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes;
-    ///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     std::map<Uc,std::map<Class,std::vector<Slot>>> schedules;
     std::map<Class,std::vector<Uc>> classes_uc;
     std::map<Uc,std::vector<Class>> uc_classes;
@@ -67,11 +63,11 @@ public:
     Manager();
     /// Starts the Application
     void startApplication();
-
-    void thisFunctionIsForTestingPurposes();
-
+    /// to avoid code repetition, gets year and class
     void getYearClass(int &year, int &classnum);
 
+    void getUC(std::string &uccode);
+    void thisFunctionIsForTestingPurposes();
     void testing();
 };
 

@@ -22,8 +22,6 @@ void Manager::startApplication(){
             case 2:
                 Requests();
                 break;
-            case 3:
-                break;
             case 9:
                 globalSession = false;
                 break;
@@ -186,7 +184,7 @@ void Manager::schedulesListings() {
 
         Utility::clear_screen();
         Utility::header("SCHEDULES");
-        Utility::body("Choose a schedule from a particular:",{"1. Student","2. Class","3. Curricular Unit"});
+        Utility::body("Choose a schedule from a particular:",{"1. Student","2. Class","3. Curricular Unit (very rough but it works)"});
         Utility::footer();
         int choice;
         std::cin >> choice;
@@ -212,7 +210,7 @@ void Manager::getYearClass(int& year, int& classnum){
         if(year >= 1 && year <= 3){
             while(localsession){
                 Utility::clear_screen();
-                std::cout <<  std::setw(30) << "From what class?\n" << std::setfill(' ') << std::setw(60) << "0 to Exit\n";
+                std::cout << std::setfill(' ') <<   std::setw(30) << "From what class?\n" << std::setfill(' ') << std::setw(60) << "0 to Exit\n";
                 int i =1;
                 for(Class turma: classes){
                     if(turma.getClassYear() == year){
@@ -233,6 +231,35 @@ void Manager::getYearClass(int& year, int& classnum){
         }else if(year == 0) localsession = false;
     }
 }
+void Manager::getUC(std::string &uccode){
+
+    bool localsession = true;
+    while(localsession){
+        Utility::clear_screen();
+        int i = 1;
+        std::cout << std::setfill(' ') <<   std::setw(30) << "From what UC?\n" << std::setfill(' ') << std::setw(60) << "\n";
+        for(auto uc: uc_classes){
+            std::cout << i << ". " << uc.first.get_uc_Code() << "\n";
+            i++;
+        }
+        Utility::footer();
+        int j;
+        std::cout << "-->" << std::flush;
+        std::cin >> j;
+        j = Utility::getInput(j,0,i);
+        if(j >=1 && j <= i && j != 0){
+            i = 1;
+            for(auto uc: uc_classes){
+                if(j == i){
+                    uccode = uc.first.get_uc_Code();
+                }i++;
+            }
+            localsession = false;
+        }
+
+    }
+}
+
 
 void Manager::loadDatafromFiles()
 {
