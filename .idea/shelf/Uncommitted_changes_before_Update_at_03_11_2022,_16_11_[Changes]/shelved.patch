@@ -1,0 +1,2301 @@
+Index: src/Manager.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//\n// Created by ntsayz on 10/8/22.\n//\n\n\n#include <functional>\n#include \"Manager.h\"\n\nManager::Manager() {\n    globalSession = true;\n    loadDatafromFiles();\n}\n\nvoid Manager::startApplication(){\n    while(globalSession) {\n        Utility::clear_screen();\n        short choice = Menu::Main();\n        switch (choice) {\n            case 1:\n                Listings();\n                break;\n            case 2:\n                testing();\n                break;\n            case 3:\n                break;\n            case 9:\n                globalSession = false;\n                break;\n            default:\n                std::cerr << \"That doesn't seem like a valid option..\\n\";\n                break;\n        }\n    }\n\n}\n\nvoid Manager::Listings() {\n    bool localSession = true;\n    while(localSession){\n        Utility::clear_screen();\n        short choice = Menu::Listings();\n        switch (choice){\n            case 1:\n                studentsListings();\n                break;\n            case 2:\n                classesListings();\n                break;\n            case 3:\n                UCListings();\n                break;\n            case 4:\n                schedulesListings();\n                break;\n            case 0:\n                localSession = false;\n                break;\n            default:\n                break;\n        }\n\n    }\n\n}\n\nvoid Manager::studentsListings() {\n    bool localSession = true;\n    while(localSession){\n        short choice = Menu::studentsListings();\n        switch (choice) {\n            case 1:{\n                bool s = true;\n                while(s){\n                    s = Menu::studentsListings_Class(students, classes, s);\n                }\n                break;\n            }\n            case 2:\n\n                break;\n            case 0:\n                localSession = false;\n                break;\n            default:\n                break;\n        }\n    }\n}\n//TODO: MENUS HERE\nvoid Manager::classesListings() {\n    Menu::classesListings();\n    std::vector<std::string> l1;\n    std::vector<std::string> l2;\n    std::vector<std::string> l3;\n    for(auto aClass: classes){\n        if(aClass.getClassYear() ==1){\n            l1.push_back(aClass.getClassCode());\n        }else if(aClass.getClassYear() ==2){\n            l2.push_back(aClass.getClassCode());\n        }else if(aClass.getClassYear() ==3){\n            l3.push_back(aClass.getClassCode());\n        }\n    }\n    for(int i = 0; i <  l3.size(); i++){\n        std::cout << \"|\"<<std::setfill(' ')<<  std::setw(13) << l1[i] << std::setw(7) << \"|\"\n                  << std::setw(13)<< l2[i];\n        std::cout << std::setw(7) << \"|\" << std::setw(12) << l3[i] << std::setw(7) <<\"|\\n\";\n    }\n    Utility::footer();\n    int i;\n    std::cin  >> i;\n    l1.clear();\n    l2.clear();\n    l3.clear();\n}\n\nvoid Manager::UCListings() {\n    bool localSession = true;\n    std::vector<std::string> l1;\n    std::vector<std::string> l2;\n    std::vector<std::string> l3;\n    while(localSession){\n        Utility::header(\"Curricular Units\");\n        std::cout << \"|\" << std::setfill('-') <<std::setw(177) << \"|\\n\";\n\n        // all classes in each curricular unit\n        for(auto& [uc,v] : uc_classes){\n            std::cout  << \"|\"<< uc.get_uc_Code() << \"| ==> \";\n            for( auto aclass : v){\n                std::cout <<  \" | \" << aclass.getClassCode() << \"\";\n            }\n            std::cout << \" |\\n\";\n            std::cout << \"|\" << std::setfill('-') <<std::setw(177) << \"|\\n\";\n        }\n\n        Utility::footer();\n        int i;\n        std::cin >> i;\n        if(i == 0)localSession = false;\n        l1.clear();\n        l2.clear();\n        l3.clear();\n    }\n\n}\n\nvoid Manager::schedulesListings() {\n        bool localSession = true;\n        while(localSession){\n            Utility::clear_screen();\n            Utility::header(\"SCHEDULES\");\n            Utility::body(\"\",{\"\"});\n            Utility::footer();\n            int i;\n            std::cin >> i;\n            if(i ==0) localSession = false;\n        }\n}\n\nvoid Manager::loadDatafromFiles()\n{\n    //Gets data from students_classes.csv\n    std::vector<std::string> vec;\n    const char *fname = Utility::getStudentClassesPath();\n    FILE *file = fopen(fname, \"r\");\n    if(!file)\n    {\n        std::cerr << (\"Could not open the file\\n\");\n    }\n    char content[1024];\n    int c = 0 ;\n    int c1 = 0;\n    while(fgets(content, 1024, file))\n    {\n        c++;\n        char *v = strtok(content, \",\");\n\n        while(v)\n        {\n            c1++;\n            std::string s = v;\n            if(c>1 && s.size() >1){\n                vec.push_back((std::string)s);\n            }\n            v = strtok(NULL, \",\");\n        }\n\n        if(c>1){\n            int code;\n            Uc uc(vec[2]);\n            Class aClass(vec[3]);\n            std::stringstream sss;\n            sss << vec[0];\n            sss >> code;\n            Student student(code,vec[1],uc,aClass);\n            classes.insert(aClass);\n            curricularUnits.insert(uc);\n            students.insert(student);\n\n            if(students_uc_classes.find(student) == students_uc_classes.end()){\n                std::map<Uc, std::vector<Class>> ucClassMap;\n                std::vector<Class> classList;\n                classList.push_back(aClass);\n                ucClassMap[uc] = classList;\n                students_uc_classes[student] = ucClassMap ;\n                std::vector<Uc> l;\n                l.push_back(uc);\n                classes_uc[aClass] = l;\n            }else{\n                students_uc_classes[student][uc].push_back(aClass);\n                classes_uc[aClass].push_back(uc);\n            }\n            if(uc_classes.find(uc) == uc_classes.end()){\n                std::vector<Class> classList;\n                classList.push_back(aClass);\n                uc_classes[uc] = classList;\n            }else{\n                uc_classes[uc].push_back(aClass);\n            }\n\n        }\n        vec.clear();\n    }\n    fclose(file);\n\n    vec.clear();\n    //Gets data from classes_per_uc.csv (The other file didn't have all the info needed)\n    const char *fname1 = Utility::getClassesUcPath();\n    FILE *file1 = fopen(fname1, \"r\");\n    c = 0;\n    if(!file1)\n    {\n        std::cerr << (\"Could not open the file\\n\");\n    }\n    char content1[1024];\n    while(fgets(content1, 1024, file1))\n    {\n        c++;\n        char *v = strtok(content1, \",\");\n        while(v)\n        {\n            std::string s = v;\n            if(c>1 && s.size() >1){\n                vec.push_back((std::string)s);\n            }\n            v = strtok(NULL, \",\");\n        }\n\n        if(c>1) {\n            Uc uc(vec[0]);\n            Class aClass(vec[1]);\n            classes.insert(aClass);\n            curricularUnits.insert(uc);\n            if(uc_classes.find(uc) == uc_classes.end()){\n                std::vector<Class> classList;\n                classList.push_back(aClass);\n                uc_classes[uc] = classList;\n            }else{\n                uc_classes[uc].push_back(aClass);\n            }\n        }\n        vec.clear();\n    }\n    fclose(file1);\n    //normalization\n\n\n    const char *fname2 = Utility::getClassesPath();\n    FILE *file2 = fopen(fname2, \"r\");\n    c = 0;\n    if(!file1)\n    {\n        std::cerr << (\"Could not open the file\\n\");\n    }\n    char content2[1024];\n    while(fgets(content2, 1024, file2))\n    {\n        c++;\n        char *v = strtok(content2, \",\");\n        while(v)\n        {\n            std::string s = v;\n            if(c>1 && s.size() >1){\n                vec.push_back((std::string)s);\n            }\n            v = strtok(NULL, \",\");\n        }\n\n        if(c>1) {\n            float starthour = 0 , duration = 0;\n            int starthourint, durationint;\n            std::cout  << vec[2] << \",\" << vec[3] << \",\" << vec[4] << \",\" << vec[5] << \"\\n\";\n            if(vec[4].size() == 1){\n\n                std::stringstream sss;\n                sss << vec[4];\n                sss >> durationint;\n                duration = (float) durationint;\n            }else if(vec[4].size() > 1 ){\n                std::stringstream sss;\n                sss << vec[4];\n                sss >> duration;\n                //duration = duration;\n            }\n            if(vec[3].size() == 1){\n                std::stringstream ss;\n                ss << vec[3];\n                ss >> starthourint;\n                starthour = (float) starthourint;\n            }else if(vec[3].size() > 1){\n                std::stringstream ss;\n                ss << vec[3];\n                ss >> starthour;\n            }\n\n            Slot slot(vec[2],starthour,duration,vec[5]);\n            Uc uc(vec[1]);\n            Class aClass(vec[0]);\n\n            if(schedules.find(uc) == schedules.end()){\n                std::map<Class, std::vector<Slot>> classSlotMap;\n                std::vector<Slot> SlotList;\n                SlotList.push_back(slot);\n                classSlotMap[aClass] = SlotList;\n                schedules[uc] = classSlotMap ;\n            }else{\n                schedules[uc][aClass].push_back(slot);\n            }\n\n        }\n        vec.clear();\n    }\n    fclose(file1);\n\n    for(auto& [uc,v] : uc_classes){\n        std::set<Class> s( v.begin(), v.end() );\n        v.assign( s.begin(), s.end() );\n    }\n    /*\n    for(auto& [uc, classMap] : schedules){\n        for(auto [aclass,vec1]: classMap){\n            std::set<Slot> s( vec1.begin(), vec1.end() );\n            vec1.assign( s.begin(), s.end() );\n\n        }\n\n    }*/\n\n}\n\n\nvoid Manager::testing(){\n    for(auto stud: students){\n        for(auto& [k,v] : students_uc_classes[stud] ) {\n            for(auto& el: v){\n                stud.addClassUC(const_cast<Uc &>(k), el);\n                stud.showEnrolledClasses();\n            }\n        }\n    }\n    for(auto& i : students){\n        i.showEnrolledClasses();\n    }\n    /*int i;\n    std::cout << \"\\nClasses\\n\";\n    for(Class aClass : classes){\n        //std::cout << aClass.getClassSize() << \"\\n\";\n        //aClass.showStudents();\n        //std::cout << \"\\n\";\n    }\n    std::cout << \"\\nUC\\n\\n\";\n    for(Uc uc: curricularUnits){\n        //std::cout << uc.get_uc_Code()<< \"\\n\";\n    }\n    std::cout << \"\\nStudents\\n\\n\";\n    for(Student student: students){\n        //student.showEnrolledClasses();\n        //std::cout << \"\\n\";\n    }*/\n    //for (auto it = ucclasses.begin();it != ucclasses.end();++it) std::cout << \"  [\" << (*it).first.getCode() << \", \" << (*it).second.getClassCode() << \"]\";\n\n    /*std::cout << \"here\";\n    for(auto it: students_uc_classes){\n        std::cout  << \"(\"<< it.first.getCode() << \") ==> [\";\n        for(auto [uc,classList]: it.second){\n            for(auto aClass : classList){\n                std::cout <<  \"[\"<< uc.get_uc_Code() << \", \" << aClass.getClassCode() << \"],\";\n            }\n        }\n        std::cout << \"]\\n\";\n    }*/\n    // UC CLASSES\n    for(auto& [uc,v] : uc_classes){\n        std::cout  << \"(\"<< uc.get_uc_Code() << \") ==> [\";\n        for( auto aclass : v){\n            std::cout <<  \"[\" << aclass.getClassCode() << \"],\";\n        }\n        std::cout << \"\\n\";\n    }\n    //std::cout << \"]\\n\";\n\n\n    // schedules\n    for(auto [uc, classMap] : schedules){\n        std::cout << std::setfill(' ') << std::setw(20)  << \"<== (\"<< uc.get_uc_Code() << \") ==>\\n\\n[\";\n        for(auto [aclass,vec]: classMap){\n            for(auto slot: vec){\n                std::cout << \"(\" << aclass.getClassCode() << \") - [\" << slot.getWeekday() << \",\" << slot.getDuration() << \",\" << slot.getSlotType() << \"],\";\n            }\n            std::cout << \"\\n\";\n        }\n        std::cout << \"]\\n\";\n    }\n\n    int i;\n    std::cin >> i;\n}\n\n\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Manager.cpp b/src/Manager.cpp
+--- a/src/Manager.cpp	(revision 2af90323db1fa875876cba6c4a53fd8c1e3e77f4)
++++ b/src/Manager.cpp	(date 1667484784743)
+@@ -20,7 +20,7 @@
+                 Listings();
+                 break;
+             case 2:
+-                testing();
++                Requests();
+                 break;
+             case 3:
+                 break;
+@@ -59,6 +59,30 @@
+             default:
+                 break;
+         }
++
++    }
++
++}
++void Manager::Requests(){
++    bool localSession = true;
++    while(localSession){
++        Utility::clear_screen();
++        short choice = Menu::Requests();
++        switch (choice){
++            case 1:
++                Request::removeStudent(UC_students);
++                break;
++            case 2:
++                Request::add(schedules,UC_students);
++                break;
++            case 3:
++                break;
++            case 0:
++                localSession = false;
++                break;
++            default:
++                break;
++        }
+ 
+     }
+ 
+Index: src/Manager.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//\n// Created by ntsayz on 10/8/22.\n//\n\n#ifndef FEUP_AED_MANAGER_H\n#define FEUP_AED_MANAGER_H\n#include <string>\n#include <limits>\n#include <vector>\n#include <iostream>\n#include <sstream>\n#include <fstream>\n#include <iomanip>\n#include <cstdlib>\n#include <cstdio>\n#include <cstring>\n#include <set>\n#include <vector>\n#include \"Utility.h\"\n#include \"Student.h\"\n#include \"Class.h\"\n#include \"Menu.h\"\n#include \"Uc.h\"\n\n\nclass Manager {\nprivate:\n    std::vector<std::string> files;\n    std::set<Student> students;\n    //std::vector<std::reference_wrapper<Student>> students1 ;\n    std::set<Class> classes;\n    ///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n    /// (Student(key): (UC(key), vector<Class>(value))(value) )\n    std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes;\n    ///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n    std::map<Uc,std::map<Class,std::vector<Slot>>> schedules;\n    std::map<Class,std::vector<Uc>> classes_uc;\n    std::map<Uc,std::vector<Class>> uc_classes;\n\n    std::set<Uc> curricularUnits;\n    bool globalSession;\n    /// Listings\n    void Listings();\n    /// Student listings\n    void studentsListings();\n    /// Classes Listings\n    void classesListings();\n    /// UC's listings\n    void UCListings();\n    /// Schedules listings\n    static void schedulesListings();\n    /// Loads students,classes & curricular units data structures from file data\n    void loadDatafromFiles();\n    /// Loads each object from each class with its particular data (eg:. Inserting students in a particular class)\n    void load();\npublic:\n    /// Constructor\n    Manager();\n    /// Starts the Application\n    void startApplication();\n\n\n    void testing();\n\n    void enrollStudents();\n};\n\n\n#endif //FEUP_AED_MANAGER_H\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Manager.h b/src/Manager.h
+--- a/src/Manager.h	(revision 2af90323db1fa875876cba6c4a53fd8c1e3e77f4)
++++ b/src/Manager.h	(date 1667491491676)
+@@ -19,12 +19,14 @@
+ #include "Utility.h"
+ #include "Student.h"
+ #include "Class.h"
++#include "Request.h"
+ #include "Menu.h"
+ #include "Uc.h"
+ 
+ 
+ class Manager {
+ private:
++
+     std::vector<std::string> files;
+     std::set<Student> students;
+     //std::vector<std::reference_wrapper<Student>> students1 ;
+@@ -36,11 +38,12 @@
+     std::map<Uc,std::map<Class,std::vector<Slot>>> schedules;
+     std::map<Class,std::vector<Uc>> classes_uc;
+     std::map<Uc,std::vector<Class>> uc_classes;
+-
+     std::set<Uc> curricularUnits;
+     bool globalSession;
+     /// Listings
+     void Listings();
++    /// Request
++    void Requests();
+     /// Student listings
+     void studentsListings();
+     /// Classes Listings
+Index: src/Request.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//\n// Created by ntsayz on 10/20/22.\n//\n\n#include \"Request.h\"\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Request.cpp b/src/Request.cpp
+--- a/src/Request.cpp	(revision 2af90323db1fa875876cba6c4a53fd8c1e3e77f4)
++++ b/src/Request.cpp	(date 1667491915579)
+@@ -3,3 +3,39 @@
+ //
+ 
+ #include "Request.h"
++
++
++void Request::removeStudent(std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes) {
++    int student_code;
++    std::string class_code,name,uc_code;
++
++    std::cout << "Enter Studente's code:" << "\n";
++    std::cin >> student_code;
++    std::cout << "Enter Student's name: "<< "\n";
++    std::cin >> name;
++    Student s(student_code,name);
++
++
++}
++
++void Request::add(std::map<Uc,std::map<Class,std::vector<Slot>>> schedules,std::map<Uc,std::vector<Student>> UC_students) {
++    int student_code;
++    std::string class_code,name,uc_code;
++
++    std::cout << "Enter Student's code: " << "\n";
++    std::cin >> student_code;
++    std::cout << "Student's name" << "\n";
++    std::cin >> name;
++    std::cout << "Enter Uc's code: " << "\n";
++    std::cin >> uc_code;
++    std::cout << "Enter the class code: " << "\n";
++    std::cin >> class_code;
++    Uc uc(uc_code,class_code);
++    Student s(student_code,name);
++    Class c(class_code);
++    Class::addStudent(uc,s);
++
++
++    auto i = schedules.find(uc);
++
++}
+\ No newline at end of file
+Index: src/Class.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//\n// Created by ntsayz on 10/20/22.\n//\n\n\n#include \"Class.h\"\n#include \"Student.h\"\n\nClass::Class() {}\nClass::Class(std::string classCode) {\n    this->class_Code = classCode.substr(0,7);\n    this->uid = this->getClassYear()*100;\n    this->uid += this->getClassNr();\n}\n\nstd::string Class::getClassCode() const {\n    return this->class_Code;\n}\nint Class::get_uid() const {\n    return this->uid;\n}\n\n\nvoid Class::addStudent(Uc& uc,const Student& student){\n    if(UC_students.find(uc) == UC_students.end()){\n        std::vector<Student> l;\n        l.push_back(student);\n        this->UC_students[uc] = l;\n    }else{\n        this->UC_students[uc].push_back(student);\n    }\n}\n\nint Class::getClassNr() const {\n    int i;\n    std::stringstream ss;\n    ss << getClassCode().substr(5,6);\n    ss >> i;\n    return i;\n}\n\nvoid Class::showStudents() const {\n    std::cout << getClassCode() << \"\";\n    for(auto const& [key,val]: UC_students){\n        //std::cout << key.get_uc_Code() << \" - \";\n        for(Student student : val){\n            std::cout << student.getName() << \", \";\n        }\n        std::cout << \"\\n\";\n    }\n    std::cout << this->UC_students.size() << \" students\";\n}\n\nint Class::getClassSize() const {\n    return this->UC_students.size();\n}\n\nint Class::getClassYear() const {\n    int i;\n    std::stringstream ss;\n    ss << getClassCode().substr(0,1);\n    ss >> i;\n    return i;\n}\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Class.cpp b/src/Class.cpp
+--- a/src/Class.cpp	(revision 2af90323db1fa875876cba6c4a53fd8c1e3e77f4)
++++ b/src/Class.cpp	(date 1667479029452)
+@@ -31,6 +31,8 @@
+     }
+ }
+ 
++
++
+ int Class::getClassNr() const {
+     int i;
+     std::stringstream ss;
+Index: src/Request.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//\n// Created by ntsayz on 10/20/22.\n//\n\n#ifndef FEUP_AED_REQUEST_H\n#define FEUP_AED_REQUEST_H\n\n\nclass Request {\n\n};\n\n\n#endif //FEUP_AED_REQUEST_H\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Request.h b/src/Request.h
+--- a/src/Request.h	(revision 2af90323db1fa875876cba6c4a53fd8c1e3e77f4)
++++ b/src/Request.h	(date 1667491915583)
+@@ -4,9 +4,29 @@
+ 
+ #ifndef FEUP_AED_REQUEST_H
+ #define FEUP_AED_REQUEST_H
+-
++#include <string>
++#include <limits>
++#include <vector>
++#include <iostream>
++#include <sstream>
++#include <fstream>
++#include <iomanip>
++#include <cstdlib>
++#include <cstdio>
++#include <cstring>
++#include <set>
++#include <vector>
++#include "Utility.h"
++#include "Student.h"
++#include "Class.h"
++#include "Request.h"
++#include "Menu.h"
++#include "Uc.h"
+ 
+ class Request {
++public:
++    static void removeStudent(std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes);
++    static void add(std::map<Uc,std::map<Class,std::vector<Slot>>> schedules,std::map<Uc,std::vector<Student>> UC_students);
+ 
+ };
+ 
+Index: src/Class.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//\n// Created by ntsayz on 10/20/22.\n//\n\n#ifndef FEUP_AED_CLASS_H\n#define FEUP_AED_CLASS_H\n#include <string>\n#include <list>\n#include <set>\n#include <map>\n#include <utility>\n#include <sstream>\n#include \"Slot.h\"\n#include \"Uc.h\"\n//#include \"Student.h\"\nstruct Student;\nclass Class {\nprivate:\n\n    int uid ;\n    std::string class_Code;\n    std::list<Slot> schedule;\n    std::map<Uc,std::vector<Student>> UC_students;\n    std::set<Student> students;\npublic:\n    Class();\n    explicit Class(std::string classCode);\n    /// Gets class code (String)\n    [[nodiscard]] std::string getClassCode() const;\n    /// Gets Number of class (to compare)\n    [[nodiscard]] int getClassNr() const;\n    /// Adds student to the class's list\n    void addStudent(Uc& uc,const Student& student);\n    /// Gets number of students in a class\n    [[nodiscard]] int getClassSize() const;\n    /// Gives a list of all students in a class\n    void showStudents()const;\n    ///\n    int getClassYear() const;\n    /// Class comparator\n    bool operator<(const Class& aClass) const{\n        return get_uid() < aClass.get_uid();\n    }\n    /// Class comparator\n    bool operator==(const Class& aClass) const{\n        return get_uid() == aClass.get_uid();\n    }\n\n    int get_uid() const;\n};\n\n\n#endif //FEUP_AED_CLASS_H\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Class.h b/src/Class.h
+--- a/src/Class.h	(revision 2af90323db1fa875876cba6c4a53fd8c1e3e77f4)
++++ b/src/Class.h	(date 1667483619164)
+@@ -30,7 +30,7 @@
+     /// Gets Number of class (to compare)
+     [[nodiscard]] int getClassNr() const;
+     /// Adds student to the class's list
+-    void addStudent(Uc& uc,const Student& student);
++    static void addStudent(Uc& uc, const Student& student);
+     /// Gets number of students in a class
+     [[nodiscard]] int getClassSize() const;
+     /// Gives a list of all students in a class
+Index: src/Menu.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//\n// Created by ntsayz on 10/21/22.\n//\n\n#include \"Menu.h\"\nusing namespace std;\n\nshort Menu::Main() {\n    Utility::header(\"LEIC'S MANAGEMENT SYSTEM\");\n    Utility::body(\"Choose one of the following options:\",{ \"1. Listings\", \"2. Requests\", \"3. TODO\"});\n    std::cout << \"|\" << std::setfill('-') <<std::setw(59) << \"|\\n\"; // --\n    std::cout << \"|\" << std::setfill(' ')<< std::setw(32); std::cout << \"9.Close\" << std::setw(27) << \"|\\n\";\n    std::cout << \"|\" << std::setfill('-') <<std::setw(59) << \"|\\n\";\n\n    short choice;\n    std::cout << \"-->\" << std::flush;\n    std::cin >> choice;\n    choice = Utility::getInput(choice, (short)1, (short )3);\n    return choice;\n}\n\nshort Menu::Listings() {\n    Utility::header(\"LISTINGS\");\n    std::cout << std::setfill(' ') << std::setw(49) << \"Choose one of the following options:\\n\\n\";\n    std::cout <<  std::setw(36) << \"1. Students\\n\"\n    <<  std::setw(36) << \"- Classes\\n\"\n    <<  std::setw(33) << \"- Year\\n\"\n     <<  std::setw(31) << \"- UC\\n\"\n                << std::setw(35) << \"2. Classes\\n\"\n    << std::setw(33) << \"- Year\\n\"\n                << std::setw(31) << \"3. UCs\\n\"\n              << std::setw(37) << \"4. Schedules\\n\"\n    << std::setw(36) << \"- Classes\\n\"\n    << std::setw(31) << \"- UC\\n\";\n    Utility::footer();\n\n    short choice;\n    std::cout << \"-->\" << std::flush;\n    std::cin >> choice;\n    choice = Utility::getInput(choice, (short)0, (short )4);\n    return choice;\n\n}\n\n//only to show\nshort Menu::studentsListings() {\n    Utility::clear_screen();\n    Utility::header(\"STUDENTS\");\n    std::cout << std::setfill(' ') <<std::setw(41) << \"show the students in a:\" << std::setw(18) << \"\\n\";\n    std::cout << std::setfill(' ')<<  std::setw(33) << \"1. Class\\n\"\n              << std::setw(32) << \"2. Year\\n\" <<\n              std::setw(43) << \"3. Curricular Unit\\n\";\n    Utility::footer();\n    short choice;\n    std::cout << \"-->\" << std::flush;\n    std::cin >> choice;\n    choice = Utility::getInput(choice, (short)0, (short )3);\n    return choice;\n}\n\n\n\nbool Menu::studentsListings_Class(std::set<Student> students,std::set<Class> classes, bool session) {\n    Utility::clear_screen();\n    Utility::path(\"listings/students/classes\");\n    std::cout << std::setfill(' ') << std::setw(37) << \"From what year?\\n\\n\";\n    std::cout <<  std::setw(35) << \"1. 1st Year\\n\"\n              << std::setw(35) << \"2. 2nd Year\\n\"\n              << std::setw(35) << \"3. 3rd Year\\n\";\n    Utility::footer();\n    int year;\n    std::cout << \"-->\" << std::flush;\n    std::cin >> year;\n    if(year == 0){session = false;}\n    year = Utility::getInput(year, (short)0, (short )3);\n\n\n    if(year >= 1 && year <= 3){\n        while(session){\n            Utility::clear_screen();\n            std::cout <<  std::setw(30) << \"From what class?\\n\" << std::setfill(' ') << std::setw(60) << \"0 to Exit\\n\";\n            int classNumber, i =1;\n            for(Class turma: classes){\n                if(turma.getClassYear() == year){\n                    std::cout << i << \". \"<<turma.getClassCode() << \"\\n\";\n                    i++;\n                }\n            }\n            Utility::footer();\n            i= 0;\n            std::cout << \"-->\" << std::flush;\n            std::cin >> classNumber;\n            classNumber = Utility::getInput((short)classNumber, (short)0, (short )classes.size() / 3 + 1);\n            if(classNumber > 0 && classNumber <= 16){\n                for(Class aClass: classes){\n                    if(aClass.getClassYear() == year && aClass.getClassNr() == classNumber){\n                    aClass.showStudents();\n                    std::cout << \"\\n\\n--------\\n\\n\";}\n                }\n                std::cin >> i;\n                session = false;\n            }\n            if(classNumber == 0) session = false;\n            Utility::clear_screen();\n        }\n    }\n    return session;\n}\n\n\nvoid Menu::classesListings() {\n    //TODO: ORDENACOES PARCIAIS\n    bool localSession = true;\n    while(localSession){\n        Utility::clear_screen();\n        Utility::header(\"CLASSES\");\n        std::cout <<\"|\" << std::setfill(' ')<<  std::setw(13) << \"1st Year\" << std::setw(7) << \"|\" << std::setw(13)<< \"2nd Year\"\n                  << setw(7) << \"|\" << setw(12) << \"3rd Year\" << setw(7) <<\"|\\n\";\n        std::cout << \"|\" << std::setfill('-') <<std::setw(59) << \"|\\n\";\n        // blueprint para schedule\n        localSession =false;\n    }\n\n}\n\nvoid Menu::UCListings() {\n\n}\n\nvoid Menu::schedulesListings() {\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Menu.cpp b/src/Menu.cpp
+--- a/src/Menu.cpp	(revision 2af90323db1fa875876cba6c4a53fd8c1e3e77f4)
++++ b/src/Menu.cpp	(date 1667479029430)
+@@ -42,6 +42,23 @@
+ 
+ }
+ 
++short Menu::Requests(){
++    Utility::header("Requests");
++    std::cout << std::setfill(' ') << std::setw(49) << "Choose one of the following options:\n\n";
++    std::cout <<  std::setw(36) << "1. Remove student from class\n"
++              << std::setw(35) << "2. Add student to class\n"
++              << std::setw(31) << "3. Change a students class\n"
++              << std::setw(37) << "4. Change a students multiple classes\n";
++
++    Utility::footer();
++    short choice;
++    std::cout << "-->" << std::flush;
++    std::cin >> choice;
++    choice = Utility::getInput(choice, (short)0, (short )4);
++    return choice;
++
++}
++
+ //only to show
+ short Menu::studentsListings() {
+     Utility::clear_screen();
+@@ -58,8 +75,6 @@
+     return choice;
+ }
+ 
+-
+-
+ bool Menu::studentsListings_Class(std::set<Student> students,std::set<Class> classes, bool session) {
+     Utility::clear_screen();
+     Utility::path("listings/students/classes");
+@@ -107,7 +122,6 @@
+     return session;
+ }
+ 
+-
+ void Menu::classesListings() {
+     //TODO: ORDENACOES PARCIAIS
+     bool localSession = true;
+@@ -123,6 +137,7 @@
+ 
+ }
+ 
++
+ void Menu::UCListings() {
+ 
+ }
+Index: cmake-build-debug/.cmake/api/v1/reply/target-feup_aed-Debug-651a48d08763d83b42c3.json
+===================================================================
+diff --git a/cmake-build-debug/.cmake/api/v1/reply/target-feup_aed-Debug-651a48d08763d83b42c3.json b/cmake-build-debug/.cmake/api/v1/reply/target-feup_aed-Debug-651a48d08763d83b42c3.json
+deleted file mode 100644
+--- a/cmake-build-debug/.cmake/api/v1/reply/target-feup_aed-Debug-651a48d08763d83b42c3.json	(revision 2af90323db1fa875876cba6c4a53fd8c1e3e77f4)
++++ /dev/null	(revision 2af90323db1fa875876cba6c4a53fd8c1e3e77f4)
+@@ -1,220 +0,0 @@
+-{
+-	"artifacts" : 
+-	[
+-		{
+-			"path" : "feup_aed"
+-		}
+-	],
+-	"backtrace" : 1,
+-	"backtraceGraph" : 
+-	{
+-		"commands" : 
+-		[
+-			"add_executable"
+-		],
+-		"files" : 
+-		[
+-			"CMakeLists.txt"
+-		],
+-		"nodes" : 
+-		[
+-			{
+-				"file" : 0
+-			},
+-			{
+-				"command" : 0,
+-				"file" : 0,
+-				"line" : 6,
+-				"parent" : 0
+-			}
+-		]
+-	},
+-	"compileGroups" : 
+-	[
+-		{
+-			"compileCommandFragments" : 
+-			[
+-				{
+-					"fragment" : "-g"
+-				},
+-				{
+-					"fragment" : "-std=gnu++2a"
+-				}
+-			],
+-			"language" : "CXX",
+-			"languageStandard" : 
+-			{
+-				"backtraces" : 
+-				[
+-					1
+-				],
+-				"standard" : "20"
+-			},
+-			"sourceIndexes" : 
+-			[
+-				0,
+-				1,
+-				3,
+-				5,
+-				7,
+-				9,
+-				11,
+-				13,
+-				15
+-			]
+-		}
+-	],
+-	"id" : "feup_aed::@6890427a1f51a3e7e1df",
+-	"link" : 
+-	{
+-		"commandFragments" : 
+-		[
+-			{
+-				"fragment" : "-g",
+-				"role" : "flags"
+-			},
+-			{
+-				"fragment" : "",
+-				"role" : "flags"
+-			}
+-		],
+-		"language" : "CXX"
+-	},
+-	"name" : "feup_aed",
+-	"nameOnDisk" : "feup_aed",
+-	"paths" : 
+-	{
+-		"build" : ".",
+-		"source" : "."
+-	},
+-	"sourceGroups" : 
+-	[
+-		{
+-			"name" : "Source Files",
+-			"sourceIndexes" : 
+-			[
+-				0,
+-				1,
+-				3,
+-				5,
+-				7,
+-				9,
+-				11,
+-				13,
+-				15
+-			]
+-		},
+-		{
+-			"name" : "Header Files",
+-			"sourceIndexes" : 
+-			[
+-				2,
+-				4,
+-				6,
+-				8,
+-				10,
+-				12,
+-				14,
+-				16
+-			]
+-		}
+-	],
+-	"sources" : 
+-	[
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "main.cpp",
+-			"sourceGroupIndex" : 0
+-		},
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "src/Manager.cpp",
+-			"sourceGroupIndex" : 0
+-		},
+-		{
+-			"backtrace" : 1,
+-			"path" : "src/Manager.h",
+-			"sourceGroupIndex" : 1
+-		},
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "src/Uc.cpp",
+-			"sourceGroupIndex" : 0
+-		},
+-		{
+-			"backtrace" : 1,
+-			"path" : "src/Uc.h",
+-			"sourceGroupIndex" : 1
+-		},
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "src/Class.cpp",
+-			"sourceGroupIndex" : 0
+-		},
+-		{
+-			"backtrace" : 1,
+-			"path" : "src/Class.h",
+-			"sourceGroupIndex" : 1
+-		},
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "src/Slot.cpp",
+-			"sourceGroupIndex" : 0
+-		},
+-		{
+-			"backtrace" : 1,
+-			"path" : "src/Slot.h",
+-			"sourceGroupIndex" : 1
+-		},
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "src/Student.cpp",
+-			"sourceGroupIndex" : 0
+-		},
+-		{
+-			"backtrace" : 1,
+-			"path" : "src/Student.h",
+-			"sourceGroupIndex" : 1
+-		},
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "src/Utility.cpp",
+-			"sourceGroupIndex" : 0
+-		},
+-		{
+-			"backtrace" : 1,
+-			"path" : "src/Utility.h",
+-			"sourceGroupIndex" : 1
+-		},
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "src/Request.cpp",
+-			"sourceGroupIndex" : 0
+-		},
+-		{
+-			"backtrace" : 1,
+-			"path" : "src/Request.h",
+-			"sourceGroupIndex" : 1
+-		},
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "src/Menu.cpp",
+-			"sourceGroupIndex" : 0
+-		},
+-		{
+-			"backtrace" : 1,
+-			"path" : "src/Menu.h",
+-			"sourceGroupIndex" : 1
+-		}
+-	],
+-	"type" : "EXECUTABLE"
+-}
+Index: cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-8851c03f4be554322735.json
+===================================================================
+diff --git a/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-8851c03f4be554322735.json b/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-8851c03f4be554322735.json
+deleted file mode 100644
+--- a/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-8851c03f4be554322735.json	(revision 2af90323db1fa875876cba6c4a53fd8c1e3e77f4)
++++ /dev/null	(revision 2af90323db1fa875876cba6c4a53fd8c1e3e77f4)
+@@ -1,151 +0,0 @@
+-{
+-	"inputs" : 
+-	[
+-		{
+-			"path" : "CMakeLists.txt"
+-		},
+-		{
+-			"isGenerated" : true,
+-			"path" : "cmake-build-debug/CMakeFiles/3.23.2/CMakeSystem.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake"
+-		},
+-		{
+-			"isGenerated" : true,
+-			"path" : "cmake-build-debug/CMakeFiles/3.23.2/CMakeCCompiler.cmake"
+-		},
+-		{
+-			"isGenerated" : true,
+-			"path" : "cmake-build-debug/CMakeFiles/3.23.2/CMakeCXXCompiler.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/CMakeGenericSystem.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/Platform/Linux.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/Platform/UnixPaths.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/CMakeFindCodeBlocks.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/CMakeExtraGeneratorDetermineCompilerMacrosAndIncludeDirs.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/ProcessorCount.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/CMakeCInformation.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/Compiler/GNU-C.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/Compiler/GNU.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/Platform/Linux-GNU-C.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/Platform/Linux-GNU.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/CMakeCXXInformation.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/Compiler/GNU-CXX.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/Compiler/GNU.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/Platform/Linux-GNU-CXX.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/Platform/Linux-GNU.cmake"
+-		},
+-		{
+-			"isCMake" : true,
+-			"isExternal" : true,
+-			"path" : "/snap/clion/209/bin/cmake/linux/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake"
+-		}
+-	],
+-	"kind" : "cmakeFiles",
+-	"paths" : 
+-	{
+-		"build" : "/home/ntsayz/Documents/feup-aed/cmake-build-debug",
+-		"source" : "/home/ntsayz/Documents/feup-aed"
+-	},
+-	"version" : 
+-	{
+-		"major" : 1,
+-		"minor" : 0
+-	}
+-}
+Index: cmake-build-debug/CMakeFiles/Doxygen.dir/DependInfo.cmake
+===================================================================
+diff --git a/cmake-build-debug/CMakeFiles/Doxygen.dir/DependInfo.cmake b/cmake-build-debug/CMakeFiles/Doxygen.dir/DependInfo.cmake
+deleted file mode 100644
+--- a/cmake-build-debug/CMakeFiles/Doxygen.dir/DependInfo.cmake	(revision 2af90323db1fa875876cba6c4a53fd8c1e3e77f4)
++++ /dev/null	(revision 2af90323db1fa875876cba6c4a53fd8c1e3e77f4)
+@@ -1,18 +0,0 @@
+-
+-# Consider dependencies only in project.
+-set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
+-
+-# The set of languages for which implicit dependencies are needed:
+-set(CMAKE_DEPENDS_LANGUAGES
+-  )
+-
+-# The set of dependency files which are needed:
+-set(CMAKE_DEPENDS_DEPENDENCY_FILES
+-  )
+-
+-# Targets to which this target links.
+-set(CMAKE_TARGET_LINKED_INFO_FILES
+-  )
+-
+-# Fortran module output directory.
+-set(CMAKE_Fortran_TARGET_MODULE_DIR "")
+Index: cmake-build-debug/CMakeFiles/Doxygen.dir/cmake_clean.cmake
+===================================================================
+diff --git a/cmake-build-debug/CMakeFiles/Doxygen.dir/cmake_clean.cmake b/cmake-build-debug/CMakeFiles/Doxygen.dir/cmake_clean.cmake
+deleted file mode 100644
+--- a/cmake-build-debug/CMakeFiles/Doxygen.dir/cmake_clean.cmake	(revision 2af90323db1fa875876cba6c4a53fd8c1e3e77f4)
++++ /dev/null	(revision 2af90323db1fa875876cba6c4a53fd8c1e3e77f4)
+@@ -1,8 +0,0 @@
+-file(REMOVE_RECURSE
+-  "CMakeFiles/Doxygen"
+-)
+-
+-# Per-language clean rules from dependency scanning.
+-foreach(lang )
+-  include(CMakeFiles/Doxygen.dir/cmake_clean_${lang}.cmake OPTIONAL)
+-endforeach()
+Index: cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-ee5ca47e57a615ee224c.json
+===================================================================
+diff --git a/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-ee5ca47e57a615ee224c.json b/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-ee5ca47e57a615ee224c.json
+deleted file mode 100644
+--- a/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-ee5ca47e57a615ee224c.json	(revision 2af90323db1fa875876cba6c4a53fd8c1e3e77f4)
++++ /dev/null	(revision 2af90323db1fa875876cba6c4a53fd8c1e3e77f4)
+@@ -1,107 +0,0 @@
+-{
+-	"kind" : "toolchains",
+-	"toolchains" : 
+-	[
+-		{
+-			"compiler" : 
+-			{
+-				"id" : "GNU",
+-				"implicit" : 
+-				{
+-					"includeDirectories" : 
+-					[
+-						"/usr/lib/gcc/x86_64-linux-gnu/9/include",
+-						"/usr/local/include",
+-						"/usr/include/x86_64-linux-gnu",
+-						"/usr/include"
+-					],
+-					"linkDirectories" : 
+-					[
+-						"/usr/lib/gcc/x86_64-linux-gnu/9",
+-						"/usr/lib/x86_64-linux-gnu",
+-						"/usr/lib",
+-						"/lib/x86_64-linux-gnu",
+-						"/lib"
+-					],
+-					"linkFrameworkDirectories" : [],
+-					"linkLibraries" : 
+-					[
+-						"gcc",
+-						"gcc_s",
+-						"c",
+-						"gcc",
+-						"gcc_s"
+-					]
+-				},
+-				"path" : "/usr/bin/cc",
+-				"version" : "9.4.0"
+-			},
+-			"language" : "C",
+-			"sourceFileExtensions" : 
+-			[
+-				"c",
+-				"m"
+-			]
+-		},
+-		{
+-			"compiler" : 
+-			{
+-				"id" : "GNU",
+-				"implicit" : 
+-				{
+-					"includeDirectories" : 
+-					[
+-						"/usr/include/c++/9",
+-						"/usr/include/x86_64-linux-gnu/c++/9",
+-						"/usr/include/c++/9/backward",
+-						"/usr/lib/gcc/x86_64-linux-gnu/9/include",
+-						"/usr/local/include",
+-						"/usr/include/x86_64-linux-gnu",
+-						"/usr/include"
+-					],
+-					"linkDirectories" : 
+-					[
+-						"/usr/lib/gcc/x86_64-linux-gnu/9",
+-						"/usr/lib/x86_64-linux-gnu",
+-						"/usr/lib",
+-						"/lib/x86_64-linux-gnu",
+-						"/lib"
+-					],
+-					"linkFrameworkDirectories" : [],
+-					"linkLibraries" : 
+-					[
+-						"stdc++",
+-						"m",
+-						"gcc_s",
+-						"gcc",
+-						"c",
+-						"gcc_s",
+-						"gcc"
+-					]
+-				},
+-				"path" : "/usr/bin/c++",
+-				"version" : "9.4.0"
+-			},
+-			"language" : "CXX",
+-			"sourceFileExtensions" : 
+-			[
+-				"C",
+-				"M",
+-				"c++",
+-				"cc",
+-				"cpp",
+-				"cxx",
+-				"mm",
+-				"mpp",
+-				"CPP",
+-				"ixx",
+-				"cppm"
+-			]
+-		}
+-	],
+-	"version" : 
+-	{
+-		"major" : 1,
+-		"minor" : 0
+-	}
+-}
+Index: cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-814f9f9aaccc0babc366.json
+===================================================================
+diff --git a/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-814f9f9aaccc0babc366.json b/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-814f9f9aaccc0babc366.json
+deleted file mode 100644
+--- a/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-814f9f9aaccc0babc366.json	(revision 2af90323db1fa875876cba6c4a53fd8c1e3e77f4)
++++ /dev/null	(revision 2af90323db1fa875876cba6c4a53fd8c1e3e77f4)
+@@ -1,60 +0,0 @@
+-{
+-	"configurations" : 
+-	[
+-		{
+-			"directories" : 
+-			[
+-				{
+-					"build" : ".",
+-					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+-					"minimumCMakeVersion" : 
+-					{
+-						"string" : "3.23"
+-					},
+-					"projectIndex" : 0,
+-					"source" : ".",
+-					"targetIndexes" : 
+-					[
+-						0
+-					]
+-				}
+-			],
+-			"name" : "Debug",
+-			"projects" : 
+-			[
+-				{
+-					"directoryIndexes" : 
+-					[
+-						0
+-					],
+-					"name" : "feup_aed",
+-					"targetIndexes" : 
+-					[
+-						0
+-					]
+-				}
+-			],
+-			"targets" : 
+-			[
+-				{
+-					"directoryIndex" : 0,
+-					"id" : "feup_aed::@6890427a1f51a3e7e1df",
+-					"jsonFile" : "target-feup_aed-Debug-651a48d08763d83b42c3.json",
+-					"name" : "feup_aed",
+-					"projectIndex" : 0
+-				}
+-			]
+-		}
+-	],
+-	"kind" : "codemodel",
+-	"paths" : 
+-	{
+-		"build" : "/home/ntsayz/Documents/feup-aed/cmake-build-debug",
+-		"source" : "/home/ntsayz/Documents/feup-aed"
+-	},
+-	"version" : 
+-	{
+-		"major" : 2,
+-		"minor" : 4
+-	}
+-}
+Index: cmake-build-debug/CMakeFiles/Doxygen.dir/compiler_depend.ts
+===================================================================
+diff --git a/cmake-build-debug/CMakeFiles/Doxygen.dir/compiler_depend.ts b/cmake-build-debug/CMakeFiles/Doxygen.dir/compiler_depend.ts
+deleted file mode 100644
+--- a/cmake-build-debug/CMakeFiles/Doxygen.dir/compiler_depend.ts	(revision 2af90323db1fa875876cba6c4a53fd8c1e3e77f4)
++++ /dev/null	(revision 2af90323db1fa875876cba6c4a53fd8c1e3e77f4)
+@@ -1,2 +0,0 @@
+-# CMAKE generated file: DO NOT EDIT!
+-# Timestamp file for custom commands dependencies management for Doxygen.
+Index: cmake-build-debug/.cmake/api/v1/reply/cache-v2-b049284b5469deffecd6.json
+===================================================================
+diff --git a/cmake-build-debug/.cmake/api/v1/reply/cache-v2-b049284b5469deffecd6.json b/cmake-build-debug/.cmake/api/v1/reply/cache-v2-b049284b5469deffecd6.json
+deleted file mode 100644
+--- a/cmake-build-debug/.cmake/api/v1/reply/cache-v2-b049284b5469deffecd6.json	(revision 2af90323db1fa875876cba6c4a53fd8c1e3e77f4)
++++ /dev/null	(revision 2af90323db1fa875876cba6c4a53fd8c1e3e77f4)
+@@ -1,1327 +0,0 @@
+-{
+-	"entries" : 
+-	[
+-		{
+-			"name" : "CMAKE_ADDR2LINE",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to a program."
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "/usr/bin/addr2line"
+-		},
+-		{
+-			"name" : "CMAKE_AR",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to a program."
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "/usr/bin/ar"
+-		},
+-		{
+-			"name" : "CMAKE_BUILD_TYPE",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel ..."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : "Debug"
+-		},
+-		{
+-			"name" : "CMAKE_CACHEFILE_DIR",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "This is the directory where this CMakeCache.txt was created"
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "/home/ntsayz/Documents/feup-aed/cmake-build-debug"
+-		},
+-		{
+-			"name" : "CMAKE_CACHE_MAJOR_VERSION",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Major version of cmake used to create the current loaded cache"
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "3"
+-		},
+-		{
+-			"name" : "CMAKE_CACHE_MINOR_VERSION",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Minor version of cmake used to create the current loaded cache"
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "23"
+-		},
+-		{
+-			"name" : "CMAKE_CACHE_PATCH_VERSION",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Patch version of cmake used to create the current loaded cache"
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "2"
+-		},
+-		{
+-			"name" : "CMAKE_CODEBLOCKS_COMPILER_ID",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Id string of the compiler for the CodeBlocks IDE. Automatically detected when left empty"
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_CODEBLOCKS_EXECUTABLE",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "The CodeBlocks executable"
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "CMAKE_CODEBLOCKS_EXECUTABLE-NOTFOUND"
+-		},
+-		{
+-			"name" : "CMAKE_CODEBLOCKS_MAKE_ARGUMENTS",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Additional command line arguments when CodeBlocks invokes make. Enter e.g. -j<some_number> to get parallel builds"
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : "-j16"
+-		},
+-		{
+-			"name" : "CMAKE_COLOR_MAKEFILE",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Enable/Disable color output during build."
+-				}
+-			],
+-			"type" : "BOOL",
+-			"value" : "ON"
+-		},
+-		{
+-			"name" : "CMAKE_COMMAND",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to CMake executable."
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "/snap/clion/209/bin/cmake/linux/bin/cmake"
+-		},
+-		{
+-			"name" : "CMAKE_CPACK_COMMAND",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to cpack program executable."
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "/snap/clion/209/bin/cmake/linux/bin/cpack"
+-		},
+-		{
+-			"name" : "CMAKE_CTEST_COMMAND",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to ctest program executable."
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "/snap/clion/209/bin/cmake/linux/bin/ctest"
+-		},
+-		{
+-			"name" : "CMAKE_CXX_COMPILER",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "CXX compiler"
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "/usr/bin/c++"
+-		},
+-		{
+-			"name" : "CMAKE_CXX_COMPILER_AR",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "/usr/bin/gcc-ar-9"
+-		},
+-		{
+-			"name" : "CMAKE_CXX_COMPILER_RANLIB",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "/usr/bin/gcc-ranlib-9"
+-		},
+-		{
+-			"name" : "CMAKE_CXX_FLAGS",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the CXX compiler during all build types."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_CXX_FLAGS_DEBUG",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the CXX compiler during DEBUG builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : "-g"
+-		},
+-		{
+-			"name" : "CMAKE_CXX_FLAGS_MINSIZEREL",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the CXX compiler during MINSIZEREL builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : "-Os -DNDEBUG"
+-		},
+-		{
+-			"name" : "CMAKE_CXX_FLAGS_RELEASE",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the CXX compiler during RELEASE builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : "-O3 -DNDEBUG"
+-		},
+-		{
+-			"name" : "CMAKE_CXX_FLAGS_RELWITHDEBINFO",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the CXX compiler during RELWITHDEBINFO builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : "-O2 -g -DNDEBUG"
+-		},
+-		{
+-			"name" : "CMAKE_C_COMPILER",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "C compiler"
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "/usr/bin/cc"
+-		},
+-		{
+-			"name" : "CMAKE_C_COMPILER_AR",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "/usr/bin/gcc-ar-9"
+-		},
+-		{
+-			"name" : "CMAKE_C_COMPILER_RANLIB",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "/usr/bin/gcc-ranlib-9"
+-		},
+-		{
+-			"name" : "CMAKE_C_FLAGS",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the C compiler during all build types."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_C_FLAGS_DEBUG",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the C compiler during DEBUG builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : "-g"
+-		},
+-		{
+-			"name" : "CMAKE_C_FLAGS_MINSIZEREL",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the C compiler during MINSIZEREL builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : "-Os -DNDEBUG"
+-		},
+-		{
+-			"name" : "CMAKE_C_FLAGS_RELEASE",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the C compiler during RELEASE builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : "-O3 -DNDEBUG"
+-		},
+-		{
+-			"name" : "CMAKE_C_FLAGS_RELWITHDEBINFO",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the C compiler during RELWITHDEBINFO builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : "-O2 -g -DNDEBUG"
+-		},
+-		{
+-			"name" : "CMAKE_DLLTOOL",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to a program."
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "CMAKE_DLLTOOL-NOTFOUND"
+-		},
+-		{
+-			"name" : "CMAKE_EXECUTABLE_FORMAT",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Executable file format"
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "ELF"
+-		},
+-		{
+-			"name" : "CMAKE_EXE_LINKER_FLAGS",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during all build types."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_EXE_LINKER_FLAGS_DEBUG",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during DEBUG builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_EXE_LINKER_FLAGS_MINSIZEREL",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during MINSIZEREL builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_EXE_LINKER_FLAGS_RELEASE",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during RELEASE builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during RELWITHDEBINFO builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_EXPORT_COMPILE_COMMANDS",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Enable/Disable output of compile commands during generation."
+-				}
+-			],
+-			"type" : "BOOL",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_EXTRA_GENERATOR",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Name of external makefile project generator."
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "CodeBlocks"
+-		},
+-		{
+-			"name" : "CMAKE_EXTRA_GENERATOR_CXX_SYSTEM_DEFINED_MACROS",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "CXX compiler system defined macros"
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "__STDC__;1;__STDC_VERSION__;201710L;__STDC_UTF_16__;1;__STDC_UTF_32__;1;__STDC_HOSTED__;1;__GNUC__;9;__GNUC_MINOR__;4;__GNUC_PATCHLEVEL__;0;__VERSION__;\"9.4.0\";__ATOMIC_RELAXED;0;__ATOMIC_SEQ_CST;5;__ATOMIC_ACQUIRE;2;__ATOMIC_RELEASE;3;__ATOMIC_ACQ_REL;4;__ATOMIC_CONSUME;1;__pic__;2;__PIC__;2;__pie__;2;__PIE__;2;__FINITE_MATH_ONLY__;0;_LP64;1;__LP64__;1;__SIZEOF_INT__;4;__SIZEOF_LONG__;8;__SIZEOF_LONG_LONG__;8;__SIZEOF_SHORT__;2;__SIZEOF_FLOAT__;4;__SIZEOF_DOUBLE__;8;__SIZEOF_LONG_DOUBLE__;16;__SIZEOF_SIZE_T__;8;__CHAR_BIT__;8;__BIGGEST_ALIGNMENT__;16;__ORDER_LITTLE_ENDIAN__;1234;__ORDER_BIG_ENDIAN__;4321;__ORDER_PDP_ENDIAN__;3412;__BYTE_ORDER__;__ORDER_LITTLE_ENDIAN__;__FLOAT_WORD_ORDER__;__ORDER_LITTLE_ENDIAN__;__SIZEOF_POINTER__;8;__SIZE_TYPE__;long unsigned int;__PTRDIFF_TYPE__;long int;__WCHAR_TYPE__;int;__WINT_TYPE__;unsigned int;__INTMAX_TYPE__;long int;__UINTMAX_TYPE__;long unsigned int;__CHAR16_TYPE__;short unsigned int;__CHAR32_TYPE__;unsigned int;__SIG_ATOMIC_TYPE__;int;__INT8_TYPE__;signed char;__INT16_TYPE__;short int;__INT32_TYPE__;int;__INT64_TYPE__;long int;__UINT8_TYPE__;unsigned char;__UINT16_TYPE__;short unsigned int;__UINT32_TYPE__;unsigned int;__UINT64_TYPE__;long unsigned int;__INT_LEAST8_TYPE__;signed char;__INT_LEAST16_TYPE__;short int;__INT_LEAST32_TYPE__;int;__INT_LEAST64_TYPE__;long int;__UINT_LEAST8_TYPE__;unsigned char;__UINT_LEAST16_TYPE__;short unsigned int;__UINT_LEAST32_TYPE__;unsigned int;__UINT_LEAST64_TYPE__;long unsigned int;__INT_FAST8_TYPE__;signed char;__INT_FAST16_TYPE__;long int;__INT_FAST32_TYPE__;long int;__INT_FAST64_TYPE__;long int;__UINT_FAST8_TYPE__;unsigned char;__UINT_FAST16_TYPE__;long unsigned int;__UINT_FAST32_TYPE__;long unsigned int;__UINT_FAST64_TYPE__;long unsigned int;__INTPTR_TYPE__;long int;__UINTPTR_TYPE__;long unsigned int;__has_include(STR);__has_include__(STR);__has_include_next(STR);__has_include_next__(STR);__GXX_ABI_VERSION;1013;__SCHAR_MAX__;0x7f;__SHRT_MAX__;0x7fff;__INT_MAX__;0x7fffffff;__LONG_MAX__;0x7fffffffffffffffL;__LONG_LONG_MAX__;0x7fffffffffffffffLL;__WCHAR_MAX__;0x7fffffff;__WCHAR_MIN__;(-__WCHAR_MAX__ - 1);__WINT_MAX__;0xffffffffU;__WINT_MIN__;0U;__PTRDIFF_MAX__;0x7fffffffffffffffL;__SIZE_MAX__;0xffffffffffffffffUL;__SCHAR_WIDTH__;8;__SHRT_WIDTH__;16;__INT_WIDTH__;32;__LONG_WIDTH__;64;__LONG_LONG_WIDTH__;64;__WCHAR_WIDTH__;32;__WINT_WIDTH__;32;__PTRDIFF_WIDTH__;64;__SIZE_WIDTH__;64;__INTMAX_MAX__;0x7fffffffffffffffL;__INTMAX_C(c);c ## L;__UINTMAX_MAX__;0xffffffffffffffffUL;__UINTMAX_C(c);c ## UL;__INTMAX_WIDTH__;64;__SIG_ATOMIC_MAX__;0x7fffffff;__SIG_ATOMIC_MIN__;(-__SIG_ATOMIC_MAX__ - 1);__SIG_ATOMIC_WIDTH__;32;__INT8_MAX__;0x7f;__INT16_MAX__;0x7fff;__INT32_MAX__;0x7fffffff;__INT64_MAX__;0x7fffffffffffffffL;__UINT8_MAX__;0xff;__UINT16_MAX__;0xffff;__UINT32_MAX__;0xffffffffU;__UINT64_MAX__;0xffffffffffffffffUL;__INT_LEAST8_MAX__;0x7f;__INT8_C(c);c;__INT_LEAST8_WIDTH__;8;__INT_LEAST16_MAX__;0x7fff;__INT16_C(c);c;__INT_LEAST16_WIDTH__;16;__INT_LEAST32_MAX__;0x7fffffff;__INT32_C(c);c;__INT_LEAST32_WIDTH__;32;__INT_LEAST64_MAX__;0x7fffffffffffffffL;__INT64_C(c);c ## L;__INT_LEAST64_WIDTH__;64;__UINT_LEAST8_MAX__;0xff;__UINT8_C(c);c;__UINT_LEAST16_MAX__;0xffff;__UINT16_C(c);c;__UINT_LEAST32_MAX__;0xffffffffU;__UINT32_C(c);c ## U;__UINT_LEAST64_MAX__;0xffffffffffffffffUL;__UINT64_C(c);c ## UL;__INT_FAST8_MAX__;0x7f;__INT_FAST8_WIDTH__;8;__INT_FAST16_MAX__;0x7fffffffffffffffL;__INT_FAST16_WIDTH__;64;__INT_FAST32_MAX__;0x7fffffffffffffffL;__INT_FAST32_WIDTH__;64;__INT_FAST64_MAX__;0x7fffffffffffffffL;__INT_FAST64_WIDTH__;64;__UINT_FAST8_MAX__;0xff;__UINT_FAST16_MAX__;0xffffffffffffffffUL;__UINT_FAST32_MAX__;0xffffffffffffffffUL;__UINT_FAST64_MAX__;0xffffffffffffffffUL;__INTPTR_MAX__;0x7fffffffffffffffL;__INTPTR_WIDTH__;64;__UINTPTR_MAX__;0xffffffffffffffffUL;__GCC_IEC_559;2;__GCC_IEC_559_COMPLEX;2;__FLT_EVAL_METHOD__;0;__FLT_EVAL_METHOD_TS_18661_3__;0;__DEC_EVAL_METHOD__;2;__FLT_RADIX__;2;__FLT_MANT_DIG__;24;__FLT_DIG__;6;__FLT_MIN_EXP__;(-125);__FLT_MIN_10_EXP__;(-37);__FLT_MAX_EXP__;128;__FLT_MAX_10_EXP__;38;__FLT_DECIMAL_DIG__;9;__FLT_MAX__;3.40282346638528859811704183484516925e+38F;__FLT_MIN__;1.17549435082228750796873653722224568e-38F;__FLT_EPSILON__;1.19209289550781250000000000000000000e-7F;__FLT_DENORM_MIN__;1.40129846432481707092372958328991613e-45F;__FLT_HAS_DENORM__;1;__FLT_HAS_INFINITY__;1;__FLT_HAS_QUIET_NAN__;1;__DBL_MANT_DIG__;53;__DBL_DIG__;15;__DBL_MIN_EXP__;(-1021);__DBL_MIN_10_EXP__;(-307);__DBL_MAX_EXP__;1024;__DBL_MAX_10_EXP__;308;__DBL_DECIMAL_DIG__;17;__DBL_MAX__;((double)1.79769313486231570814527423731704357e+308L);__DBL_MIN__;((double)2.22507385850720138309023271733240406e-308L);__DBL_EPSILON__;((double)2.22044604925031308084726333618164062e-16L);__DBL_DENORM_MIN__;((double)4.94065645841246544176568792868221372e-324L);__DBL_HAS_DENORM__;1;__DBL_HAS_INFINITY__;1;__DBL_HAS_QUIET_NAN__;1;__LDBL_MANT_DIG__;64;__LDBL_DIG__;18;__LDBL_MIN_EXP__;(-16381);__LDBL_MIN_10_EXP__;(-4931);__LDBL_MAX_EXP__;16384;__LDBL_MAX_10_EXP__;4932;__DECIMAL_DIG__;21;__LDBL_DECIMAL_DIG__;21;__LDBL_MAX__;1.18973149535723176502126385303097021e+4932L;__LDBL_MIN__;3.36210314311209350626267781732175260e-4932L;__LDBL_EPSILON__;1.08420217248550443400745280086994171e-19L;__LDBL_DENORM_MIN__;3.64519953188247460252840593361941982e-4951L;__LDBL_HAS_DENORM__;1;__LDBL_HAS_INFINITY__;1;__LDBL_HAS_QUIET_NAN__;1;__FLT32_MANT_DIG__;24;__FLT32_DIG__;6;__FLT32_MIN_EXP__;(-125);__FLT32_MIN_10_EXP__;(-37);__FLT32_MAX_EXP__;128;__FLT32_MAX_10_EXP__;38;__FLT32_DECIMAL_DIG__;9;__FLT32_MAX__;3.40282346638528859811704183484516925e+38F32;__FLT32_MIN__;1.17549435082228750796873653722224568e-38F32;__FLT32_EPSILON__;1.19209289550781250000000000000000000e-7F32;__FLT32_DENORM_MIN__;1.40129846432481707092372958328991613e-45F32;__FLT32_HAS_DENORM__;1;__FLT32_HAS_INFINITY__;1;__FLT32_HAS_QUIET_NAN__;1;__FLT64_MANT_DIG__;53;__FLT64_DIG__;15;__FLT64_MIN_EXP__;(-1021);__FLT64_MIN_10_EXP__;(-307);__FLT64_MAX_EXP__;1024;__FLT64_MAX_10_EXP__;308;__FLT64_DECIMAL_DIG__;17;__FLT64_MAX__;1.79769313486231570814527423731704357e+308F64;__FLT64_MIN__;2.22507385850720138309023271733240406e-308F64;__FLT64_EPSILON__;2.22044604925031308084726333618164062e-16F64;__FLT64_DENORM_MIN__;4.94065645841246544176568792868221372e-324F64;__FLT64_HAS_DENORM__;1;__FLT64_HAS_INFINITY__;1;__FLT64_HAS_QUIET_NAN__;1;__FLT128_MANT_DIG__;113;__FLT128_DIG__;33;__FLT128_MIN_EXP__;(-16381);__FLT128_MIN_10_EXP__;(-4931);__FLT128_MAX_EXP__;16384;__FLT128_MAX_10_EXP__;4932;__FLT128_DECIMAL_DIG__;36;__FLT128_MAX__;1.18973149535723176508575932662800702e+4932F128;__FLT128_MIN__;3.36210314311209350626267781732175260e-4932F128;__FLT128_EPSILON__;1.92592994438723585305597794258492732e-34F128;__FLT128_DENORM_MIN__;6.47517511943802511092443895822764655e-4966F128;__FLT128_HAS_DENORM__;1;__FLT128_HAS_INFINITY__;1;__FLT128_HAS_QUIET_NAN__;1;__FLT32X_MANT_DIG__;53;__FLT32X_DIG__;15;__FLT32X_MIN_EXP__;(-1021);__FLT32X_MIN_10_EXP__;(-307);__FLT32X_MAX_EXP__;1024;__FLT32X_MAX_10_EXP__;308;__FLT32X_DECIMAL_DIG__;17;__FLT32X_MAX__;1.79769313486231570814527423731704357e+308F32x;__FLT32X_MIN__;2.22507385850720138309023271733240406e-308F32x;__FLT32X_EPSILON__;2.22044604925031308084726333618164062e-16F32x;__FLT32X_DENORM_MIN__;4.94065645841246544176568792868221372e-324F32x;__FLT32X_HAS_DENORM__;1;__FLT32X_HAS_INFINITY__;1;__FLT32X_HAS_QUIET_NAN__;1;__FLT64X_MANT_DIG__;64;__FLT64X_DIG__;18;__FLT64X_MIN_EXP__;(-16381);__FLT64X_MIN_10_EXP__;(-4931);__FLT64X_MAX_EXP__;16384;__FLT64X_MAX_10_EXP__;4932;__FLT64X_DECIMAL_DIG__;21;__FLT64X_MAX__;1.18973149535723176502126385303097021e+4932F64x;__FLT64X_MIN__;3.36210314311209350626267781732175260e-4932F64x;__FLT64X_EPSILON__;1.08420217248550443400745280086994171e-19F64x;__FLT64X_DENORM_MIN__;3.64519953188247460252840593361941982e-4951F64x;__FLT64X_HAS_DENORM__;1;__FLT64X_HAS_INFINITY__;1;__FLT64X_HAS_QUIET_NAN__;1;__DEC32_MANT_DIG__;7;__DEC32_MIN_EXP__;(-94);__DEC32_MAX_EXP__;97;__DEC32_MIN__;1E-95DF;__DEC32_MAX__;9.999999E96DF;__DEC32_EPSILON__;1E-6DF;__DEC32_SUBNORMAL_MIN__;0.000001E-95DF;__DEC64_MANT_DIG__;16;__DEC64_MIN_EXP__;(-382);__DEC64_MAX_EXP__;385;__DEC64_MIN__;1E-383DD;__DEC64_MAX__;9.999999999999999E384DD;__DEC64_EPSILON__;1E-15DD;__DEC64_SUBNORMAL_MIN__;0.000000000000001E-383DD;__DEC128_MANT_DIG__;34;__DEC128_MIN_EXP__;(-6142);__DEC128_MAX_EXP__;6145;__DEC128_MIN__;1E-6143DL;__DEC128_MAX__;9.999999999999999999999999999999999E6144DL;__DEC128_EPSILON__;1E-33DL;__DEC128_SUBNORMAL_MIN__;0.000000000000000000000000000000001E-6143DL;__REGISTER_PREFIX__; ;__USER_LABEL_PREFIX__; ;__GNUC_STDC_INLINE__;1;__NO_INLINE__;1;__GCC_HAVE_SYNC_COMPARE_AND_SWAP_1;1;__GCC_HAVE_SYNC_COMPARE_AND_SWAP_2;1;__GCC_HAVE_SYNC_COMPARE_AND_SWAP_4;1;__GCC_HAVE_SYNC_COMPARE_AND_SWAP_8;1;__GCC_ATOMIC_BOOL_LOCK_FREE;2;__GCC_ATOMIC_CHAR_LOCK_FREE;2;__GCC_ATOMIC_CHAR16_T_LOCK_FREE;2;__GCC_ATOMIC_CHAR32_T_LOCK_FREE;2;__GCC_ATOMIC_WCHAR_T_LOCK_FREE;2;__GCC_ATOMIC_SHORT_LOCK_FREE;2;__GCC_ATOMIC_INT_LOCK_FREE;2;__GCC_ATOMIC_LONG_LOCK_FREE;2;__GCC_ATOMIC_LLONG_LOCK_FREE;2;__GCC_ATOMIC_TEST_AND_SET_TRUEVAL;1;__GCC_ATOMIC_POINTER_LOCK_FREE;2;__HAVE_SPECULATION_SAFE_VALUE;1;__GCC_HAVE_DWARF2_CFI_ASM;1;__PRAGMA_REDEFINE_EXTNAME;1;__SSP_STRONG__;3;__SIZEOF_INT128__;16;__SIZEOF_WCHAR_T__;4;__SIZEOF_WINT_T__;4;__SIZEOF_PTRDIFF_T__;8;__amd64;1;__amd64__;1;__x86_64;1;__x86_64__;1;__SIZEOF_FLOAT80__;16;__SIZEOF_FLOAT128__;16;__ATOMIC_HLE_ACQUIRE;65536;__ATOMIC_HLE_RELEASE;131072;__GCC_ASM_FLAG_OUTPUTS__;1;__k8;1;__k8__;1;__code_model_small__;1;__MMX__;1;__SSE__;1;__SSE2__;1;__FXSR__;1;__SSE_MATH__;1;__SSE2_MATH__;1;__SEG_FS;1;__SEG_GS;1;__CET__;3;__gnu_linux__;1;__linux;1;__linux__;1;linux;1;__unix;1;__unix__;1;unix;1;__ELF__;1;__DECIMAL_BID_FORMAT__;1;_STDC_PREDEF_H;1;__STDC_IEC_559__;1;__STDC_IEC_559_COMPLEX__;1;__STDC_ISO_10646__;201706L;__STDC__;1;__cplusplus;201402L;__STDC_UTF_16__;1;__STDC_UTF_32__;1;__STDC_HOSTED__;1;__GNUC__;9;__GNUC_MINOR__;4;__GNUC_PATCHLEVEL__;0;__VERSION__;\"9.4.0\";__ATOMIC_RELAXED;0;__ATOMIC_SEQ_CST;5;__ATOMIC_ACQUIRE;2;__ATOMIC_RELEASE;3;__ATOMIC_ACQ_REL;4;__ATOMIC_CONSUME;1;__pic__;2;__PIC__;2;__pie__;2;__PIE__;2;__FINITE_MATH_ONLY__;0;_LP64;1;__LP64__;1;__SIZEOF_INT__;4;__SIZEOF_LONG__;8;__SIZEOF_LONG_LONG__;8;__SIZEOF_SHORT__;2;__SIZEOF_FLOAT__;4;__SIZEOF_DOUBLE__;8;__SIZEOF_LONG_DOUBLE__;16;__SIZEOF_SIZE_T__;8;__CHAR_BIT__;8;__BIGGEST_ALIGNMENT__;16;__ORDER_LITTLE_ENDIAN__;1234;__ORDER_BIG_ENDIAN__;4321;__ORDER_PDP_ENDIAN__;3412;__BYTE_ORDER__;__ORDER_LITTLE_ENDIAN__;__FLOAT_WORD_ORDER__;__ORDER_LITTLE_ENDIAN__;__SIZEOF_POINTER__;8;__GNUG__;9;__SIZE_TYPE__;long unsigned int;__PTRDIFF_TYPE__;long int;__WCHAR_TYPE__;int;__WINT_TYPE__;unsigned int;__INTMAX_TYPE__;long int;__UINTMAX_TYPE__;long unsigned int;__CHAR16_TYPE__;short unsigned int;__CHAR32_TYPE__;unsigned int;__SIG_ATOMIC_TYPE__;int;__INT8_TYPE__;signed char;__INT16_TYPE__;short int;__INT32_TYPE__;int;__INT64_TYPE__;long int;__UINT8_TYPE__;unsigned char;__UINT16_TYPE__;short unsigned int;__UINT32_TYPE__;unsigned int;__UINT64_TYPE__;long unsigned int;__INT_LEAST8_TYPE__;signed char;__INT_LEAST16_TYPE__;short int;__INT_LEAST32_TYPE__;int;__INT_LEAST64_TYPE__;long int;__UINT_LEAST8_TYPE__;unsigned char;__UINT_LEAST16_TYPE__;short unsigned int;__UINT_LEAST32_TYPE__;unsigned int;__UINT_LEAST64_TYPE__;long unsigned int;__INT_FAST8_TYPE__;signed char;__INT_FAST16_TYPE__;long int;__INT_FAST32_TYPE__;long int;__INT_FAST64_TYPE__;long int;__UINT_FAST8_TYPE__;unsigned char;__UINT_FAST16_TYPE__;long unsigned int;__UINT_FAST32_TYPE__;long unsigned int;__UINT_FAST64_TYPE__;long unsigned int;__INTPTR_TYPE__;long int;__UINTPTR_TYPE__;long unsigned int;__has_include(STR);__has_include__(STR);__has_include_next(STR);__has_include_next__(STR);__GXX_WEAK__;1;__DEPRECATED;1;__GXX_RTTI;1;__cpp_rtti;199711;__GXX_EXPERIMENTAL_CXX0X__;1;__cpp_binary_literals;201304;__cpp_hex_float;201603;__cpp_runtime_arrays;198712;__cpp_unicode_characters;200704;__cpp_raw_strings;200710;__cpp_unicode_literals;200710;__cpp_user_defined_literals;200809;__cpp_lambdas;200907;__cpp_range_based_for;200907;__cpp_static_assert;200410;__cpp_decltype;200707;__cpp_attributes;200809;__cpp_rvalue_reference;200610;__cpp_rvalue_references;200610;__cpp_variadic_templates;200704;__cpp_initializer_lists;200806;__cpp_delegating_constructors;200604;__cpp_nsdmi;200809;__cpp_inheriting_constructors;201511;__cpp_ref_qualifiers;200710;__cpp_alias_templates;200704;__cpp_return_type_deduction;201304;__cpp_init_captures;201304;__cpp_generic_lambdas;201304;__cpp_constexpr;201304;__cpp_decltype_auto;201304;__cpp_aggregate_nsdmi;201304;__cpp_variable_templates;201304;__cpp_digit_separators;201309;__cpp_sized_deallocation;201309;__cpp_threadsafe_static_init;200806;__EXCEPTIONS;1;__cpp_exceptions;199711;__GXX_ABI_VERSION;1013;__SCHAR_MAX__;0x7f;__SHRT_MAX__;0x7fff;__INT_MAX__;0x7fffffff;__LONG_MAX__;0x7fffffffffffffffL;__LONG_LONG_MAX__;0x7fffffffffffffffLL;__WCHAR_MAX__;0x7fffffff;__WCHAR_MIN__;(-__WCHAR_MAX__ - 1);__WINT_MAX__;0xffffffffU;__WINT_MIN__;0U;__PTRDIFF_MAX__;0x7fffffffffffffffL;__SIZE_MAX__;0xffffffffffffffffUL;__SCHAR_WIDTH__;8;__SHRT_WIDTH__;16;__INT_WIDTH__;32;__LONG_WIDTH__;64;__LONG_LONG_WIDTH__;64;__WCHAR_WIDTH__;32;__WINT_WIDTH__;32;__PTRDIFF_WIDTH__;64;__SIZE_WIDTH__;64;__GLIBCXX_TYPE_INT_N_0;__int128;__GLIBCXX_BITSIZE_INT_N_0;128;__INTMAX_MAX__;0x7fffffffffffffffL;__INTMAX_C(c);c ## L;__UINTMAX_MAX__;0xffffffffffffffffUL;__UINTMAX_C(c);c ## UL;__INTMAX_WIDTH__;64;__SIG_ATOMIC_MAX__;0x7fffffff;__SIG_ATOMIC_MIN__;(-__SIG_ATOMIC_MAX__ - 1);__SIG_ATOMIC_WIDTH__;32;__INT8_MAX__;0x7f;__INT16_MAX__;0x7fff;__INT32_MAX__;0x7fffffff;__INT64_MAX__;0x7fffffffffffffffL;__UINT8_MAX__;0xff;__UINT16_MAX__;0xffff;__UINT32_MAX__;0xffffffffU;__UINT64_MAX__;0xffffffffffffffffUL;__INT_LEAST8_MAX__;0x7f;__INT8_C(c);c;__INT_LEAST8_WIDTH__;8;__INT_LEAST16_MAX__;0x7fff;__INT16_C(c);c;__INT_LEAST16_WIDTH__;16;__INT_LEAST32_MAX__;0x7fffffff;__INT32_C(c);c;__INT_LEAST32_WIDTH__;32;__INT_LEAST64_MAX__;0x7fffffffffffffffL;__INT64_C(c);c ## L;__INT_LEAST64_WIDTH__;64;__UINT_LEAST8_MAX__;0xff;__UINT8_C(c);c;__UINT_LEAST16_MAX__;0xffff;__UINT16_C(c);c;__UINT_LEAST32_MAX__;0xffffffffU;__UINT32_C(c);c ## U;__UINT_LEAST64_MAX__;0xffffffffffffffffUL;__UINT64_C(c);c ## UL;__INT_FAST8_MAX__;0x7f;__INT_FAST8_WIDTH__;8;__INT_FAST16_MAX__;0x7fffffffffffffffL;__INT_FAST16_WIDTH__;64;__INT_FAST32_MAX__;0x7fffffffffffffffL;__INT_FAST32_WIDTH__;64;__INT_FAST64_MAX__;0x7fffffffffffffffL;__INT_FAST64_WIDTH__;64;__UINT_FAST8_MAX__;0xff;__UINT_FAST16_MAX__;0xffffffffffffffffUL;__UINT_FAST32_MAX__;0xffffffffffffffffUL;__UINT_FAST64_MAX__;0xffffffffffffffffUL;__INTPTR_MAX__;0x7fffffffffffffffL;__INTPTR_WIDTH__;64;__UINTPTR_MAX__;0xffffffffffffffffUL;__GCC_IEC_559;2;__GCC_IEC_559_COMPLEX;2;__FLT_EVAL_METHOD__;0;__FLT_EVAL_METHOD_TS_18661_3__;0;__DEC_EVAL_METHOD__;2;__FLT_RADIX__;2;__FLT_MANT_DIG__;24;__FLT_DIG__;6;__FLT_MIN_EXP__;(-125);__FLT_MIN_10_EXP__;(-37);__FLT_MAX_EXP__;128;__FLT_MAX_10_EXP__;38;__FLT_DECIMAL_DIG__;9;__FLT_MAX__;3.40282346638528859811704183484516925e+38F;__FLT_MIN__;1.17549435082228750796873653722224568e-38F;__FLT_EPSILON__;1.19209289550781250000000000000000000e-7F;__FLT_DENORM_MIN__;1.40129846432481707092372958328991613e-45F;__FLT_HAS_DENORM__;1;__FLT_HAS_INFINITY__;1;__FLT_HAS_QUIET_NAN__;1;__DBL_MANT_DIG__;53;__DBL_DIG__;15;__DBL_MIN_EXP__;(-1021);__DBL_MIN_10_EXP__;(-307);__DBL_MAX_EXP__;1024;__DBL_MAX_10_EXP__;308;__DBL_DECIMAL_DIG__;17;__DBL_MAX__;double(1.79769313486231570814527423731704357e+308L);__DBL_MIN__;double(2.22507385850720138309023271733240406e-308L);__DBL_EPSILON__;double(2.22044604925031308084726333618164062e-16L);__DBL_DENORM_MIN__;double(4.94065645841246544176568792868221372e-324L);__DBL_HAS_DENORM__;1;__DBL_HAS_INFINITY__;1;__DBL_HAS_QUIET_NAN__;1;__LDBL_MANT_DIG__;64;__LDBL_DIG__;18;__LDBL_MIN_EXP__;(-16381);__LDBL_MIN_10_EXP__;(-4931);__LDBL_MAX_EXP__;16384;__LDBL_MAX_10_EXP__;4932;__DECIMAL_DIG__;21;__LDBL_DECIMAL_DIG__;21;__LDBL_MAX__;1.18973149535723176502126385303097021e+4932L;__LDBL_MIN__;3.36210314311209350626267781732175260e-4932L;__LDBL_EPSILON__;1.08420217248550443400745280086994171e-19L;__LDBL_DENORM_MIN__;3.64519953188247460252840593361941982e-4951L;__LDBL_HAS_DENORM__;1;__LDBL_HAS_INFINITY__;1;__LDBL_HAS_QUIET_NAN__;1;__FLT32_MANT_DIG__;24;__FLT32_DIG__;6;__FLT32_MIN_EXP__;(-125);__FLT32_MIN_10_EXP__;(-37);__FLT32_MAX_EXP__;128;__FLT32_MAX_10_EXP__;38;__FLT32_DECIMAL_DIG__;9;__FLT32_MAX__;3.40282346638528859811704183484516925e+38F32;__FLT32_MIN__;1.17549435082228750796873653722224568e-38F32;__FLT32_EPSILON__;1.19209289550781250000000000000000000e-7F32;__FLT32_DENORM_MIN__;1.40129846432481707092372958328991613e-45F32;__FLT32_HAS_DENORM__;1;__FLT32_HAS_INFINITY__;1;__FLT32_HAS_QUIET_NAN__;1;__FLT64_MANT_DIG__;53;__FLT64_DIG__;15;__FLT64_MIN_EXP__;(-1021);__FLT64_MIN_10_EXP__;(-307);__FLT64_MAX_EXP__;1024;__FLT64_MAX_10_EXP__;308;__FLT64_DECIMAL_DIG__;17;__FLT64_MAX__;1.79769313486231570814527423731704357e+308F64;__FLT64_MIN__;2.22507385850720138309023271733240406e-308F64;__FLT64_EPSILON__;2.22044604925031308084726333618164062e-16F64;__FLT64_DENORM_MIN__;4.94065645841246544176568792868221372e-324F64;__FLT64_HAS_DENORM__;1;__FLT64_HAS_INFINITY__;1;__FLT64_HAS_QUIET_NAN__;1;__FLT128_MANT_DIG__;113;__FLT128_DIG__;33;__FLT128_MIN_EXP__;(-16381);__FLT128_MIN_10_EXP__;(-4931);__FLT128_MAX_EXP__;16384;__FLT128_MAX_10_EXP__;4932;__FLT128_DECIMAL_DIG__;36;__FLT128_MAX__;1.18973149535723176508575932662800702e+4932F128;__FLT128_MIN__;3.36210314311209350626267781732175260e-4932F128;__FLT128_EPSILON__;1.92592994438723585305597794258492732e-34F128;__FLT128_DENORM_MIN__;6.47517511943802511092443895822764655e-4966F128;__FLT128_HAS_DENORM__;1;__FLT128_HAS_INFINITY__;1;__FLT128_HAS_QUIET_NAN__;1;__FLT32X_MANT_DIG__;53;__FLT32X_DIG__;15;__FLT32X_MIN_EXP__;(-1021);__FLT32X_MIN_10_EXP__;(-307);__FLT32X_MAX_EXP__;1024;__FLT32X_MAX_10_EXP__;308;__FLT32X_DECIMAL_DIG__;17;__FLT32X_MAX__;1.79769313486231570814527423731704357e+308F32x;__FLT32X_MIN__;2.22507385850720138309023271733240406e-308F32x;__FLT32X_EPSILON__;2.22044604925031308084726333618164062e-16F32x;__FLT32X_DENORM_MIN__;4.94065645841246544176568792868221372e-324F32x;__FLT32X_HAS_DENORM__;1;__FLT32X_HAS_INFINITY__;1;__FLT32X_HAS_QUIET_NAN__;1;__FLT64X_MANT_DIG__;64;__FLT64X_DIG__;18;__FLT64X_MIN_EXP__;(-16381);__FLT64X_MIN_10_EXP__;(-4931);__FLT64X_MAX_EXP__;16384;__FLT64X_MAX_10_EXP__;4932;__FLT64X_DECIMAL_DIG__;21;__FLT64X_MAX__;1.18973149535723176502126385303097021e+4932F64x;__FLT64X_MIN__;3.36210314311209350626267781732175260e-4932F64x;__FLT64X_EPSILON__;1.08420217248550443400745280086994171e-19F64x;__FLT64X_DENORM_MIN__;3.64519953188247460252840593361941982e-4951F64x;__FLT64X_HAS_DENORM__;1;__FLT64X_HAS_INFINITY__;1;__FLT64X_HAS_QUIET_NAN__;1;__DEC32_MANT_DIG__;7;__DEC32_MIN_EXP__;(-94);__DEC32_MAX_EXP__;97;__DEC32_MIN__;1E-95DF;__DEC32_MAX__;9.999999E96DF;__DEC32_EPSILON__;1E-6DF;__DEC32_SUBNORMAL_MIN__;0.000001E-95DF;__DEC64_MANT_DIG__;16;__DEC64_MIN_EXP__;(-382);__DEC64_MAX_EXP__;385;__DEC64_MIN__;1E-383DD;__DEC64_MAX__;9.999999999999999E384DD;__DEC64_EPSILON__;1E-15DD;__DEC64_SUBNORMAL_MIN__;0.000000000000001E-383DD;__DEC128_MANT_DIG__;34;__DEC128_MIN_EXP__;(-6142);__DEC128_MAX_EXP__;6145;__DEC128_MIN__;1E-6143DL;__DEC128_MAX__;9.999999999999999999999999999999999E6144DL;__DEC128_EPSILON__;1E-33DL;__DEC128_SUBNORMAL_MIN__;0.000000000000000000000000000000001E-6143DL;__REGISTER_PREFIX__; ;__USER_LABEL_PREFIX__; ;__GNUC_STDC_INLINE__;1;__NO_INLINE__;1;__GCC_HAVE_SYNC_COMPARE_AND_SWAP_1;1;__GCC_HAVE_SYNC_COMPARE_AND_SWAP_2;1;__GCC_HAVE_SYNC_COMPARE_AND_SWAP_4;1;__GCC_HAVE_SYNC_COMPARE_AND_SWAP_8;1;__GCC_ATOMIC_BOOL_LOCK_FREE;2;__GCC_ATOMIC_CHAR_LOCK_FREE;2;__GCC_ATOMIC_CHAR16_T_LOCK_FREE;2;__GCC_ATOMIC_CHAR32_T_LOCK_FREE;2;__GCC_ATOMIC_WCHAR_T_LOCK_FREE;2;__GCC_ATOMIC_SHORT_LOCK_FREE;2;__GCC_ATOMIC_INT_LOCK_FREE;2;__GCC_ATOMIC_LONG_LOCK_FREE;2;__GCC_ATOMIC_LLONG_LOCK_FREE;2;__GCC_ATOMIC_TEST_AND_SET_TRUEVAL;1;__GCC_ATOMIC_POINTER_LOCK_FREE;2;__HAVE_SPECULATION_SAFE_VALUE;1;__GCC_HAVE_DWARF2_CFI_ASM;1;__PRAGMA_REDEFINE_EXTNAME;1;__SSP_STRONG__;3;__SIZEOF_INT128__;16;__SIZEOF_WCHAR_T__;4;__SIZEOF_WINT_T__;4;__SIZEOF_PTRDIFF_T__;8;__amd64;1;__amd64__;1;__x86_64;1;__x86_64__;1;__SIZEOF_FLOAT80__;16;__SIZEOF_FLOAT128__;16;__ATOMIC_HLE_ACQUIRE;65536;__ATOMIC_HLE_RELEASE;131072;__GCC_ASM_FLAG_OUTPUTS__;1;__k8;1;__k8__;1;__code_model_small__;1;__MMX__;1;__SSE__;1;__SSE2__;1;__FXSR__;1;__SSE_MATH__;1;__SSE2_MATH__;1;__SEG_FS;1;__SEG_GS;1;__CET__;3;__gnu_linux__;1;__linux;1;__linux__;1;linux;1;__unix;1;__unix__;1;unix;1;__ELF__;1;__DECIMAL_BID_FORMAT__;1;_GNU_SOURCE;1;_STDC_PREDEF_H;1;__STDC_IEC_559__;1;__STDC_IEC_559_COMPLEX__;1;__STDC_ISO_10646__;201706L"
+-		},
+-		{
+-			"name" : "CMAKE_EXTRA_GENERATOR_CXX_SYSTEM_INCLUDE_DIRS",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "CXX compiler system include directories"
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "/usr/include/c++/9;/usr/include/x86_64-linux-gnu/c++/9;/usr/include/c++/9/backward;/usr/lib/gcc/x86_64-linux-gnu/9/include;/usr/local/include;/usr/include/x86_64-linux-gnu;/usr/include"
+-		},
+-		{
+-			"name" : "CMAKE_EXTRA_GENERATOR_C_SYSTEM_DEFINED_MACROS",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "C compiler system defined macros"
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "__STDC__;1;__STDC_VERSION__;201710L;__STDC_UTF_16__;1;__STDC_UTF_32__;1;__STDC_HOSTED__;1;__GNUC__;9;__GNUC_MINOR__;4;__GNUC_PATCHLEVEL__;0;__VERSION__;\"9.4.0\";__ATOMIC_RELAXED;0;__ATOMIC_SEQ_CST;5;__ATOMIC_ACQUIRE;2;__ATOMIC_RELEASE;3;__ATOMIC_ACQ_REL;4;__ATOMIC_CONSUME;1;__pic__;2;__PIC__;2;__pie__;2;__PIE__;2;__FINITE_MATH_ONLY__;0;_LP64;1;__LP64__;1;__SIZEOF_INT__;4;__SIZEOF_LONG__;8;__SIZEOF_LONG_LONG__;8;__SIZEOF_SHORT__;2;__SIZEOF_FLOAT__;4;__SIZEOF_DOUBLE__;8;__SIZEOF_LONG_DOUBLE__;16;__SIZEOF_SIZE_T__;8;__CHAR_BIT__;8;__BIGGEST_ALIGNMENT__;16;__ORDER_LITTLE_ENDIAN__;1234;__ORDER_BIG_ENDIAN__;4321;__ORDER_PDP_ENDIAN__;3412;__BYTE_ORDER__;__ORDER_LITTLE_ENDIAN__;__FLOAT_WORD_ORDER__;__ORDER_LITTLE_ENDIAN__;__SIZEOF_POINTER__;8;__SIZE_TYPE__;long unsigned int;__PTRDIFF_TYPE__;long int;__WCHAR_TYPE__;int;__WINT_TYPE__;unsigned int;__INTMAX_TYPE__;long int;__UINTMAX_TYPE__;long unsigned int;__CHAR16_TYPE__;short unsigned int;__CHAR32_TYPE__;unsigned int;__SIG_ATOMIC_TYPE__;int;__INT8_TYPE__;signed char;__INT16_TYPE__;short int;__INT32_TYPE__;int;__INT64_TYPE__;long int;__UINT8_TYPE__;unsigned char;__UINT16_TYPE__;short unsigned int;__UINT32_TYPE__;unsigned int;__UINT64_TYPE__;long unsigned int;__INT_LEAST8_TYPE__;signed char;__INT_LEAST16_TYPE__;short int;__INT_LEAST32_TYPE__;int;__INT_LEAST64_TYPE__;long int;__UINT_LEAST8_TYPE__;unsigned char;__UINT_LEAST16_TYPE__;short unsigned int;__UINT_LEAST32_TYPE__;unsigned int;__UINT_LEAST64_TYPE__;long unsigned int;__INT_FAST8_TYPE__;signed char;__INT_FAST16_TYPE__;long int;__INT_FAST32_TYPE__;long int;__INT_FAST64_TYPE__;long int;__UINT_FAST8_TYPE__;unsigned char;__UINT_FAST16_TYPE__;long unsigned int;__UINT_FAST32_TYPE__;long unsigned int;__UINT_FAST64_TYPE__;long unsigned int;__INTPTR_TYPE__;long int;__UINTPTR_TYPE__;long unsigned int;__has_include(STR);__has_include__(STR);__has_include_next(STR);__has_include_next__(STR);__GXX_ABI_VERSION;1013;__SCHAR_MAX__;0x7f;__SHRT_MAX__;0x7fff;__INT_MAX__;0x7fffffff;__LONG_MAX__;0x7fffffffffffffffL;__LONG_LONG_MAX__;0x7fffffffffffffffLL;__WCHAR_MAX__;0x7fffffff;__WCHAR_MIN__;(-__WCHAR_MAX__ - 1);__WINT_MAX__;0xffffffffU;__WINT_MIN__;0U;__PTRDIFF_MAX__;0x7fffffffffffffffL;__SIZE_MAX__;0xffffffffffffffffUL;__SCHAR_WIDTH__;8;__SHRT_WIDTH__;16;__INT_WIDTH__;32;__LONG_WIDTH__;64;__LONG_LONG_WIDTH__;64;__WCHAR_WIDTH__;32;__WINT_WIDTH__;32;__PTRDIFF_WIDTH__;64;__SIZE_WIDTH__;64;__INTMAX_MAX__;0x7fffffffffffffffL;__INTMAX_C(c);c ## L;__UINTMAX_MAX__;0xffffffffffffffffUL;__UINTMAX_C(c);c ## UL;__INTMAX_WIDTH__;64;__SIG_ATOMIC_MAX__;0x7fffffff;__SIG_ATOMIC_MIN__;(-__SIG_ATOMIC_MAX__ - 1);__SIG_ATOMIC_WIDTH__;32;__INT8_MAX__;0x7f;__INT16_MAX__;0x7fff;__INT32_MAX__;0x7fffffff;__INT64_MAX__;0x7fffffffffffffffL;__UINT8_MAX__;0xff;__UINT16_MAX__;0xffff;__UINT32_MAX__;0xffffffffU;__UINT64_MAX__;0xffffffffffffffffUL;__INT_LEAST8_MAX__;0x7f;__INT8_C(c);c;__INT_LEAST8_WIDTH__;8;__INT_LEAST16_MAX__;0x7fff;__INT16_C(c);c;__INT_LEAST16_WIDTH__;16;__INT_LEAST32_MAX__;0x7fffffff;__INT32_C(c);c;__INT_LEAST32_WIDTH__;32;__INT_LEAST64_MAX__;0x7fffffffffffffffL;__INT64_C(c);c ## L;__INT_LEAST64_WIDTH__;64;__UINT_LEAST8_MAX__;0xff;__UINT8_C(c);c;__UINT_LEAST16_MAX__;0xffff;__UINT16_C(c);c;__UINT_LEAST32_MAX__;0xffffffffU;__UINT32_C(c);c ## U;__UINT_LEAST64_MAX__;0xffffffffffffffffUL;__UINT64_C(c);c ## UL;__INT_FAST8_MAX__;0x7f;__INT_FAST8_WIDTH__;8;__INT_FAST16_MAX__;0x7fffffffffffffffL;__INT_FAST16_WIDTH__;64;__INT_FAST32_MAX__;0x7fffffffffffffffL;__INT_FAST32_WIDTH__;64;__INT_FAST64_MAX__;0x7fffffffffffffffL;__INT_FAST64_WIDTH__;64;__UINT_FAST8_MAX__;0xff;__UINT_FAST16_MAX__;0xffffffffffffffffUL;__UINT_FAST32_MAX__;0xffffffffffffffffUL;__UINT_FAST64_MAX__;0xffffffffffffffffUL;__INTPTR_MAX__;0x7fffffffffffffffL;__INTPTR_WIDTH__;64;__UINTPTR_MAX__;0xffffffffffffffffUL;__GCC_IEC_559;2;__GCC_IEC_559_COMPLEX;2;__FLT_EVAL_METHOD__;0;__FLT_EVAL_METHOD_TS_18661_3__;0;__DEC_EVAL_METHOD__;2;__FLT_RADIX__;2;__FLT_MANT_DIG__;24;__FLT_DIG__;6;__FLT_MIN_EXP__;(-125);__FLT_MIN_10_EXP__;(-37);__FLT_MAX_EXP__;128;__FLT_MAX_10_EXP__;38;__FLT_DECIMAL_DIG__;9;__FLT_MAX__;3.40282346638528859811704183484516925e+38F;__FLT_MIN__;1.17549435082228750796873653722224568e-38F;__FLT_EPSILON__;1.19209289550781250000000000000000000e-7F;__FLT_DENORM_MIN__;1.40129846432481707092372958328991613e-45F;__FLT_HAS_DENORM__;1;__FLT_HAS_INFINITY__;1;__FLT_HAS_QUIET_NAN__;1;__DBL_MANT_DIG__;53;__DBL_DIG__;15;__DBL_MIN_EXP__;(-1021);__DBL_MIN_10_EXP__;(-307);__DBL_MAX_EXP__;1024;__DBL_MAX_10_EXP__;308;__DBL_DECIMAL_DIG__;17;__DBL_MAX__;((double)1.79769313486231570814527423731704357e+308L);__DBL_MIN__;((double)2.22507385850720138309023271733240406e-308L);__DBL_EPSILON__;((double)2.22044604925031308084726333618164062e-16L);__DBL_DENORM_MIN__;((double)4.94065645841246544176568792868221372e-324L);__DBL_HAS_DENORM__;1;__DBL_HAS_INFINITY__;1;__DBL_HAS_QUIET_NAN__;1;__LDBL_MANT_DIG__;64;__LDBL_DIG__;18;__LDBL_MIN_EXP__;(-16381);__LDBL_MIN_10_EXP__;(-4931);__LDBL_MAX_EXP__;16384;__LDBL_MAX_10_EXP__;4932;__DECIMAL_DIG__;21;__LDBL_DECIMAL_DIG__;21;__LDBL_MAX__;1.18973149535723176502126385303097021e+4932L;__LDBL_MIN__;3.36210314311209350626267781732175260e-4932L;__LDBL_EPSILON__;1.08420217248550443400745280086994171e-19L;__LDBL_DENORM_MIN__;3.64519953188247460252840593361941982e-4951L;__LDBL_HAS_DENORM__;1;__LDBL_HAS_INFINITY__;1;__LDBL_HAS_QUIET_NAN__;1;__FLT32_MANT_DIG__;24;__FLT32_DIG__;6;__FLT32_MIN_EXP__;(-125);__FLT32_MIN_10_EXP__;(-37);__FLT32_MAX_EXP__;128;__FLT32_MAX_10_EXP__;38;__FLT32_DECIMAL_DIG__;9;__FLT32_MAX__;3.40282346638528859811704183484516925e+38F32;__FLT32_MIN__;1.17549435082228750796873653722224568e-38F32;__FLT32_EPSILON__;1.19209289550781250000000000000000000e-7F32;__FLT32_DENORM_MIN__;1.40129846432481707092372958328991613e-45F32;__FLT32_HAS_DENORM__;1;__FLT32_HAS_INFINITY__;1;__FLT32_HAS_QUIET_NAN__;1;__FLT64_MANT_DIG__;53;__FLT64_DIG__;15;__FLT64_MIN_EXP__;(-1021);__FLT64_MIN_10_EXP__;(-307);__FLT64_MAX_EXP__;1024;__FLT64_MAX_10_EXP__;308;__FLT64_DECIMAL_DIG__;17;__FLT64_MAX__;1.79769313486231570814527423731704357e+308F64;__FLT64_MIN__;2.22507385850720138309023271733240406e-308F64;__FLT64_EPSILON__;2.22044604925031308084726333618164062e-16F64;__FLT64_DENORM_MIN__;4.94065645841246544176568792868221372e-324F64;__FLT64_HAS_DENORM__;1;__FLT64_HAS_INFINITY__;1;__FLT64_HAS_QUIET_NAN__;1;__FLT128_MANT_DIG__;113;__FLT128_DIG__;33;__FLT128_MIN_EXP__;(-16381);__FLT128_MIN_10_EXP__;(-4931);__FLT128_MAX_EXP__;16384;__FLT128_MAX_10_EXP__;4932;__FLT128_DECIMAL_DIG__;36;__FLT128_MAX__;1.18973149535723176508575932662800702e+4932F128;__FLT128_MIN__;3.36210314311209350626267781732175260e-4932F128;__FLT128_EPSILON__;1.92592994438723585305597794258492732e-34F128;__FLT128_DENORM_MIN__;6.47517511943802511092443895822764655e-4966F128;__FLT128_HAS_DENORM__;1;__FLT128_HAS_INFINITY__;1;__FLT128_HAS_QUIET_NAN__;1;__FLT32X_MANT_DIG__;53;__FLT32X_DIG__;15;__FLT32X_MIN_EXP__;(-1021);__FLT32X_MIN_10_EXP__;(-307);__FLT32X_MAX_EXP__;1024;__FLT32X_MAX_10_EXP__;308;__FLT32X_DECIMAL_DIG__;17;__FLT32X_MAX__;1.79769313486231570814527423731704357e+308F32x;__FLT32X_MIN__;2.22507385850720138309023271733240406e-308F32x;__FLT32X_EPSILON__;2.22044604925031308084726333618164062e-16F32x;__FLT32X_DENORM_MIN__;4.94065645841246544176568792868221372e-324F32x;__FLT32X_HAS_DENORM__;1;__FLT32X_HAS_INFINITY__;1;__FLT32X_HAS_QUIET_NAN__;1;__FLT64X_MANT_DIG__;64;__FLT64X_DIG__;18;__FLT64X_MIN_EXP__;(-16381);__FLT64X_MIN_10_EXP__;(-4931);__FLT64X_MAX_EXP__;16384;__FLT64X_MAX_10_EXP__;4932;__FLT64X_DECIMAL_DIG__;21;__FLT64X_MAX__;1.18973149535723176502126385303097021e+4932F64x;__FLT64X_MIN__;3.36210314311209350626267781732175260e-4932F64x;__FLT64X_EPSILON__;1.08420217248550443400745280086994171e-19F64x;__FLT64X_DENORM_MIN__;3.64519953188247460252840593361941982e-4951F64x;__FLT64X_HAS_DENORM__;1;__FLT64X_HAS_INFINITY__;1;__FLT64X_HAS_QUIET_NAN__;1;__DEC32_MANT_DIG__;7;__DEC32_MIN_EXP__;(-94);__DEC32_MAX_EXP__;97;__DEC32_MIN__;1E-95DF;__DEC32_MAX__;9.999999E96DF;__DEC32_EPSILON__;1E-6DF;__DEC32_SUBNORMAL_MIN__;0.000001E-95DF;__DEC64_MANT_DIG__;16;__DEC64_MIN_EXP__;(-382);__DEC64_MAX_EXP__;385;__DEC64_MIN__;1E-383DD;__DEC64_MAX__;9.999999999999999E384DD;__DEC64_EPSILON__;1E-15DD;__DEC64_SUBNORMAL_MIN__;0.000000000000001E-383DD;__DEC128_MANT_DIG__;34;__DEC128_MIN_EXP__;(-6142);__DEC128_MAX_EXP__;6145;__DEC128_MIN__;1E-6143DL;__DEC128_MAX__;9.999999999999999999999999999999999E6144DL;__DEC128_EPSILON__;1E-33DL;__DEC128_SUBNORMAL_MIN__;0.000000000000000000000000000000001E-6143DL;__REGISTER_PREFIX__; ;__USER_LABEL_PREFIX__; ;__GNUC_STDC_INLINE__;1;__NO_INLINE__;1;__GCC_HAVE_SYNC_COMPARE_AND_SWAP_1;1;__GCC_HAVE_SYNC_COMPARE_AND_SWAP_2;1;__GCC_HAVE_SYNC_COMPARE_AND_SWAP_4;1;__GCC_HAVE_SYNC_COMPARE_AND_SWAP_8;1;__GCC_ATOMIC_BOOL_LOCK_FREE;2;__GCC_ATOMIC_CHAR_LOCK_FREE;2;__GCC_ATOMIC_CHAR16_T_LOCK_FREE;2;__GCC_ATOMIC_CHAR32_T_LOCK_FREE;2;__GCC_ATOMIC_WCHAR_T_LOCK_FREE;2;__GCC_ATOMIC_SHORT_LOCK_FREE;2;__GCC_ATOMIC_INT_LOCK_FREE;2;__GCC_ATOMIC_LONG_LOCK_FREE;2;__GCC_ATOMIC_LLONG_LOCK_FREE;2;__GCC_ATOMIC_TEST_AND_SET_TRUEVAL;1;__GCC_ATOMIC_POINTER_LOCK_FREE;2;__HAVE_SPECULATION_SAFE_VALUE;1;__GCC_HAVE_DWARF2_CFI_ASM;1;__PRAGMA_REDEFINE_EXTNAME;1;__SSP_STRONG__;3;__SIZEOF_INT128__;16;__SIZEOF_WCHAR_T__;4;__SIZEOF_WINT_T__;4;__SIZEOF_PTRDIFF_T__;8;__amd64;1;__amd64__;1;__x86_64;1;__x86_64__;1;__SIZEOF_FLOAT80__;16;__SIZEOF_FLOAT128__;16;__ATOMIC_HLE_ACQUIRE;65536;__ATOMIC_HLE_RELEASE;131072;__GCC_ASM_FLAG_OUTPUTS__;1;__k8;1;__k8__;1;__code_model_small__;1;__MMX__;1;__SSE__;1;__SSE2__;1;__FXSR__;1;__SSE_MATH__;1;__SSE2_MATH__;1;__SEG_FS;1;__SEG_GS;1;__CET__;3;__gnu_linux__;1;__linux;1;__linux__;1;linux;1;__unix;1;__unix__;1;unix;1;__ELF__;1;__DECIMAL_BID_FORMAT__;1;_STDC_PREDEF_H;1;__STDC_IEC_559__;1;__STDC_IEC_559_COMPLEX__;1;__STDC_ISO_10646__;201706L"
+-		},
+-		{
+-			"name" : "CMAKE_EXTRA_GENERATOR_C_SYSTEM_INCLUDE_DIRS",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "C compiler system include directories"
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "/usr/lib/gcc/x86_64-linux-gnu/9/include;/usr/local/include;/usr/include/x86_64-linux-gnu;/usr/include"
+-		},
+-		{
+-			"name" : "CMAKE_GENERATOR",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Name of generator."
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "Unix Makefiles"
+-		},
+-		{
+-			"name" : "CMAKE_GENERATOR_INSTANCE",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Generator instance identifier."
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_GENERATOR_PLATFORM",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Name of generator platform."
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_GENERATOR_TOOLSET",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Name of generator toolset."
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_HOME_DIRECTORY",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Source directory with the top level CMakeLists.txt file for this project"
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "/home/ntsayz/Documents/feup-aed"
+-		},
+-		{
+-			"name" : "CMAKE_INSTALL_PREFIX",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Install path prefix, prepended onto install directories."
+-				}
+-			],
+-			"type" : "PATH",
+-			"value" : "/usr/local"
+-		},
+-		{
+-			"name" : "CMAKE_INSTALL_SO_NO_EXE",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Install .so files without execute permission."
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "1"
+-		},
+-		{
+-			"name" : "CMAKE_LINKER",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to a program."
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "/usr/bin/ld"
+-		},
+-		{
+-			"name" : "CMAKE_MAKE_PROGRAM",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to a program."
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "/usr/bin/make"
+-		},
+-		{
+-			"name" : "CMAKE_MODULE_LINKER_FLAGS",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of modules during all build types."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_MODULE_LINKER_FLAGS_DEBUG",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of modules during DEBUG builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_MODULE_LINKER_FLAGS_MINSIZEREL",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of modules during MINSIZEREL builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_MODULE_LINKER_FLAGS_RELEASE",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of modules during RELEASE builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of modules during RELWITHDEBINFO builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_NM",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to a program."
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "/usr/bin/nm"
+-		},
+-		{
+-			"name" : "CMAKE_NUMBER_OF_MAKEFILES",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "number of local generators"
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "1"
+-		},
+-		{
+-			"name" : "CMAKE_OBJCOPY",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to a program."
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "/usr/bin/objcopy"
+-		},
+-		{
+-			"name" : "CMAKE_OBJDUMP",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to a program."
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "/usr/bin/objdump"
+-		},
+-		{
+-			"name" : "CMAKE_PLATFORM_INFO_INITIALIZED",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Platform information initialized"
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "1"
+-		},
+-		{
+-			"name" : "CMAKE_PROJECT_DESCRIPTION",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Value Computed by CMake"
+-				}
+-			],
+-			"type" : "STATIC",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_PROJECT_HOMEPAGE_URL",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Value Computed by CMake"
+-				}
+-			],
+-			"type" : "STATIC",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_PROJECT_NAME",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Value Computed by CMake"
+-				}
+-			],
+-			"type" : "STATIC",
+-			"value" : "feup_aed"
+-		},
+-		{
+-			"name" : "CMAKE_RANLIB",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to a program."
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "/usr/bin/ranlib"
+-		},
+-		{
+-			"name" : "CMAKE_READELF",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to a program."
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "/usr/bin/readelf"
+-		},
+-		{
+-			"name" : "CMAKE_ROOT",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to CMake installation."
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "/snap/clion/209/bin/cmake/linux/share/cmake-3.23"
+-		},
+-		{
+-			"name" : "CMAKE_SHARED_LINKER_FLAGS",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of shared libraries during all build types."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_SHARED_LINKER_FLAGS_DEBUG",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of shared libraries during DEBUG builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_SHARED_LINKER_FLAGS_MINSIZEREL",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of shared libraries during MINSIZEREL builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_SHARED_LINKER_FLAGS_RELEASE",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of shared libraries during RELEASE builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of shared libraries during RELWITHDEBINFO builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_SKIP_INSTALL_RPATH",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "If set, runtime paths are not added when installing shared libraries, but are added when building."
+-				}
+-			],
+-			"type" : "BOOL",
+-			"value" : "NO"
+-		},
+-		{
+-			"name" : "CMAKE_SKIP_RPATH",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "If set, runtime paths are not added when using shared libraries."
+-				}
+-			],
+-			"type" : "BOOL",
+-			"value" : "NO"
+-		},
+-		{
+-			"name" : "CMAKE_STATIC_LINKER_FLAGS",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of static libraries during all build types."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_STATIC_LINKER_FLAGS_DEBUG",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of static libraries during DEBUG builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_STATIC_LINKER_FLAGS_MINSIZEREL",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of static libraries during MINSIZEREL builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_STATIC_LINKER_FLAGS_RELEASE",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of static libraries during RELEASE builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Flags used by the linker during the creation of static libraries during RELWITHDEBINFO builds."
+-				}
+-			],
+-			"type" : "STRING",
+-			"value" : ""
+-		},
+-		{
+-			"name" : "CMAKE_STRIP",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to a program."
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "/usr/bin/strip"
+-		},
+-		{
+-			"name" : "CMAKE_UNAME",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "uname command"
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "/usr/bin/uname"
+-		},
+-		{
+-			"name" : "CMAKE_VERBOSE_MAKEFILE",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "If this value is on, makefiles will be generated without the .SILENT directive, and all commands will be echoed to the console during the make.  This is useful for debugging only. With Visual Studio IDE projects all commands are done without /nologo."
+-				}
+-			],
+-			"type" : "BOOL",
+-			"value" : "FALSE"
+-		},
+-		{
+-			"name" : "DOXYGEN_DOT_EXECUTABLE",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Dot tool for use with Doxygen"
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "DOXYGEN_DOT_EXECUTABLE-NOTFOUND"
+-		},
+-		{
+-			"name" : "DOXYGEN_EXECUTABLE",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Doxygen documentation generation tool (http://www.doxygen.org)"
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "/usr/local/bin/doxygen"
+-		},
+-		{
+-			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_Doxygen",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Details about finding Doxygen"
+-				}
+-			],
+-			"type" : "INTERNAL",
+-			"value" : "[/usr/local/bin/doxygen][cfound components: doxygen missing components: dot][v()]"
+-		},
+-		{
+-			"name" : "ProcessorCount_cmd_nproc",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to a program."
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "/usr/bin/nproc"
+-		},
+-		{
+-			"name" : "ProcessorCount_cmd_sysctl",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "ADVANCED",
+-					"value" : "1"
+-				},
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Path to a program."
+-				}
+-			],
+-			"type" : "FILEPATH",
+-			"value" : "/usr/sbin/sysctl"
+-		},
+-		{
+-			"name" : "feup_aed_BINARY_DIR",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Value Computed by CMake"
+-				}
+-			],
+-			"type" : "STATIC",
+-			"value" : "/home/ntsayz/Documents/feup-aed/cmake-build-debug"
+-		},
+-		{
+-			"name" : "feup_aed_IS_TOP_LEVEL",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Value Computed by CMake"
+-				}
+-			],
+-			"type" : "STATIC",
+-			"value" : "ON"
+-		},
+-		{
+-			"name" : "feup_aed_SOURCE_DIR",
+-			"properties" : 
+-			[
+-				{
+-					"name" : "HELPSTRING",
+-					"value" : "Value Computed by CMake"
+-				}
+-			],
+-			"type" : "STATIC",
+-			"value" : "/home/ntsayz/Documents/feup-aed"
+-		}
+-	],
+-	"kind" : "cache",
+-	"version" : 
+-	{
+-		"major" : 2,
+-		"minor" : 0
+-	}
+-}
+Index: cmake-build-debug/CMakeFiles/TargetDirectories.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/home/ntsayz/Documents/feup-aed/cmake-build-debug/CMakeFiles/feup_aed.dir\n/home/ntsayz/Documents/feup-aed/cmake-build-debug/CMakeFiles/edit_cache.dir\n/home/ntsayz/Documents/feup-aed/cmake-build-debug/CMakeFiles/rebuild_cache.dir\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cmake-build-debug/CMakeFiles/TargetDirectories.txt b/cmake-build-debug/CMakeFiles/TargetDirectories.txt
+--- a/cmake-build-debug/CMakeFiles/TargetDirectories.txt	(revision 2af90323db1fa875876cba6c4a53fd8c1e3e77f4)
++++ b/cmake-build-debug/CMakeFiles/TargetDirectories.txt	(date 1667476309852)
+@@ -1,3 +1,3 @@
+-/home/ntsayz/Documents/feup-aed/cmake-build-debug/CMakeFiles/feup_aed.dir
+-/home/ntsayz/Documents/feup-aed/cmake-build-debug/CMakeFiles/edit_cache.dir
+-/home/ntsayz/Documents/feup-aed/cmake-build-debug/CMakeFiles/rebuild_cache.dir
++/Users/EritonNaife/feup-aed/cmake-build-debug/CMakeFiles/feup_aed.dir
++/Users/EritonNaife/feup-aed/cmake-build-debug/CMakeFiles/edit_cache.dir
++/Users/EritonNaife/feup-aed/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+Index: src/Student.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//\n// Created by ntsayz on 10/20/22.\n//\n\n#ifndef FEUP_AED_STUDENT_H\n#define FEUP_AED_STUDENT_H\n#include \"Request.h\"\n#include \"Uc.h\"\n#include \"Class.h\"\n#include \"Utility.h\"\n#include \"Slot.h\"\n#include <string>\n#include <queue>\n#include <iostream>\n#include <vector>\n#include <list>\n#include <map>\n\n\n\nclass Student {\nprivate:\n    int code;\n    std::string name;\n    std::queue<Request> requests;\n    std::map<Class,Uc> classes;\n    std::map< Uc, Class> classes12;\n    std::map<Uc,std::map<Uc,std::vector<Class>>> classes1;\n    std::set<Slot> schedule;\npublic:\n    Student();\n    ///Enroll student to the faculty\n    Student(int code, std::string name);\n    /// Enroll students w/ class information\n    Student(int code, std::string name, Uc& curricularUnit, Class& aClass);\n    /// Adds a class to the student's list of classes\n    void addClassUC(Uc& uc,Class& aClass);\n    /// Gets student's code\n    int getCode() const;\n    /// Displays what classes the student is enrolled to\n    void showEnrolledClasses() const;\n    /// Gets <UC,Class> map\n    std::map<Class,Uc> getEnrolledClasses() const;\n    /// Get number of enrolled classes\n    int getNumberEnrolledClasses() const;\n    /// Gets student's name\n    std::string getName() const;\n    bool operator<(Student student) const{\n        return this->getCode() < student.getCode();\n    }\n    bool operator>(Student student) const{\n        return getCode() > student.getCode();\n    }\n    bool operator==(Student student) const{\n        return getCode() == student.getCode();\n    }\n\n};\n#endif //FEUP_AED_STUDENT_H\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Student.h b/src/Student.h
+--- a/src/Student.h	(revision 2af90323db1fa875876cba6c4a53fd8c1e3e77f4)
++++ b/src/Student.h	(date 1667480710215)
+@@ -36,7 +36,7 @@
+     /// Adds a class to the student's list of classes
+     void addClassUC(Uc& uc,Class& aClass);
+     /// Gets student's code
+-    int getCode() const;
++    const Student getCode() const;
+     /// Displays what classes the student is enrolled to
+     void showEnrolledClasses() const;
+     /// Gets <UC,Class> map
+Index: src/Menu.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//\n// Created by ntsayz on 10/21/22.\n//\n\n#ifndef FEUP_AED_MENU_H\n#define FEUP_AED_MENU_H\n#include <string>\n#include <limits>\n#include <vector>\n#include <iostream>\n#include <iomanip>\n#include <cstdlib>\n#include <set>\n#include <vector>\n#include \"Utility.h\"\n#include \"Student.h\"\n#include \"Class.h\"\n#include \"Menu.h\"\n\nclass Menu {\nprivate:\npublic:\n    /// Main menu\n    static short Main();\n    /// Listings menu, to show all available data\n    static short Listings();\n    /// Listings subsection -Students\n    static short  studentsListings();\n    /// Students subsection -Classes\n    static bool studentsListings_Class(std::set<Student> students,std::set<Class> classes,bool session);\n    /// Listings subsection -Classes\n    static void classesListings();\n    /// Listings subsection - UC's\n    void UCListings();\n    /// Listings subsection -Schedules\n    void schedulesListings();\n\n};\n\n\n#endif //FEUP_AED_MENU_H\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Menu.h b/src/Menu.h
+--- a/src/Menu.h	(revision 2af90323db1fa875876cba6c4a53fd8c1e3e77f4)
++++ b/src/Menu.h	(date 1667476915902)
+@@ -24,6 +24,8 @@
+     static short Main();
+     /// Listings menu, to show all available data
+     static short Listings();
++    ///Requests menu
++    static short Requests();
+     /// Listings subsection -Students
+     static short  studentsListings();
+     /// Students subsection -Classes
+Index: src/Student.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//\n// Created by ntsayz on 10/20/22.\n//\n\n#include \"Student.h\"\n\n#include <utility>\n\nStudent::Student() = default;\n\nStudent::Student(int code, std::string name){\n    this->code = code;\n    this->name = std::move(name);\n}\nStudent::Student(int code, std::string name, Uc& curricularUnit, Class& aClass) {\n    this->code = code;\n    this->name = std::move(name);\n    this->classes12[curricularUnit] = aClass;\n}\n\nstd::map<Class,Uc> Student::getEnrolledClasses() const {\n    return this->classes;\n}\n\nint Student::getCode() const {\n    return this->code;\n}\n\nstd::string Student::getName() const {\n    return this->name;\n}\n\nvoid Student::showEnrolledClasses() const {\n    std::cout << getName() <<  \" is enrolled in\\n \" << classes1.size() << \" classes\\n\";\n    for(auto it: classes1){\n        std::cout  << \"(\"<< it.first.get_uc_Code() << \") ==> [\";\n        for(auto [uc,classList]: it.second){\n            for(auto aClass : classList){\n                std::cout <<  \"[\"<< uc.get_uc_Code() << \", \" << aClass.getClassCode() << \"],\";\n            }\n        }\n        std::cout << \"]\\n\";\n    }\n}\n\nvoid Student::addClassUC(Uc& uc,Class& aClass){\n    if(classes1.find(uc) == classes1.end()){\n        std::map<Uc, std::vector<Class>> ucClassMap;\n        std::vector<Class> classList;\n        classList.push_back(aClass);\n        ucClassMap[uc] = classList;\n        this->classes1[uc] = ucClassMap ;\n        //std::cout << \"added \" << getName() << \" to \" << aClass.getClassCode() << \" in \" << uc.get_uc_Code() <<\"\\n\";\n    }else{\n        this->classes1[uc][uc].push_back(aClass);\n        //std::cout << \"added \" << getName() << \" to \" << aClass.getClassCode() << \" in \" << uc.get_uc_Code() <<\"\\n\";\n    }\n}\n\nint Student::getNumberEnrolledClasses() const {\n    return this->classes.size();\n}\n\n/*\nvoid Student::addClassUC(Uc curricularUnit,Class aClass) {\n    this->classes.emplace(curricularUnit,aClass);\n}*/\n\n\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Student.cpp b/src/Student.cpp
+--- a/src/Student.cpp	(revision 2af90323db1fa875876cba6c4a53fd8c1e3e77f4)
++++ b/src/Student.cpp	(date 1667480710208)
+@@ -22,7 +22,7 @@
+     return this->classes;
+ }
+ 
+-int Student::getCode() const {
++const Student Student::getCode() const {
+     return this->code;
+ }
+ 

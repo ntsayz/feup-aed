@@ -1,0 +1,230 @@
+Index: src/Manager.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Manager.cpp b/src/Manager.cpp
+--- a/src/Manager.cpp	
++++ b/src/Manager.cpp	
+@@ -71,20 +71,16 @@
+         short choice = Menu::Listings();
+         switch (choice){
+             case 1:
+-                requests.push(1);
+-                Request::removeStudent(students_uc_classes);
++                addRequests(r(1));
+                 break;
+             case 2:
+-                requests.push(2);
+-                Request::add(schedules,students_uc_classes);
++                addRequests(r(2));
+                 break;
+             case 3:
+-                requests.push(3);
+-                Request::change(students_uc_classes);
++                addRequests(r(3));
+                 break;
+             case 4:
+-                requests.push(4);
+-                Request::changeMultiple(students_uc_classes);
++                addRequests(r(4));
+                 break;
+             case 0:
+                 localSession = false;
+@@ -93,6 +89,9 @@
+                 break;
+         }
+ 
++    }
++    while(requests.size()!=0){
++        excute();
+     }
+ }
+ 
+@@ -448,6 +447,32 @@
+     std::cin >> i;
+ }
+ 
++void Manager::addRequests(Request r) {
++    requests.push(r);
++}
++
++Request Manager::excute() {
++    Request r = requests.front();
++    if(r.get_n() == 1){
++        r.removeStudent(students_uc_classes);
++        requests.pop();
++    }
++    else if(r.get_n() == 2){
++        r.add(schedules,students_uc_classes);
++        requests.pop();
++    }
++    else if(r.get_n() == 3){
++        r.change(students_uc_classes);
++        requests.pop();
++    }
++    else{
++        r.changeMultiple(students_uc_classes);
++        requests.pop();
++    }
++
++    return r;
++}
++
+ 
+ 
+ 
+Index: src/Manager.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Manager.h b/src/Manager.h
+--- a/src/Manager.h	
++++ b/src/Manager.h	
+@@ -40,8 +40,11 @@
+     std::map<Class,std::vector<Uc>> classes_uc;
+     std::map<Uc,std::vector<Class>> uc_classes;
+     std::set<Uc> curricularUnits;
+-    std::queue<int> requests;
++    std::queue<Request> requests;
+     bool globalSession;
++    Request r(int n);
++
++
+ 
+     /// Listings
+     void Listings();
+@@ -59,6 +62,9 @@
+     void loadDatafromFiles();
+     /// Loads each object from each class with its particular data (eg:. Inserting students in a particular class)
+     void load();
++    void addRequests(Request r);
++    Request excute();
++
+ public:
+     /// Constructor
+     Manager();
+Index: src/Request.cpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Request.cpp b/src/Request.cpp
+--- a/src/Request.cpp	
++++ b/src/Request.cpp	
+@@ -5,6 +5,10 @@
+ #include "Request.h"
+ 
+ 
++Request::Request(int n){
++    this->n = n;
++}
++
+ void Request::removeStudent(std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes) {
+     int student_code;
+     std::string class_code,name,uc_code;
+@@ -150,7 +154,7 @@
+         auto i = it->second.begin();
+         if(i->getClassSize() > 12){
+             std::cout << "No vacancies in class. " << "\n";
+-            r.push_back(2);
++            r.push_back(3);
+         }
+         else{
+             if(difference >= 4){
+@@ -228,7 +232,7 @@
+             auto i = it->second.begin();
+             if(i->getClassSize() > 12){
+                 std::cout << "No vacancies in class. " << "\n";
+-                r.push_back(2);
++                r.push_back(4);
+             }
+             else{
+                 if(difference >= 4){
+@@ -259,6 +263,10 @@
+ 
+ }
+ 
+-std::deque<int> Request::getUnsuccessufull() {
++std::vector<int> Request::getUnsuccessufull() {
+     return this->r;
+-}
+\ No newline at end of file
++}
++
++int Request::get_n() {
++    return n;
++}
+Index: src/Request.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Request.h b/src/Request.h
+--- a/src/Request.h	
++++ b/src/Request.h	
+@@ -26,16 +26,20 @@
+ 
+ class Request {
+ private:
+-    static std::deque<int>r;
++
++    Request(int n);
++    static std::vector<int>r;
++    static int n;
+ public:
+-
++    static Request();
++    static Request(int n);
+     static void removeStudent(std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes);
+     static void add(std::map<Uc,std::map<Class,std::vector<Slot>>> schedules, std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes);
+     static void change(std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes);
+     static void changeMultiple(std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes);
+     static bool vagas(std::map<Uc, std::vector<Class>> vec);
+-    std::deque<int> getUnsuccessufull();
++    static int get_n();
++    std::vector<int> getUnsuccessufull();
+ };
+-
+ 
+ #endif //FEUP_AED_REQUEST_H
+Index: cmake-build-debug/CMakeFiles/clion-log.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cmake-build-debug/CMakeFiles/clion-log.txt b/cmake-build-debug/CMakeFiles/clion-log.txt
+--- a/cmake-build-debug/CMakeFiles/clion-log.txt	
++++ b/cmake-build-debug/CMakeFiles/clion-log.txt	
+@@ -1,16 +1,4 @@
+ /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /Users/EritonNaife/feup-aed -B /Users/EritonNaife/feup-aed/cmake-build-debug
+--- The C compiler identification is AppleClang 12.0.0.12000032
+--- The CXX compiler identification is AppleClang 12.0.0.12000032
+--- Detecting C compiler ABI info
+--- Detecting C compiler ABI info - done
+--- Check for working C compiler: /Library/Developer/CommandLineTools/usr/bin/cc - skipped
+--- Detecting C compile features
+--- Detecting C compile features - done
+--- Detecting CXX compiler ABI info
+--- Detecting CXX compiler ABI info - done
+--- Check for working CXX compiler: /Library/Developer/CommandLineTools/usr/bin/c++ - skipped
+--- Detecting CXX compile features
+--- Detecting CXX compile features - done
+ -- Configuring done
+ -- Generating done
+ -- Build files have been written to: /Users/EritonNaife/feup-aed/cmake-build-debug
+Index: cmake-build-debug/Testing/Temporary/LastTest.log
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cmake-build-debug/Testing/Temporary/LastTest.log b/cmake-build-debug/Testing/Temporary/LastTest.log
+--- a/cmake-build-debug/Testing/Temporary/LastTest.log	
++++ b/cmake-build-debug/Testing/Temporary/LastTest.log	
+@@ -1,3 +1,3 @@
+-Start testing: Nov 03 16:12 WET
++Start testing: Nov 04 22:27 WET
+ ----------------------------------------------------------
+-End testing: Nov 03 16:12 WET
++End testing: Nov 04 22:27 WET

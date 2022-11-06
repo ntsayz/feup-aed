@@ -1,4 +1,4 @@
-/snap/clion/209/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /home/ntsayz/Documents/feup-aed -B /home/ntsayz/Documents/feup-aed/cmake-build-debug
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /Users/EritonNaife/feup-aed -B /Users/EritonNaife/feup-aed/cmake-build-debug
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/ntsayz/Documents/feup-aed/cmake-build-debug
+-- Build files have been written to: /Users/EritonNaife/feup-aed/cmake-build-debug

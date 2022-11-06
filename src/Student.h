@@ -23,7 +23,7 @@ private:
     int code;
     std::string curr_uc;
     std::string name;
-    std::queue<Request> requests;
+    //std::queue<Request> requests;
     std::map<Class,Uc> classes;
     std::map< Uc, Class> classes12;
     std::map<Uc,std::map<Uc,std::vector<Class>>> classes1;
@@ -37,7 +37,7 @@ public:
     /// Adds a class to the student's list of classes
     void addClassUC(Uc& uc,Class& aClass);
     /// Gets student's code
-    int getCode() const;
+    const int getCode() const;
     /// Displays what classes the student is enrolled to
     void showEnrolledClasses() const;
     /// Gets <UC,Class> map
