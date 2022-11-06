@@ -21,6 +21,7 @@
 class Student {
 private:
     int code;
+    std::string curr_uc;
     std::string name;
     //std::queue<Request> requests;
     std::map<Class,Uc> classes;
@@ -45,6 +46,10 @@ public:
     int getNumberEnrolledClasses() const;
     /// Gets student's name
     std::string getName() const;
+    /// Sets this student's uc as the current (for sorting)
+    void setUC(std::string s);
+    /// Gets students current uc
+    std::string getUC();
     bool operator<(Student student) const{
         return this->getCode() < student.getCode();
     }

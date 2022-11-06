@@ -53,6 +53,14 @@ float Slot::getEndHour(){
     return this->endHour;
 }
 
+std::string Slot::getUC(){
+    return this->uc;
+}
+
+void Slot::setUC(const std::string& basicString) {
+    this->uc = basicString;
+}
+
 
 
 

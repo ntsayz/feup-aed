@@ -6,6 +6,7 @@
 
 #include "Utility.h"
 
+using namespace std;
 Utility::Utility() = default;
 
 short Utility::getInput(short choice, short min, short max)  {
@@ -46,7 +47,6 @@ const char* Utility::getClassesUcPath() {
 const char* Utility::getStudentClassesPath() {
     return "../src/schedule/students_classes.csv";
 }
-
 void Utility::header(const std::string& title){
     int n = (int)(title.size() + 59) / 2;
     std::cout << "|" << std::setfill('-') <<std::setw(59) << "|\n"; // ---
@@ -82,28 +82,88 @@ void Utility::path(std::string path){
               << "|"<< std::setfill('-') <<std::setw(59) <<"|\n";
 }
 
-int Utility::numberInput(int input) {
-    while(true)
+void bubbleSort(vector<Slot>& arr, int n)
+{
+    int i, j;
+    for (i = 0; i < n - 1; i++)
+        for (j = 0; j < n - i - 1; j++)
+            if (arr[j].getStartHour() > arr[j + 1].getStartHour())
+                swap(arr[j], arr[j + 1]);
+}
+void Utility::scheduleHeader(std::string title){
+    int n = (int)(title.size() + 120) / 2;
+    std::cout << "|" << std::setfill('-') <<std::setw(120) << "|\n"; // ---
+    std::cout << "|" << std::setfill(' ') << std::setw(n); // | txt
+    std::cout << title;
+    std::cout << std::setfill(' ') <<std::setw(120 -n)<<"|\n"  //  --> |
+              << "|"<< std::setfill('-') <<std::setw(120) <<"|\n";
+}
+void Utility::scheduleFooter() {
+    std::cout << "|" << std::setfill('-') <<std::setw(120) << "|\n"; // --
+    std::cout << "|" << std::setfill(' ')<< std::setw(64) << "0.Back  " << std::setw(56) << "|\n";
+    std::cout << "|" << std::setfill('-') <<std::setw(120) << "|\n";
+    std::cout << "-->";
+}
+
+void Utility::schedule(std::string descriptor, std::map<Uc,std::vector<Slot>> slots){
+    clear_screen();
+    scheduleHeader(descriptor);
+    std::cout << "|" << std::setfill(' ') << std::setw(12) << "Time" << std::setw(8) << "|" << std::setw(12) << "Monday"
+              << setw(8) << "|" << setw(12) << "Tuesday" << setw(8) << "|" << setw(14) << "Wednesday" << setw(6) << "|" << setw(13) << "Thursday" << setw(7) << "|" << setw(11) << "Friday" << setw(9) << "|\n";
+    std::cout << std::setfill('-');
+    for (int i = 0; i <= 6; i++)
     {
-        if(std::cin.fail())
+        if(i == 6) break;
+        std::cout << "|"  << std::setw(20);
+    }
+    std::cout << "|\n";
+
+
+    vector<Slot> slots1;
+    for (auto& [k, v] : slots)
+    {
+        for (auto& slot : v)
         {
-            std::cin.clear();
-            std::cerr << "Sorry, I cannot read that. Please try again." << std::endl;
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            continue;
+            slot.setUC(k.get_uc_Code());
+            slots1.push_back(slot);
         }
-        return input;
     }
 
+    bubbleSort(slots1,slots1.size());
+    int i = 1;
+
+    for (auto slot: slots1){
+        std::cout << "|" << std::setfill(' ') << std::setw(8) << std::to_string(slot.getStartHour()).substr(0,4) << "-" << std::to_string(slot.getEndHour()).substr(0,4) << setw(7);
+        for (int i = 1; i <= 5; i++)
+        {
+            if(i == slot.getNum()){
+                std::cout << "|" << std::setw(12) << slot.getUC() << "("<<  slot.getSlotType() << ")"<< std::setw(5);
+            }
+            if(i == 5) break;
+            std::cout << "|" << std::setw(20);
+        }
+        std::cout << "|\n|";
+        std::cout << setfill('-') << setw(120) << "|\n";
+    }
+    scheduleFooter();
+}
+void Utility::print_uc_students_table(std::multimap<std::string,std::string> m){
+    std::cout <<"|" << std::setfill(' ') << std::setw(22)<< "Curricular Unit" << setw(7) << "|" <<  std::setw(17) << "Name" << std::setw(13) << "|\n";
+    for(auto [k,v]: m){
+        if(v[0] == '1' || v[0] == '2' || v[0] == '3'){
+            std::cout << "|" << setfill(' ') << setw(19) << v << setw(11) << "|" << setw(20)<< k  << setw(9)<< "|\n" ;
+        }else{
+            std::cout << "|" << setfill(' ') << setw(19) << k << setw(11) << "|" << setw(20)<< v  << setw(9)<< "|\n" ;
+        }
+
+    }
+}
+void Utility::print_students(const std::set<Student>& sets){
+    for(auto students: sets){
+        std::cout << "|" << setfill(' ') << setw(25) << students.getName() << " (" << students.getCode() << ")" << setw(22) << "|\n";
+    }
 }
 
-std::string Utility::stringInput(std::string s) {
-    if(s.length()>8 || s.length() < 0){
-        std::cout << "Please try again. " << std::endl;
-    }
-    else
-        return s;
-}
 
 
 

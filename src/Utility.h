@@ -42,8 +42,16 @@ public:
     static void body(const std::string& description, std::vector<std::string> options);
     /// Auxiliary function, to print the current path of the user's location
     static void path(std::string path);
-    static int numberInput(int input);
-    static std::string stringInput(stdd::string s);
+    /// Auxiliary function to print schedule
+    static void schedule(std::string descriptor, std::map<Uc,std::vector<Slot>> slots);
+
+    static void scheduleHeader(std::string descriptor);
+
+    static void scheduleFooter();
+
+    static void print_uc_students_table(std::multimap<std::string, std::string> m);
+
+    static void print_students(const std::set<Student>& sets);
 };
 
 

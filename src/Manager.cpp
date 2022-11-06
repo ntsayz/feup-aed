@@ -20,7 +20,7 @@ void Manager::startApplication(){
                 Listings();
                 break;
             case 2:
-                Requests();
+                thisFunctionIsForTestingPurposes();
                 break;
             case 3:
                 break;
@@ -64,38 +64,6 @@ void Manager::Listings() {
 
 }
 
-void Manager::Requests() {
-    bool localSession = true;
-    while(localSession){
-        Utility::clear_screen();
-        short choice = Menu::Listings();
-        switch (choice){
-            case 1:
-                requests.push(1);
-                Request::removeStudent(students_uc_classes);
-                break;
-            case 2:
-                requests.push(2);
-                Request::add(schedules,students_uc_classes);
-                break;
-            case 3:
-                requests.push(3);
-                Request::change(students_uc_classes);
-                break;
-            case 4:
-                requests.push(4);
-                Request::changeMultiple(students_uc_classes);
-                break;
-            case 0:
-                localSession = false;
-                break;
-            default:
-                break;
-        }
-
-    }
-}
-
 void Manager::studentsListings() {
     bool localSession = true;
     while(localSession){
@@ -104,12 +72,15 @@ void Manager::studentsListings() {
             case 1:{
                 bool s = true;
                 while(s){
-                    s = Menu::studentsListings_Class(students, classes, s);
+                    s = Menu::studentsListings_Class(students_uc_classes, s);
                 }
                 break;
             }
             case 2:
-
+                Menu::studentsListings_Year(students_uc_classes);
+                break;
+            case 3:
+                Menu::studentsListings_UC(students_uc_classes,uc_classes);
                 break;
             case 0:
                 localSession = false;
@@ -125,7 +96,7 @@ void Manager::classesListings() {
     std::vector<std::string> l1;
     std::vector<std::string> l2;
     std::vector<std::string> l3;
-    for(auto aClass: classes){
+    for(const auto& aClass: classes){
         if(aClass.getClassYear() ==1){
             l1.push_back(aClass.getClassCode());
         }else if(aClass.getClassYear() ==2){
@@ -159,7 +130,7 @@ void Manager::UCListings() {
         // all classes in each curricular unit
         for(auto& [uc,v] : uc_classes){
             std::cout  << "|"<< uc.get_uc_Code() << "| ==> ";
-            for( auto aclass : v){
+            for( const auto& aclass : v){
                 std::cout <<  " | " << aclass.getClassCode() << "";
             }
             std::cout << " |\n";
@@ -178,21 +149,62 @@ void Manager::UCListings() {
 }
 
 void Manager::schedulesListings() {
-        bool localSession = true;
-        while(localSession){
-            Utility::clear_screen();
-            Utility::header("SCHEDULES");
-            Utility::body("",{""});
-            Utility::footer();
-            int i;
-            std::cin >> i;
-            if(i ==0) localSession = false;
-        }
+    bool localSession = true;
+    while(localSession){
+
+        Utility::clear_screen();
+        Utility::header("SCHEDULES");
+        Utility::body("Choose a schedule from a particular:",{"1. Student","2. Class","3. Curricular Unit"});
+        Utility::footer();
+        int choice;
+        std::cin >> choice;
+        choice = Utility::getInput(choice,0,3);
+        if(choice==0){localSession = false; continue;}
+        Menu::schedulesListings(schedules,classes,classes_uc,students_uc_classes,choice);
+    }
+}
+
+void Manager::getYearClass(int& year, int& classnum){
+    bool localsession = true;
+    while(localsession){
+        Utility::clear_screen();
+        std::cout << std::setfill(' ') << std::setw(36) << "From what year?\n\n";
+        std::cout <<  std::setw(35) << "1. 1st Year\n"
+                  << std::setw(35) << "2. 2nd Year\n"
+                  << std::setw(35) << "3. 3rd Year\n";
+        Utility::footer();
+        std::cout << "-->" << std::flush;
+        std::cin >> year;
+        year = Utility::getInput(year, (short)0, (short )3);
+
+        if(year >= 1 && year <= 3){
+            while(localsession){
+                Utility::clear_screen();
+                std::cout <<  std::setw(30) << "From what class?\n" << std::setfill(' ') << std::setw(60) << "0 to Exit\n";
+                int i =1;
+                for(Class turma: classes){
+                    if(turma.getClassYear() == year){
+                        std::cout << i << ". "<<turma.getClassCode() << "\n";
+                        i++;
+                    }
+                }
+                i--;
+                Utility::footer();
+                //i= 0;
+                std::cout << "-->" << std::flush;
+                std::cin >> classnum;
+                classnum = Utility::getInput((short)classnum, (short)0, i);
+                if(classnum ==0) localsession = false;
+                if(classnum >=1 && classnum <= i && year != 0) localsession = false;
+                Utility::clear_screen();
+            }
+        }else if(year == 0) localsession = false;
+    }
 }
 
 void Manager::loadDatafromFiles()
 {
-    //Gets data from students_classes.csv
+    //file: students_classes.csv
     std::vector<std::string> vec;
     const char *fname = Utility::getStudentClassesPath();
     FILE *file = fopen(fname, "r");
@@ -215,7 +227,7 @@ void Manager::loadDatafromFiles()
             if(c>1 && s.size() >1){
                 vec.push_back((std::string)s);
             }
-            v = strtok(NULL, ",");
+            v = strtok(nullptr, ",");
         }
 
         if(c>1){
@@ -257,7 +269,8 @@ void Manager::loadDatafromFiles()
     fclose(file);
 
     vec.clear();
-    //Gets data from classes_per_uc.csv (The other file didn't have all the info needed)
+
+    //file: classes_per_uc.csv (The other file didn't have all the information needed)
     const char *fname1 = Utility::getClassesUcPath();
     FILE *file1 = fopen(fname1, "r");
     c = 0;
@@ -276,7 +289,7 @@ void Manager::loadDatafromFiles()
             if(c>1 && s.size() >1){
                 vec.push_back((std::string)s);
             }
-            v = strtok(NULL, ",");
+            v = strtok(nullptr, ",");
         }
 
         if(c>1) {
@@ -295,11 +308,12 @@ void Manager::loadDatafromFiles()
         vec.clear();
     }
     fclose(file1);
-    //normalization
+    vec.clear();
 
-
+    // file : classes.csv - loads schedules datastructure
     const char *fname2 = Utility::getClassesPath();
     FILE *file2 = fopen(fname2, "r");
+    //Line counter
     c = 0;
     if(!file1)
     {
@@ -313,38 +327,23 @@ void Manager::loadDatafromFiles()
         while(v)
         {
             std::string s = v;
-            if(c>1 && s.size() >1){
+            if(c>1){
                 vec.push_back((std::string)s);
+
             }
-            v = strtok(NULL, ",");
+            v = strtok(nullptr, ",");
         }
 
         if(c>1) {
             float starthour = 0 , duration = 0;
-            int starthourint, durationint;
-            std::cout  << vec[2] << "," << vec[3] << "," << vec[4] << "," << vec[5] << "\n";
-            if(vec[4].size() == 1){
+            //std::cout  << vec[2] << "," << vec[3] << "," << vec[4] << "," << vec[5] << "\n";
+            std::stringstream sss;
+            sss << vec[4];
+            sss >> duration;
 
-                std::stringstream sss;
-                sss << vec[4];
-                sss >> durationint;
-                duration = (float) durationint;
-            }else if(vec[4].size() > 1 ){
-                std::stringstream sss;
-                sss << vec[4];
-                sss >> duration;
-                //duration = duration;
-            }
-            if(vec[3].size() == 1){
-                std::stringstream ss;
-                ss << vec[3];
-                ss >> starthourint;
-                starthour = (float) starthourint;
-            }else if(vec[3].size() > 1){
-                std::stringstream ss;
-                ss << vec[3];
-                ss >> starthour;
-            }
+            std::stringstream ss;
+            ss << vec[3];
+            ss >> starthour;
 
             Slot slot(vec[2],starthour,duration,vec[5]);
             Uc uc(vec[1]);
@@ -369,19 +368,15 @@ void Manager::loadDatafromFiles()
         std::set<Class> s( v.begin(), v.end() );
         v.assign( s.begin(), s.end() );
     }
-    /*
-    for(auto& [uc, classMap] : schedules){
-        for(auto [aclass,vec1]: classMap){
-            std::set<Slot> s( vec1.begin(), vec1.end() );
-            vec1.assign( s.begin(), s.end() );
 
-        }
-
-    }*/
-
+    for(auto& [aclass,v] : classes_uc){
+        std::set<Uc> s( v.begin(), v.end() );
+        v.assign( s.begin(), s.end() );
+    }
 }
 
-void Manager::testing(){
+
+void Manager::thisFunctionIsForTestingPurposes(){
     for(auto stud: students){
         for(auto& [k,v] : students_uc_classes[stud] ) {
             for(auto& el: v){
@@ -421,28 +416,35 @@ void Manager::testing(){
         }
         std::cout << "]\n";
     }*/
-    // UC CLASSES
-    for(auto& [uc,v] : uc_classes){
+    /* UC CLASSES
+    /for(auto& [uc,v] : uc_classes){
         std::cout  << "("<< uc.get_uc_Code() << ") ==> [";
-        for( auto aclass : v){
+        for( const auto& aclass : v){
             std::cout <<  "[" << aclass.getClassCode() << "],";
+        }
+        std::cout << "\n";
+    }*/
+    for(auto& [aclass,v] : classes_uc){
+        std::cout  << "("<< aclass.getClassCode() << ") ==> [";
+        for( const auto& uc : v){
+            std::cout <<  "[" << uc.get_uc_Code() << "],";
         }
         std::cout << "\n";
     }
     //std::cout << "]\n";
 
-
+    std::cout << students_uc_classes.size();
     // schedules
-    for(auto [uc, classMap] : schedules){
+    /*for(auto [uc, classMap] : schedules){
         std::cout << std::setfill(' ') << std::setw(20)  << "<== ("<< uc.get_uc_Code() << ") ==>\n\n[";
         for(auto [aclass,vec]: classMap){
             for(auto slot: vec){
-                std::cout << "(" << aclass.getClassCode() << ") - [" << slot.getWeekday() << "," << slot.getDuration() << "," << slot.getSlotType() << "],";
+                std::cout << "(" << aclass.getClassCode() << ") - [" << slot.getWeekday() << "," << slot.getStartHour()  << "-" << slot.getEndHour() <<  "," << slot.getSlotType() << "],";
             }
             std::cout << "\n";
         }
         std::cout << "]\n";
-    }
+    }*/
 
     int i;
     std::cin >> i;
