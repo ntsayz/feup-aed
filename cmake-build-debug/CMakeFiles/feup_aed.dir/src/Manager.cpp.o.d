@@ -205,6 +205,12 @@ CMakeFiles/feup_aed.dir/src/Manager.cpp.o: \
  /usr/include/c++/11/deque /usr/include/c++/11/bits/stl_deque.h \
  /usr/include/c++/11/bits/deque.tcc /usr/include/c++/11/bits/stl_queue.h \
  /home/ntsayz/Documents/feup-aed/src/Request.h \
+ /usr/include/c++/11/algorithm /usr/include/c++/11/bits/ranges_algo.h \
+ /usr/include/c++/11/bits/ranges_algobase.h /usr/include/c++/11/iterator \
+ /usr/include/c++/11/bits/stream_iterator.h \
+ /usr/include/c++/11/bits/ranges_util.h \
+ /usr/include/c++/11/pstl/glue_algorithm_defs.h \
+ /usr/include/c++/11/pstl/execution_defs.h \
  /home/ntsayz/Documents/feup-aed/src/Menu.h \
  /home/ntsayz/Documents/feup-aed/src/BST.h /usr/include/c++/11/stack \
  /usr/include/c++/11/bits/stl_stack.h

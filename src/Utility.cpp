@@ -204,13 +204,10 @@ std::string Utility::stringInput(std::string s) {
     char c = s[0],c1 = 'L',c2 = '1',c3 = '2',c4 = '3';
     if (c != c1 || c != c2 || c != c3 || c != c4){
         std::cerr << "Sorry, I cannot read that. Please try again." << std::endl;
-<<<<<<< HEAD
-        return "";
-=======
->>>>>>> main
     }
-    else
-        return s;
+    else {return s;}
+
+    return "";
 }
 
 
