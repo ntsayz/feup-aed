@@ -104,6 +104,23 @@ void Utility::scheduleFooter() {
     std::cout << "|" << std::setfill('-') <<std::setw(120) << "|\n";
     std::cout << "-->";
 }
+template<typename T>
+vector<Slot> mergeSort(vector<Slot>::iterator begin, vector<Slot>::iterator end) {
+    auto n = end - begin;
+    if (n < 2) {
+        return vector<Slot>(begin, end);
+    }
+    auto firstHalf  = mergeSort<vector<Slot>>(begin, begin + n/2);
+    auto secondHalf = mergeSort<vector<Slot>>(begin + n/2, end);
+
+    T merged;
+
+    std::merge(firstHalf.begin(), firstHalf.end(),
+               secondHalf.begin(), secondHalf.end(),
+               std::back_inserter(merged));
+    return merged;
+}
+
 
 void Utility::schedule(std::string descriptor, std::map<Uc,std::vector<Slot>> slots){
     clear_screen();
@@ -117,8 +134,6 @@ void Utility::schedule(std::string descriptor, std::map<Uc,std::vector<Slot>> sl
         std::cout << "|"  << std::setw(20);
     }
     std::cout << "|\n";
-
-
     vector<Slot> slots1;
     for (auto& [k, v] : slots)
     {
@@ -128,22 +143,28 @@ void Utility::schedule(std::string descriptor, std::map<Uc,std::vector<Slot>> sl
             slots1.push_back(slot);
         }
     }
+    std::vector<Slot> slot2 = mergeSort<vector<Slot>>(slots1.begin(),slots1.end());
 
-    bubbleSort(slots1,slots1.size());
+    //bubbleSort(slots1,slots1.size());
     int i = 1;
 
-    for (auto slot: slots1){
+    for (auto slot: slot2){
         std::cout << "|" << std::setfill(' ') << std::setw(8) << std::to_string(slot.getStartHour()).substr(0,4) << "-" << std::to_string(slot.getEndHour()).substr(0,4) << setw(7);
+
         for (int i = 1; i <= 5; i++)
         {
             if(i == slot.getNum()){
                 std::cout << "|" << std::setw(12) << slot.getUC() << "("<<  slot.getSlotType() << ")"<< std::setw(5);
+            }else{
+                std::cout << "|" << std::setw(20);
             }
-            if(i == 5) break;
-            std::cout << "|" << std::setw(20);
+
         }
         std::cout << "|\n|";
         std::cout << setfill('-') << setw(120) << "|\n";
+    }
+    for(auto slot: slot2){
+        std::cout << slot.getUC() << " - " << slot.getSlotType()  << " - " << slot.getStartHour() << " - " << slot.getEndHour() << "\n";
     }
     scheduleFooter();
 }
