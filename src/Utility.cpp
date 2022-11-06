@@ -185,6 +185,30 @@ void Utility::print_students(const std::set<Student>& sets){
     }
 }
 
+int Utility::getCode(int code) {
+    while(true){
+        if (std::cin.fail()) {
+            std::cerr << "Sorry, I cannot read that. Please try again." << std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }else if (code <= 0) {
+            return -1;
+        }
+
+        return code;
+    }
+}
+
+std::string Utility::stringInput(std::string s) {
+    char c = s[0],c1 = 'L',c2 = '1',c3 = '2',c4 = '3';
+    if (c != c1 || c != c2 || c != c3 || c != c4){
+        std::cerr << "Sorry, I cannot read that. Please try again." << std::endl;
+    }
+    else
+        return s;
+}
+
 
 
 

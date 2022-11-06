@@ -19,6 +19,7 @@
 #include "Utility.h"
 #include "Student.h"
 #include "Class.h"
+#include "Request.h"
 #include "Menu.h"
 #include "Uc.h"
 #include "BST.h"
@@ -26,6 +27,7 @@
 
 class Manager {
 private:
+
     std::vector<std::string> files;
     std::set<Student> students;
     //std::vector<std::reference_wrapper<Student>> students1 ;
@@ -37,11 +39,14 @@ private:
     std::map<Uc,std::map<Class,std::vector<Slot>>> schedules;
     std::map<Class,std::vector<Uc>> classes_uc;
     std::map<Uc,std::vector<Class>> uc_classes;
-
     std::set<Uc> curricularUnits;
+    std::queue<Request> requests;
     bool globalSession;
+
     /// Listings
     void Listings();
+    /// Request
+    void Requests();
     /// Student listings
     void studentsListings();
     /// Classes Listings
@@ -54,6 +59,8 @@ private:
     void loadDatafromFiles();
     /// Loads each object from each class with its particular data (eg:. Inserting students in a particular class)
     void load();
+    /// Funtion to execute the request
+    Request excute_Requests();
 public:
     /// Constructor
     Manager();
@@ -63,6 +70,8 @@ public:
     void thisFunctionIsForTestingPurposes();
 
     void getYearClass(int &year, int &classnum);
+
+    void testing();
 };
 
 
