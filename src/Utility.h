@@ -24,6 +24,8 @@ public:
     Utility();
     /// Gets and sanitizes user's input given a range (Number)
     static short getInput(short choice, short min, short max);
+    /// Validates Students code
+    static int getCode(int code);
     /// Clear screen (Cross-Platform)
     static void clear_screen();
     /// Gets .csv file path "classes"
@@ -52,6 +54,8 @@ public:
     static void print_uc_students_table(std::multimap<std::string, std::string> m);
 
     static void print_students(const std::set<Student>& sets);
+
+    static std::string stringInput(std::string s);
 };
 
 

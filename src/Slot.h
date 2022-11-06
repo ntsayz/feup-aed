@@ -24,14 +24,15 @@ public:
     std::string getSlotType();
     float getStartHour();
     bool operator<(const Slot& slot) const{
-        return this->weekday < slot.weekday;
-    }
-    bool operator==(const Slot& slot) const{
-        return this->weekday == slot.weekday;
+        return this->startHour < slot.startHour;
     }
     bool operator>(const Slot& slot) const{
-        return this->weekday == slot.weekday;
+        return this->startHour > slot.startHour;
     }
+    bool operator==(const Slot& slot) const{
+        return this->weekday == slot.weekday && this->startHour == slot.startHour ;
+    }
+
 
     float getEndHour();
 
