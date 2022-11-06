@@ -52,7 +52,7 @@ void Request::removeStudent(std::map<Student,std::map<Uc,std::vector<Class>>> st
 
 }
 
-void Request::add(std::map<Uc,std::map<Class,std::vector<Slot>>> schedules,std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes) {
+void Request::add(std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes) {
     unsigned int student_code,difference,c1,c2;
     std::string class_code,name,uc_code,turma;
     std::map<Uc,std::vector<Class>> map_classes;
@@ -74,8 +74,7 @@ void Request::add(std::map<Uc,std::map<Class,std::vector<Slot>>> schedules,std::
     Class c(class_code);
     /// used to find the studen'ts current class
     Uc classe_do_estudante(uc_code);
-    Uc old(uc_code,turma);
-    Class class_student(turma);
+
 
 
     auto itr = students_uc_classes.find(s);
@@ -90,6 +89,9 @@ void Request::add(std::map<Uc,std::map<Class,std::vector<Slot>>> schedules,std::
             c2 = i->getClassSize();
         }
     }
+
+    Uc old(uc_code,turma);
+    Class class_student(turma);
 
     difference = c2-c1;
 

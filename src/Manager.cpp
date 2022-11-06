@@ -488,7 +488,7 @@ Request Manager::excute_Requests() {
         requests.pop();
     }
     else if(r.get_n() == 2){
-        r.add(schedules,students_uc_classes);
+        r.add(students_uc_classes);
         requests.pop();
     }
     else if(r.get_n() == 3){
