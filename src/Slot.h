@@ -9,10 +9,10 @@
 class Slot {
 private:
     unsigned short weekday;
+    std::string uc;
     std::string weekdaystr;
     float startHour, endHour,duration;
     std::string type;
-    unsigned short getNum();
 public:
     /// Constructor
     Slot(std::string weekdaystr,float startHour,float duration,std::string type);
@@ -34,6 +34,12 @@ public:
     }
 
     float getEndHour();
+
+    unsigned short getNum();
+
+    void setUC(const std::string& basicString);
+
+    std::string getUC();
 };
 
 /*
