@@ -437,5 +437,9 @@ void Menu::schedulesListings(std::map<Uc,std::map<Class,std::vector<Slot>>> sche
     }
 }
 
+short Menu::Requests() {
+    return 0;
+}
+
 
 

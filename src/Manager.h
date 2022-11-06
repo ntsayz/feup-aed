@@ -24,7 +24,7 @@
 #include "Uc.h"
 #include "BST.h"
 
-
+class Request;
 class Manager {
 private:
 

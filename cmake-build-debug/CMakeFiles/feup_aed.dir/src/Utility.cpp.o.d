@@ -184,9 +184,7 @@ CMakeFiles/feup_aed.dir/src/Utility.cpp.o: \
  /home/ntsayz/Documents/feup-aed/src/Slot.h \
  /home/ntsayz/Documents/feup-aed/src/Uc.h \
  /home/ntsayz/Documents/feup-aed/src/Student.h \
- /home/ntsayz/Documents/feup-aed/src/Request.h /usr/include/c++/11/queue \
- /usr/include/c++/11/deque /usr/include/c++/11/bits/stl_deque.h \
- /usr/include/c++/11/bits/deque.tcc /usr/include/c++/11/bits/stl_queue.h \
+ /home/ntsayz/Documents/feup-aed/src/Request.h \
  /usr/include/c++/11/iomanip /usr/include/c++/11/locale \
  /usr/include/c++/11/bits/locale_facets_nonio.h /usr/include/c++/11/ctime \
  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
@@ -194,4 +192,23 @@ CMakeFiles/feup_aed.dir/src/Utility.cpp.o: \
  /usr/include/libintl.h /usr/include/c++/11/bits/locale_facets_nonio.tcc \
  /usr/include/c++/11/bits/locale_conv.h \
  /usr/include/c++/11/bits/unique_ptr.h \
- /usr/include/c++/11/bits/quoted_string.h
+ /usr/include/c++/11/bits/quoted_string.h /usr/include/c++/11/cstring \
+ /usr/include/string.h /usr/include/strings.h \
+ /usr/include/c++/11/algorithm /usr/include/c++/11/bits/ranges_algo.h \
+ /usr/include/c++/11/bits/ranges_algobase.h /usr/include/c++/11/iterator \
+ /usr/include/c++/11/bits/stream_iterator.h \
+ /usr/include/c++/11/bits/ranges_util.h \
+ /usr/include/c++/11/pstl/glue_algorithm_defs.h \
+ /usr/include/c++/11/functional /usr/include/c++/11/bits/refwrap.h \
+ /usr/include/c++/11/bits/std_function.h \
+ /usr/include/c++/11/unordered_map /usr/include/c++/11/bits/hashtable.h \
+ /usr/include/c++/11/bits/hashtable_policy.h \
+ /usr/include/c++/11/bits/enable_special_members.h \
+ /usr/include/c++/11/bits/unordered_map.h \
+ /usr/include/c++/11/pstl/execution_defs.h /usr/include/c++/11/deque \
+ /usr/include/c++/11/bits/stl_deque.h /usr/include/c++/11/bits/deque.tcc \
+ /home/ntsayz/Documents/feup-aed/src/Menu.h \
+ /home/ntsayz/Documents/feup-aed/src/BST.h /usr/include/c++/11/stack \
+ /usr/include/c++/11/bits/stl_stack.h /usr/include/c++/11/queue \
+ /usr/include/c++/11/bits/stl_queue.h \
+ /home/ntsayz/Documents/feup-aed/src/Manager.h

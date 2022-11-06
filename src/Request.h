@@ -24,10 +24,11 @@
 #include "Menu.h"
 #include "Uc.h"
 
+class Student;
 class Request {
 private:
     int n;
-    static std::vector<int>r;
+    static std::vector<int> r;
 public:
     Request(int n);
     static void removeStudent(std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_classes);

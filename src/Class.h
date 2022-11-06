@@ -20,7 +20,7 @@ private:
     int uid ;
     std::string class_Code;
     std::list<Slot> schedule;
-    static std::map<Uc,std::vector<Student>> UC_students;
+    std::map<Uc,std::vector<Student>> UC_students;
     std::set<Student> students;
 public:
     Class();
@@ -30,7 +30,7 @@ public:
     /// Gets Number of class (to compare)
     [[nodiscard]] int getClassNr() const;
     /// Adds student to the class's list
-    static void addStudent(Uc& uc, const Student& student);
+    void addStudent(Uc& uc, const Student& student);
     /// Gets number of students in a class
     [[nodiscard]] int getClassSize() const;
     /// Gives a list of all students in a class

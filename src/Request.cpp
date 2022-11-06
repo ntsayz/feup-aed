@@ -5,7 +5,7 @@
 #include "Request.h"
 
 Request::Request(int n) {
-    this->n = n;
+    this->n++;
 
 }
 
@@ -99,14 +99,13 @@ void Request::add(std::map<Student,std::map<Uc,std::vector<Class>>> students_uc_
         auto i = it->second.begin();
         if(i->getClassSize() > 12){
             std::cout << "No vacancies in class. " << "\n";
-            r.push_back(2);
+            //r.push_back(2);
         }
         else{
             if(difference >= 4){
                 std::cout << "Unable to change class." << "\n";
             }
-            else
-                Class::addStudent(uc,s);
+            //else Class::addStudent(uc,s);
         }
     }
 
@@ -160,15 +159,14 @@ void Request::change(std::map<Student, std::map<Uc, std::vector<Class>>> student
         auto i = it->second.begin();
         if(i->getClassSize() > 12){
             std::cout << "No vacancies in class. " << "\n";
-            r.push_back(2);
+            //r.push_back(2);
         }
         else{
             if(difference >= 4){
                 std::cout << "Unable to change class." << "\n";
-                r.push_back(2);
+                //r.push_back(2);
             }
-            else
-                Class::addStudent(uc,s);
+            //else Class::addStudent(uc,s);
         }
     }
 
@@ -236,15 +234,14 @@ void Request::changeMultiple(std::map<Student, std::map<Uc, std::vector<Class>>>
             auto i = it->second.begin();
             if(i->getClassSize() > 12){
                 std::cout << "No vacancies in class. " << "\n";
-                r.push_back(2);
+                //r.push_back(2);
             }
             else{
                 if(difference >= 4){
                     std::cout << "Unable to change class." << "\n";
-                    r.push_back(2);
+                    //r.push_back(2);
                 }
-                else
-                    Class::addStudent(uc,s);
+                //else Class::addStudent(uc,s);
             }
         }
 
@@ -269,7 +266,6 @@ void Request::changeMultiple(std::map<Student, std::map<Uc, std::vector<Class>>>
 }
 
 std::vector<int> Request::getUnsuccessufull() {
-    return this->r;
 }
 
 int Request::get_n() {
