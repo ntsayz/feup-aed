@@ -1,0 +1,71 @@
+\doxysection{Utility Class Reference}
+\label{class_utility}\index{Utility@{Utility}}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{class_utility_a0483de8d1d042d5a88579c5dacd5fbcb}} 
+static short \textbf{ get\+Input} (short choice, short min, short max)
+\begin{DoxyCompactList}\small\item\em Gets and sanitizes user\textquotesingle{}s input given a range (Number) \end{DoxyCompactList}\item 
+\mbox{\label{class_utility_a8970ff3fa20ebff40b182439900b7853}} 
+static int \textbf{ get\+Code} (int code)
+\begin{DoxyCompactList}\small\item\em Validates Students code. \end{DoxyCompactList}\item 
+\mbox{\label{class_utility_a34f05bd315eda43a811774d7f9d9ec07}} 
+static void \textbf{ clear\+\_\+screen} ()
+\begin{DoxyCompactList}\small\item\em Clear screen (Cross-\/\+Platform) \end{DoxyCompactList}\item 
+\mbox{\label{class_utility_a92fc364e3203e3ede8541fe0f24b72d7}} 
+static const char $\ast$ \textbf{ get\+Classes\+Path} ()
+\begin{DoxyCompactList}\small\item\em Gets .csv file path \char`\"{}classes\char`\"{}. \end{DoxyCompactList}\item 
+\mbox{\label{class_utility_a0f461cc47c1425d9099304fc1ce66d1a}} 
+static const char $\ast$ \textbf{ get\+Classes\+Uc\+Path} ()
+\begin{DoxyCompactList}\small\item\em Gets .csv file pth \char`\"{}classes\+\_\+per\+\_\+uc\char`\"{}. \end{DoxyCompactList}\item 
+\mbox{\label{class_utility_a11fe2ed5f1d8002db05123f01229b893}} 
+static const char $\ast$ \textbf{ get\+Student\+Classes\+Path} ()
+\begin{DoxyCompactList}\small\item\em Gets .csv file path \char`\"{}students\+\_\+classes\char`\"{}. \end{DoxyCompactList}\item 
+static void \textbf{ footer} ()
+\begin{DoxyCompactList}\small\item\em Makes sure that all files exist before starting program. \end{DoxyCompactList}\item 
+\mbox{\label{class_utility_a5ca2bdb48ec616350a96753978ec2a70}} 
+static void \textbf{ header} (const std\+::string \&title)
+\begin{DoxyCompactList}\small\item\em Auxiliary function, to print the menu\textquotesingle{}s header. \end{DoxyCompactList}\item 
+\mbox{\label{class_utility_ae62c4dbbcf6fbbdc2f513c74fb3436d7}} 
+static void \textbf{ body} (const std\+::string \&description, std\+::vector$<$ std\+::string $>$ options)
+\begin{DoxyCompactList}\small\item\em Auxiliary function, to print the menu\textquotesingle{}s body. \end{DoxyCompactList}\item 
+\mbox{\label{class_utility_a2e69648172b452d4135951a5f90faca6}} 
+static void \textbf{ path} (std\+::string path)
+\begin{DoxyCompactList}\small\item\em Auxiliary function, to print the current path of the user\textquotesingle{}s location. \end{DoxyCompactList}\item 
+\mbox{\label{class_utility_afd08a74bce3bbe010e9f35e0dedcfe18}} 
+static void \textbf{ schedule} (std\+::string descriptor, std\+::map$<$ \textbf{ Uc}, std\+::vector$<$ \textbf{ Slot} $>$$>$ slots)
+\begin{DoxyCompactList}\small\item\em Auxiliary function to print schedule (main) \end{DoxyCompactList}\item 
+\mbox{\label{class_utility_a8fcf8d4d513eb33e53115b16feeb0fcc}} 
+static void \textbf{ schedule\+Header} (std\+::string descriptor)
+\begin{DoxyCompactList}\small\item\em Auxiliary function to print schedule (header) \end{DoxyCompactList}\item 
+\mbox{\label{class_utility_af33a13f3815e7d9f63abd1192f98e189}} 
+static void \textbf{ schedule\+Footer} ()
+\begin{DoxyCompactList}\small\item\em Auxiliary function to print schedule. \end{DoxyCompactList}\item 
+\mbox{\label{class_utility_aeb1cd7ff2604e3714f3995383e588279}} 
+static void \textbf{ print\+\_\+uc\+\_\+students\+\_\+table} (std\+::multimap$<$ std\+::string, std\+::string $>$ m)
+\begin{DoxyCompactList}\small\item\em Auxiliary function to print table. \end{DoxyCompactList}\item 
+\mbox{\label{class_utility_a93b0d122d9161351daff0fb377099c86}} 
+static void \textbf{ print\+\_\+students} (const std\+::set$<$ \textbf{ Student} $>$ \&sets)
+\begin{DoxyCompactList}\small\item\em Auxiliary function to print table. \end{DoxyCompactList}\item 
+\mbox{\label{class_utility_af6bb251381db35290691e16212a3252c}} 
+static std\+::string \textbf{ string\+Input} (std\+::string s)
+\begin{DoxyCompactList}\small\item\em Validades input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_utility_a8d34a4c10ae4de754372ab8f6aa8f031}} 
+\index{Utility@{Utility}!footer@{footer}}
+\index{footer@{footer}!Utility@{Utility}}
+\doxysubsubsection{footer()}
+{\footnotesize\ttfamily void Utility\+::footer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Makes sure that all files exist before starting program. 
+
+Auxiliary function, to print the menu\textquotesingle{}s footer 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/Utility.\+h\item 
+src/Utility.\+cpp\end{DoxyCompactItemize}

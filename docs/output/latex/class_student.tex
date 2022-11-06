@@ -1,0 +1,50 @@
+\doxysection{Student Class Reference}
+\label{class_student}\index{Student@{Student}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{class_student_a447a1578cbe40f53cc2be6961707d174}} 
+\textbf{ Student} (int code, std\+::string name)
+\begin{DoxyCompactList}\small\item\em Enroll student to the faculty. \end{DoxyCompactList}\item 
+\mbox{\label{class_student_ac8feeb3ac55335031e738e765a08cfc0}} 
+\textbf{ Student} (int code, std\+::string name, \textbf{ Uc} \&curricular\+Unit, \textbf{ Class} \&a\+Class)
+\begin{DoxyCompactList}\small\item\em Enroll students w/ class information. \end{DoxyCompactList}\item 
+\mbox{\label{class_student_aae527e0f6d11087e26fad83b30faea2f}} 
+void \textbf{ add\+Class\+UC} (\textbf{ Uc} \&uc, \textbf{ Class} \&a\+Class)
+\begin{DoxyCompactList}\small\item\em Adds a class to the student\textquotesingle{}s list of classes. \end{DoxyCompactList}\item 
+\mbox{\label{class_student_af4781b2775c86207550811af225a55ad}} 
+const int \textbf{ get\+Code} () const
+\begin{DoxyCompactList}\small\item\em Gets student\textquotesingle{}s code. \end{DoxyCompactList}\item 
+\mbox{\label{class_student_ac1fd493e330c42cf8ae9bb783928ad55}} 
+void \textbf{ show\+Enrolled\+Classes} () const
+\begin{DoxyCompactList}\small\item\em Displays what classes the student is enrolled to. \end{DoxyCompactList}\item 
+\mbox{\label{class_student_a15c7c14d4094d02c1fa77e66225a1fb7}} 
+std\+::map$<$ \textbf{ Class}, \textbf{ Uc} $>$ \textbf{ get\+Enrolled\+Classes} () const
+\begin{DoxyCompactList}\small\item\em Gets $<$UC,\doxyref{Class}{p.}{class_class}$>$ map. \end{DoxyCompactList}\item 
+\mbox{\label{class_student_a2349f43c89fcfbdc3f6d14cd587135ad}} 
+int \textbf{ get\+Number\+Enrolled\+Classes} () const
+\begin{DoxyCompactList}\small\item\em Get number of enrolled classes. \end{DoxyCompactList}\item 
+\mbox{\label{class_student_af2b671e64af8a240f59652414a8b8047}} 
+std\+::string \textbf{ get\+Name} () const
+\begin{DoxyCompactList}\small\item\em Gets student\textquotesingle{}s name. \end{DoxyCompactList}\item 
+\mbox{\label{class_student_a7b3afdbc809634c0721bcf9f1e879a6b}} 
+void \textbf{ set\+UC} (std\+::string s)
+\begin{DoxyCompactList}\small\item\em Sets this student\textquotesingle{}s uc as the current (for sorting) \end{DoxyCompactList}\item 
+\mbox{\label{class_student_acf15aa1dc5686789b3f292176ecfa7f6}} 
+std\+::string \textbf{ get\+UC} ()
+\begin{DoxyCompactList}\small\item\em Gets students current uc. \end{DoxyCompactList}\item 
+\mbox{\label{class_student_a3d14036d86cf0f463db9ad5fa87f1d92}} 
+bool \textbf{ operator$<$} (\textbf{ Student} student) const
+\begin{DoxyCompactList}\small\item\em Auxiliary. \end{DoxyCompactList}\item 
+\mbox{\label{class_student_a7f41b88f2095e52487a2302003b84260}} 
+bool \textbf{ operator$>$} (\textbf{ Student} student) const
+\begin{DoxyCompactList}\small\item\em Auxiliary. \end{DoxyCompactList}\item 
+\mbox{\label{class_student_ac5603e98412e116b00a3db5b1105787d}} 
+bool \textbf{ operator==} (\textbf{ Student} student) const
+\begin{DoxyCompactList}\small\item\em Auxiliary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/Student.\+h\item 
+src/Student.\+cpp\end{DoxyCompactItemize}
